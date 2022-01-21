@@ -24,7 +24,7 @@ body {
   overflow: hidden;
   margin: auto;
   width: 75%;
-  padding: 20px 10px;
+  padding: 20px;
   text-align: center;
   font-size: 18px;
 }
@@ -32,7 +32,7 @@ body {
 .links a {
   color: #948985;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 
 .links a:hover {
@@ -86,6 +86,60 @@ body {
   to {
     border-right-color: transparent;
   }
+}
+
+.meta-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.title-word {
+  animation: color-animation 4s linear infinite;
+  font-size: 150px;
+  font-weight: 900;
+  padding: 25px;
+}
+
+.title-word-1 {
+  --color-1: #a8334c;
+  --color-2: #597a37;
+  --color-3: #88507D;
+}
+
+.title-word-2 {
+  --color-1: #a8623e;
+  --color-2: #286486;
+  --color-3: #3B8992;
+}
+
+.title-word-3 {
+  --color-1: #286486;
+  --color-2: #88507D;
+  --color-3: #a8623e;
+}
+
+.title-word-4 {
+  --color-1: #88507D;
+  --color-2: #a8334c;
+  --color-3: #597a37;
+}
+
+.title-word-5 {
+  --color-1: #3B8992;
+  --color-2: #a8623e;
+  --color-3: #286486;
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
 }
 
 .posts {
