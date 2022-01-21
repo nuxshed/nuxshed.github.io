@@ -117,19 +117,19 @@ body {
 .title-word-3 {
   --color-1: #286486;
   --color-2: #88507D;
-  --color-3: #a8623e;
+  --color-3: #a8334c;
 }
 
 .title-word-4 {
   --color-1: #88507D;
-  --color-2: #a8334c;
+  --color-2: #944927;
   --color-3: #597a37;
 }
 
 .title-word-5 {
   --color-1: #3B8992;
-  --color-2: #a8623e;
-  --color-3: #286486;
+  --color-2: #a8334c;
+  --color-3: #a8623e;
 }
 
 @keyframes color-animation {
