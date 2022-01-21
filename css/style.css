@@ -1,7 +1,10 @@
-@import url("http://fonts.cdnfonts.com/css/cascadia-code");
+@font-face {
+  font-family: "Cascadia Code";
+  src: url("../fonts/CascadiaCode.ttf");
+}
 
 @font-face {
-  font-family: "ETBembo";
+  font-family: "ETBembo", Garamond, serif;
   src: url("../fonts/et-book-roman-line-figures.ttf");
 }
 
@@ -14,7 +17,7 @@ html {
 body {
   background-color: #f0edec;
   color: #2c363c;
-  font-family: "Cascadia Code";
+  font-family: "Cascadia Code", Courier, monospace;
 }
 
 .links {
@@ -102,7 +105,7 @@ body {
 
 .blog {
   padding: 5% 25%;
-  font-family: "ETBembo";
+  font-family: "ETBembo", Garamond, serif;
 }
 
 .blog h1 {
