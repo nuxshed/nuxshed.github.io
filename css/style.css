@@ -1,0 +1,80 @@
+@import url("http://fonts.cdnfonts.com/css/cascadia-code");
+
+html {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #f0edec;
+  color: #2c363c;
+  font-family: "Cascadia Code";
+}
+
+.links {
+  overflow: hidden;
+  margin: auto;
+  width: 50%;
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.links a {
+  color: #948985;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.links a:hover {
+  color: #2c363c;
+  /* text-decoration: underline; */
+}
+
+.links a.active {
+  color: #2c363c;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.prominent {
+  font-size: 100px;
+  font-weight: 700;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.anim-typewriter-text {
+  width: 7em;
+  margin: 0 auto;
+  border-right: 2px solid #2c363c;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.anim-typewriter {
+  animation: typewriter 1.25s steps(12) 1s 1 normal both,
+    blinkTextCursor 600ms steps(12) infinite normal;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 7.2em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: #2c363c;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
