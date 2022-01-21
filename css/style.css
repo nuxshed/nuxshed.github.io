@@ -104,6 +104,10 @@ body {
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  .posts { padding: 5% 10% }
-  .prominent { font-size: 44px; }
+  .posts {
+    padding: 5% 10%;
+  }
+  .prominent {
+    font-size: 44px;
+  }
 }

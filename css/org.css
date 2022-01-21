@@ -28,14 +28,14 @@ a:hover {
 }
 
 b {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 #content {
-    margin: 0 auto;
-    max-width: 60%;
-    margin-top: 5em;
-    margin-bottom: 5em;
+  margin: 0 auto;
+  max-width: 60%;
+  margin-top: 5em;
+  margin-bottom: 5em;
 }
 
 #org-div-home-and-up {
@@ -54,8 +54,28 @@ pre.src {
   background-color: #ede8e6;
 }
 
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e9e4e2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc7c5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b2aead;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  #content { max-width: 90% }
-  pre.src { font-size: 12px;}
+  #content {
+    max-width: 90%;
+  }
+  pre.src {
+    font-size: 12px;
+  }
 }
