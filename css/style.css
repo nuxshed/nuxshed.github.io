@@ -102,58 +102,8 @@ body {
   text-decoration: underline;
 }
 
-.blog {
-  padding: 5% 25%;
-  font-family: "ETBembo", Garamond, serif;
-}
-
-.blog h1 {
-  font-size: 44px;
-}
-.blog p {
-  font-size: 22px;
-  line-height: 150%;
-}
-
-.footer {
-  text-align: center;
-  padding-bottom: 5%;
-}
-
-.footer a {
-  color: #948985;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #2c363c;
-}
-
-/* The progress container (grey background) */
-.progress-container {
-  width: 100%;
-  height: 10px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-/* The progress bar (scroll indicator) */
-.progress-bar {
-  height: 10px;
-  background: #2c363c;
-  width: 0%;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-::-webkit-scrollbar {
-  display: none;
-}
-
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  .blog { padding: 5% 10%; }
   .posts { padding: 5% 10% }
   .prominent { font-size: 44px; }
 }
