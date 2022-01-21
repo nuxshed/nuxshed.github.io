@@ -38,6 +38,15 @@ b {
     margin-bottom: 5em;
 }
 
+#org-div-home-and-up {
+  text-align: right;
+  font-size: 70%;
+  white-space: nowrap;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 15px;
+}
+
 pre.src {
   font-family: "Cascadia Code";
   font-size: 14px;
