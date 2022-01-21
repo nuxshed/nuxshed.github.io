@@ -102,6 +102,14 @@ body {
   text-decoration: underline;
 }
 
+::-moz-selection {
+  background: #cbd9e3;
+}
+
+::selection {
+  background: #cbd9e3;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .posts {
