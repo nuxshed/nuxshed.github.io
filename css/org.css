@@ -67,6 +67,10 @@ pre.src {
   padding: 20px;
 }
 
+pre.src:before {
+  background: #ede8e6;
+}
+
 ::-webkit-scrollbar {
   width: 13px;
 }

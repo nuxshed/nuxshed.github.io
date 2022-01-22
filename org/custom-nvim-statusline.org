@@ -4,7 +4,7 @@
 #+HTML_LINK_HOME: ../index.html
 
 * Introduction
-The statusline is an integral part of (neo)vim's interface. I'd always fancied making my own statusline, and galaxyline becoming unmaintained pushed me to make ithe switch.
+The statusline is an integral part of (neo)vim's interface. I'd always fancied making my own statusline, and galaxyline becoming unmaintained pushed me to make the switch.
 This is what it looks like right now:
 [[../assets/statusline.png]]
 
@@ -88,9 +88,9 @@ If you don't want different colors for each mode, simply remove this function an
 What is a statusline without the filename?
 
 Here, we use a few modifiers with ~fn.fnamemodify~ to customize what the filepath looks like:
-- =:~= Reduce filename to be relative to the home directory, i.e. replace =/home/<user>= with =~=.
-- =:.= Reduce filename to be relative to the current directory.
-- =:h= Reduce filename to only the head (without this it would be printed twice.)
+- =:~= reduces filename to be relative to the home directory, i.e. replace =/home/<user>= with =~=.
+- =:.= reduces filename to be relative to the current directory.
+- =:h= reduces filename to only the head (without this it would be printed twice.)
 
 Refer to =:h filename-modifiers= for more.
 #+begin_src lua
@@ -224,6 +224,8 @@ I use autocommands to show the statusline. This lets me show different statuslin
 ** Git Info
 Many people like to have git info in their statusline. I used this at some point but I removed it for /mUh miNiMaLIsM/
 To use it, chuck this function into your file and add it to ~Statusline.active()~.
+
+(requires gitsigns.nvim)
 #+begin_src lua
   local vcs = function()
     local git_info = vim.b.gitsigns_status_dict

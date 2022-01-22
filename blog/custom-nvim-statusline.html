@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-22 Sat 12:15 -->
+<!-- 2022-01-22 Sat 12:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Custom Neovim Statusline</title>
@@ -232,7 +232,7 @@
 <h2 id="orgdc69b03"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The statusline is an integral part of (neo)vim's interface. I'd always fancied making my own statusline, and galaxyline becoming unmaintained pushed me to make ithe switch.<br />
+The statusline is an integral part of (neo)vim's interface. I'd always fancied making my own statusline, and galaxyline becoming unmaintained pushed me to make the switch.<br />
 This is what it looks like right now:<br />
 <img src="../assets/statusline.png" alt="statusline.png" /><br />
 </p>
@@ -353,9 +353,9 @@ What is a statusline without the filename?<br />
 Here, we use a few modifiers with <code>fn.fnamemodify</code> to customize what the filepath looks like:<br />
 </p>
 <ul class="org-ul">
-<li><code>:~</code> Reduce filename to be relative to the home directory, i.e. replace <code>/home/&lt;user&gt;</code> with <code>~</code>.<br /></li>
-<li><code>:.</code> Reduce filename to be relative to the current directory.<br /></li>
-<li><code>:h</code> Reduce filename to only the head (without this it would be printed twice.)<br /></li>
+<li><code>:~</code> reduces filename to be relative to the home directory, i.e. replace <code>/home/&lt;user&gt;</code> with <code>~</code>.<br /></li>
+<li><code>:.</code> reduces filename to be relative to the current directory.<br /></li>
+<li><code>:h</code> reduces filename to only the head (without this it would be printed twice.)<br /></li>
 </ul>
 
 <p>
@@ -541,6 +541,10 @@ I use autocommands to show the statusline. This lets me show different statuslin
 <p>
 Many people like to have git info in their statusline. I used this at some point but I removed it for <i>mUh miNiMaLIsM</i><br />
 To use it, chuck this function into your file and add it to <code>Statusline.active()</code>.<br />
+</p>
+
+<p>
+(requires gitsigns.nvim)<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-lua"><span style="color: #a8334c;">local</span> <span style="color: #944927;">vcs</span> = <span style="color: #a8334c;">function</span>()
