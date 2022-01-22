@@ -13,9 +13,13 @@
 body {
   font-family: "ETBembo", serif;
   font-size: 18px;
-  line-height: 2em;
+  line-height: 1.7em;
   background-color: #f0edec;
   color: #2c363c;
+}
+
+ul.org-ul {
+  line-height: 1.4em;
 }
 
 a {
@@ -29,6 +33,14 @@ a:hover {
 
 b {
   font-weight: 400;
+}
+
+h {
+  padding-top: 10px;
+}
+
+code {
+  font-size: 14px;
 }
 
 #content {
@@ -52,6 +64,7 @@ pre.src {
   font-size: 14px;
   line-height: 1.5em;
   background-color: #ede8e6;
+  padding: 20px;
 }
 
 ::-webkit-scrollbar {

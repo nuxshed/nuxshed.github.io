@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-21 Fri 17:55 -->
+<!-- 2022-01-22 Sat 10:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Configuration</title>
@@ -334,6 +334,7 @@ Some useful minor modes
 <div class="org-src-container">
 <pre class="src src-elisp">(global-display-line-numbers-mode) <span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">line numbers</span>
 (global-hl-line-mode) <span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">highlight current line</span>
+(global-visual-line-mode) <span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">wrap lines</span>
 (electric-pair-mode) <span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">autopairs</span>
 (recentf-mode) <span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">recent files</span>
 </pre>
@@ -567,7 +568,10 @@ eshell is nice but I prefer vterm
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">mixed-pitch</span>
   <span style="color: #286486;">:hook</span>
-  (text-mode . mixed-pitch-mode))
+  (text-mode . mixed-pitch-mode)
+  <span style="color: #286486;">:config</span>
+  (<span style="color: #a8334c;">setq</span> mixed-pitch-variable-pitch-cursor <span style="color: #597a37;">"block"</span>
+        mixed-pitch-set-height t))
 </pre>
 </div>
 </div>
@@ -788,7 +792,7 @@ Add icons to ibuffer
 <div class="org-src-container">
 <pre class="src src-elisp">(set-face-attribute 'default nil <span style="color: #286486;">:font</span> <span style="color: #597a37;">"Cascadia Code 10"</span>)
 (set-face-attribute 'fixed-pitch nil <span style="color: #286486;">:font</span> <span style="color: #597a37;">"Cascadia Code 10"</span>)
-(set-face-attribute 'variable-pitch nil <span style="color: #286486;">:font</span> <span style="color: #597a37;">"IBMPlexSans 10"</span>)
+(set-face-attribute 'variable-pitch nil <span style="color: #286486;">:font</span> <span style="color: #597a37;">"IBM Plex Sans 10"</span>)
 </pre>
 </div>
 </div>
@@ -905,6 +909,8 @@ Add icons to ibuffer
           (<span style="color: #a8334c;">lambda</span> ()
             (local-set-key (kbd <span style="color: #597a37;">"q"</span>) 'org-agenda-exit)))
 (<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">htmlize</span>)
+(add-hook 'org-mode-hook #'toggle-word-wrap)
+
 </pre>
 </div>
 </div>
@@ -940,15 +946,15 @@ Deft is nice for note-taking
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq</span> org-publish-project-alist
       '(
         (<span style="color: #597a37;">"blog"</span>
-         <span style="color: #286486;">:base-directory</span> <span style="color: #597a37;">"~/projects/site/org"</span>
-         <span style="color: #286486;">:base-extension</span> <span style="color: #597a37;">"org"</span> <span style="color: #597a37;">"png"</span> <span style="color: #597a37;">"jpg"</span> <span style="color: #597a37;">"css"</span>
+         <span style="color: #286486;">:base-directory</span> <span style="color: #597a37;">"~/projects/site/org/"</span>
+         <span style="color: #286486;">:base-extension</span> <span style="color: #597a37;">"org"</span>
          <span style="color: #286486;">:publishing-directory</span> <span style="color: #597a37;">"~/projects/site/blog/"</span>
-         <span style="color: #286486;">:recursive</span> t
+         <span style="color: #286486;">:recursive</span> nil
          <span style="color: #286486;">:publishing-function</span> org-html-publish-to-html
          <span style="color: #286486;">:auto-preamble</span> t)
         (<span style="color: #597a37;">"emacs-config"</span>
          <span style="color: #286486;">:base-directory</span> <span style="color: #597a37;">"~/dotfiles/config/emacs/"</span>
-         <span style="color: #286486;">:base-extension</span> <span style="color: #597a37;">"org"</span> <span style="color: #597a37;">"css"</span> <span style="color: #597a37;">"png"</span>
+         <span style="color: #286486;">:base-extension</span> <span style="color: #597a37;">"org"</span>
          <span style="color: #286486;">:publishing-directory</span> <span style="color: #597a37;">"~/projects/site/blog/"</span>
          <span style="color: #286486;">:recursive</span> nil
          <span style="color: #286486;">:publishing-function</span> org-html-publish-to-html
