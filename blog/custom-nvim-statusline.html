@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-22 Sat 12:59 -->
+<!-- 2022-01-22 Sat 17:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Custom Neovim Statusline</title>
@@ -200,7 +200,10 @@
  <a accesskey="h" href="index.html"> UP </a>
  |
  <a accesskey="H" href="../index.html"> HOME </a>
-</div><div id="content" class="content">
+</div><div id="preamble" class="status">
+<div class="links"><a href=../index.html>Home</a><a href="" class="active">Blog</a><a href=../stuff.html>Stuff</a></div>
+</div>
+<div id="content" class="content">
 <h1 class="title">Custom Neovim Statusline</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
@@ -565,14 +568,16 @@ To use it, chuck this function into your file and add it to <code>Statusline.act
   <span style="color: #a8334c;">if</span> git_info.removed == 0 <span style="color: #a8334c;">then</span>
     removed = <span style="color: #597a37;">""</span>
   <span style="color: #a8334c;">end</span>
-  <span style="color: #a8334c;">return</span> <span style="color: #597a37;">" "</span>
-      .. added
-      .. changed
-      .. removed
-      .. <span style="color: #597a37;">" "</span>
-      .. <span style="color: #597a37;">"%#GitSignsAdd#&#59173; "</span>
-      .. git_info.head
-      .. <span style="color: #597a37;">" %#Normal#"</span>
+  <span style="color: #a8334c;">return</span> <span style="color: #286486;">table</span>.<span style="color: #286486;">concat</span> {
+     <span style="color: #597a37;">" "</span>,
+     added,
+     changed,
+     removed,
+     <span style="color: #597a37;">" "</span>,
+     <span style="color: #597a37;">"%#GitSignsAdd#&#59173; "</span>,
+     git_info.head,
+     <span style="color: #597a37;">" %#Normal#"</span>,
+  }
 <span style="color: #a8334c;">end</span>
 </pre>
 </div>

@@ -244,14 +244,16 @@ To use it, chuck this function into your file and add it to ~Statusline.active()
     if git_info.removed == 0 then
       removed = ""
     end
-    return " "
-        .. added
-        .. changed
-        .. removed
-        .. " "
-        .. "%#GitSignsAdd# "
-        .. git_info.head
-        .. " %#Normal#"
+    return table.concat {
+       " ",
+       added,
+       changed,
+       removed,
+       " ",
+       "%#GitSignsAdd# ",
+       git_info.head,
+       " %#Normal#",
+    }
   end
 #+end_src
 
