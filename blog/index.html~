@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-22 Sat 19:48 -->
+<!-- 2022-01-22 Sat 19:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Recent</title>
@@ -193,7 +193,6 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
 </style>
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
 <div id="preamble" class="status">
@@ -205,8 +204,8 @@
 <li><p>
 <a href="custom-nvim-statusline.html">Custom Neovim Statusline</a><br />
 </p>
-<div class="article-info" id="org857533f">
-<div class="date" id="org0625f5c">
+<div class="article-info" id="org263d880">
+<div class="date" id="org43f15ec">
 <p>
 Last Modified 2022-01-22<br />
 </p>

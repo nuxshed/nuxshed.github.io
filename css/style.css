@@ -121,6 +121,22 @@ a:hover {
   min-height: 60vh;
 }
 
+.about-container {
+  padding-top: 3em;
+  text-align: left;
+  width: 80%;
+  overflow: hidden;
+  margin: auto;
+  line-height: 1.5em;
+  font-size: 17px;
+}
+
+.about-container a {
+  color: #2c363c;
+  font-size: 17px;
+  padding: 0px;
+}
+
 .title-word {
   animation: color-animation 4s linear infinite;
   font-size: 150px;
@@ -180,6 +196,22 @@ a:hover {
   100% {
     color: var(--color-1);
   }
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e9e4e2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc7c5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b2aead;
 }
 
 ::-moz-selection {

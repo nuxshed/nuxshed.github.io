@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-22 Sat 10:24 -->
+<!-- 2022-01-22 Sat 19:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Configuration</title>
@@ -275,7 +275,7 @@
 </div>
 
 <p>
-Change the defaults because some of them suck
+Change the defaults because some of them suck<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq-default</span> require-final-newline t
@@ -296,7 +296,7 @@ Change the defaults because some of them suck
 </div>
 
 <p>
-UI debloating
+UI debloating<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq</span> inhibit-startup-echo-area-message t
@@ -310,7 +310,7 @@ UI debloating
 </div>
 
 <p>
-optimizations
+optimizations<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq</span> frame-inhibit-implied-resize t
@@ -320,7 +320,7 @@ optimizations
 </div>
 
 <p>
-Set custom file and load it
+Set custom file and load it<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq</span> custom-file <span style="color: #597a37;">"~/.emacs.d/custom.el"</span>)
@@ -329,7 +329,7 @@ Set custom file and load it
 </div>
 
 <p>
-Some useful minor modes
+Some useful minor modes<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(global-display-line-numbers-mode) <span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">line numbers</span>
@@ -341,7 +341,7 @@ Some useful minor modes
 </div>
 
 <p>
-Configure indentation
+Configure indentation<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq-default</span> indent-tabs-mode nil
@@ -358,7 +358,7 @@ Configure indentation
 <h2 id="orga4d7bd4"><span class="section-number-2">2.</span> Packages</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Setting up use-package
+Setting up use-package<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">init package sources</span>
@@ -487,7 +487,7 @@ Setting up use-package
 </div>
 
 <p>
-Orderless adds fuzzy finding
+Orderless adds fuzzy finding<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">orderless</span>
@@ -499,7 +499,7 @@ Orderless adds fuzzy finding
 </div>
 
 <p>
-Marginalia adds descriptions and stuff to your minibuffer
+Marginalia adds descriptions and stuff to your minibuffer<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">marginalia</span>
@@ -538,7 +538,7 @@ Marginalia adds descriptions and stuff to your minibuffer
 <h3 id="org37b7b3b"><span class="section-number-3">2.7.</span> Vterm</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
-eshell is nice but I prefer vterm
+eshell is nice but I prefer vterm<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">vterm</span>
@@ -581,7 +581,7 @@ eshell is nice but I prefer vterm
 <h3 id="orgb62d30f"><span class="section-number-3">2.10.</span> Languages</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
-Some major modes to improve language support
+Some major modes to improve language support<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">nix-mode</span>)
@@ -600,11 +600,11 @@ Some major modes to improve language support
   <span style="color: #286486;">:ensure</span> t
   <span style="color: #286486;">:init</span> (global-flycheck-mode)
   <span style="color: #286486;">:config</span>
-  (<span style="color: #a8334c;">setq</span> flycheck-emacs-lisp-load-path 'inherit)
+  (<span style="color: #a8334c;">setq</span> flycheck-elisp-load-path 'inherit)
   (<span style="color: #a8334c;">setq</span> flycheck-idle-change-delay 1.0)
-  (<span style="color: #a8334c;">setq-local</span> flycheck-emacs-lisp-initialize-packages t)
-  (<span style="color: #a8334c;">setq-local</span> flycheck-emacs-lisp-package-user-dir package-user-dir)
-  (<span style="color: #a8334c;">setq-default</span> flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  (<span style="color: #a8334c;">setq-local</span> flycheck-elisp-initialize-packages t)
+  (<span style="color: #a8334c;">setq-local</span> flycheck-elisp-package-user-dir package-user-dir)
+  (<span style="color: #a8334c;">setq-default</span> flycheck-disabled-checkers '(elisp-checkdoc)))
 </pre>
 </div>
 </div>
@@ -713,7 +713,7 @@ Some major modes to improve language support
 </div>
 
 <p>
-Modify the default ibuffer formats
+Modify the default ibuffer formats<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">setq</span> ibuffer-formats
@@ -730,7 +730,7 @@ Modify the default ibuffer formats
 </div>
 
 <p>
-Set filter groups
+Set filter groups<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">
@@ -770,7 +770,7 @@ Set filter groups
 </div>
 
 <p>
-Add icons to ibuffer
+Add icons to ibuffer<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">all-the-icons-ibuffer</span>
@@ -919,7 +919,7 @@ Add icons to ibuffer
 <h3 id="org1dcecba"><span class="section-number-3">6.1.</span> Deft</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
-Deft is nice for note-taking
+Deft is nice for note-taking<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">deft</span>
@@ -943,28 +943,49 @@ Deft is nice for note-taking
 <h3 id="org9dd9d92"><span class="section-number-3">6.2.</span> Publishing</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a8334c;">setq</span> org-publish-project-alist
+<pre class="src src-elisp">
+  (<span style="color: #a8334c;">defun</span> <span style="color: #944927;">sitemap-format-entry</span> (entry style project)
+  (format <span style="color: #597a37;">"</span>
+<span style="color: #597a37;">      [[file:%s][%s]]</span>
+<span style="color: #597a37;">      #+begin_article-info</span>
+<span style="color: #597a37;">      #+begin_date</span>
+<span style="color: #597a37;">      Last Modified %s</span>
+<span style="color: #597a37;">      #+end_date</span>
+<span style="color: #597a37;">      #+end_article-info"</span>
+      entry
+              (org-publish-find-title entry project)
+      (format-time-string <span style="color: #597a37;">"%Y-%m-%d"</span> (org-publish-find-date entry project))
+      (org-publish-find-property entry <span style="color: #286486;">:keywords</span> project 'html)
+      (org-publish-find-property entry <span style="color: #286486;">:description</span> project 'html)))
+(<span style="color: #a8334c;">setq</span> org-publish-project-alist
       '(
         (<span style="color: #597a37;">"blog"</span>
          <span style="color: #286486;">:base-directory</span> <span style="color: #597a37;">"~/projects/site/org/"</span>
          <span style="color: #286486;">:base-extension</span> <span style="color: #597a37;">"org"</span>
          <span style="color: #286486;">:publishing-directory</span> <span style="color: #597a37;">"~/projects/site/blog/"</span>
-         <span style="color: #286486;">:recursive</span> nil
+         <span style="color: #286486;">:recursive</span> t
          <span style="color: #286486;">:publishing-function</span> org-html-publish-to-html
-         <span style="color: #286486;">:auto-preamble</span> t)
+         <span style="color: #286486;">:html-preamble</span> <span style="color: #597a37;">"&lt;div class=\"links\"&gt;&lt;a href=../index.html&gt;Home&lt;/a&gt;&lt;a href=\"\" class=\"active\"&gt;Blog&lt;/a&gt;&lt;a href=../snips.html&gt;Snips&lt;/a&gt;&lt;a href=../about.html&gt;About&lt;/a&gt;&lt;/div&gt;"</span>
+         <span style="color: #286486;">:html-head</span> <span style="color: #597a37;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\" /&gt;"</span>
+         <span style="color: #286486;">:auto-sitemap</span> t
+         <span style="color: #286486;">:sitemap-filename</span> <span style="color: #597a37;">"index.org"</span>
+         <span style="color: #286486;">:sitemap-title</span> <span style="color: #597a37;">"Recent"</span>
+         <span style="color: #286486;">:sitemap-format-entry</span> sitemap-format-entry
+         <span style="color: #286486;">:sitemap-sort-files</span> anti-chronologically)
         (<span style="color: #597a37;">"emacs-config"</span>
          <span style="color: #286486;">:base-directory</span> <span style="color: #597a37;">"~/dotfiles/config/emacs/"</span>
          <span style="color: #286486;">:base-extension</span> <span style="color: #597a37;">"org"</span>
          <span style="color: #286486;">:publishing-directory</span> <span style="color: #597a37;">"~/projects/site/blog/"</span>
          <span style="color: #286486;">:recursive</span> nil
-         <span style="color: #286486;">:publishing-function</span> org-html-publish-to-html
-         <span style="color: #286486;">:auto-preamble</span> t)))
+         <span style="color: #286486;">:publishing-function</span> org-html-publish-to-html)))
+
 (<span style="color: #a8334c;">setq</span> org-html-postamble nil)
+(<span style="color: #a8334c;">setq</span> org-export-preserve-breaks t)
 </pre>
 </div>
 
 <p>
-Make org-mode prettier
+Make org-mode prettier<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">defun</span> <span style="color: #944927;">org/prettify-set</span> ()
@@ -1004,12 +1025,12 @@ Make org-mode prettier
 </div>
 
 <p>
-Set up org-babel for elisp
+Set up org-babel for elisp<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(org-babel-do-load-languages
   'org-babel-load-languages
-  '((emacs-lisp . t)))
+  '((elisp . t)))
 </pre>
 </div>
 </div>
@@ -1032,7 +1053,7 @@ Set up org-babel for elisp
 </div>
 
 <p>
-the end
+the end<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #948985; font-style: italic;">;; </span><span style="color: #948985; font-style: italic;">init.el ends here</span>
