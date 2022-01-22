@@ -20,6 +20,27 @@ body {
   font-family: "Cascadia Code", Courier, monospace;
 }
 
+.title {
+  text-align: left;
+  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+}
+
+.date {
+  font-size: 14px;
+  color: #948985;
+}
+
+a {
+  color: #2c363c;
+  font-size: 21px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .links {
   overflow: hidden;
   margin: auto;
@@ -105,55 +126,55 @@ body {
 .title-word-1 {
   --color-1: #a8334c;
   --color-2: #597a37;
-  --color-3: #88507D;
+  --color-3: #88507d;
 }
 
 .title-word-2 {
   --color-1: #a8623e;
   --color-2: #286486;
-  --color-3: #3B8992;
+  --color-3: #3b8992;
 }
 
 .title-word-3 {
   --color-1: #286486;
-  --color-2: #88507D;
+  --color-2: #88507d;
   --color-3: #a8334c;
 }
 
 .title-word-4 {
-  --color-1: #88507D;
+  --color-1: #88507d;
   --color-2: #944927;
   --color-3: #597a37;
 }
 
 .title-word-5 {
-  --color-1: #3B8992;
+  --color-1: #3b8992;
   --color-2: #a8334c;
   --color-3: #a8623e;
 }
 
 @keyframes color-animation {
-  0%    {color: var(--color-1)}
-  32%   {color: var(--color-1)}
-  33%   {color: var(--color-2)}
-  65%   {color: var(--color-2)}
-  66%   {color: var(--color-3)}
-  99%   {color: var(--color-3)}
-  100%  {color: var(--color-1)}
-}
-
-.posts {
-  padding: 2% 25%;
-}
-
-.posts a {
-  color: #2c363c;
-  font-size: 21px;
-  text-decoration: none;
-}
-
-.posts a:hover {
-  text-decoration: underline;
+  0% {
+    color: var(--color-1);
+  }
+  32% {
+    color: var(--color-1);
+  }
+  33% {
+    color: var(--color-2);
+  }
+  65% {
+    color: var(--color-2);
+  }
+  66% {
+    color: var(--color-3);
+  }
+  99% {
+    color: var(--color-3);
+  }
+  100% {
+    color: var(--color-1);
+  }
 }
 
 ::-moz-selection {

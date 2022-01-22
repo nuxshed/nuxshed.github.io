@@ -1,0 +1,8 @@
+#+TITLE: Recent
+
+- [[file:custom-nvim-statusline.org][Custom Neovim Statusline]]
+  #+begin_article-info
+  #+begin_date
+  Last Modified 2022-01-22
+  #+end_date
+  #+end_article-info
