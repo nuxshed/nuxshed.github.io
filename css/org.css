@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: "ETBembo", serif;
+  font-family: "ETBembo", sans-serif;
   font-size: 18px;
   line-height: 1.7em;
   background-color: #f0edec;
@@ -35,8 +35,9 @@ b {
   font-weight: 400;
 }
 
-h {
-  padding-top: 10px;
+h1 {
+  font-size: 3em;
+  padding-bottom: 1em;
 }
 
 code {
@@ -52,7 +53,7 @@ code {
 
 #org-div-home-and-up {
   text-align: right;
-  font-size: 70%;
+  font-size: 13px;
   white-space: nowrap;
   position: -webkit-sticky; /* Safari */
   position: sticky;
@@ -69,6 +70,10 @@ pre.src {
 
 pre.src:before {
   background: #ede8e6;
+}
+
+.links {
+  display: none;
 }
 
 ::-webkit-scrollbar {

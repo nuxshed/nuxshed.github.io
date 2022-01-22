@@ -20,6 +20,10 @@ body {
   font-family: "Cascadia Code", Courier, monospace;
 }
 
+#content {
+  width: 55%
+}
+
 .title {
   text-align: left;
   margin-bottom: 0.5em;
@@ -46,6 +50,7 @@ a:hover {
   margin: auto;
   width: 75%;
   padding: 20px;
+  padding-top: 50px;
   text-align: center;
   font-size: 18px;
 }
@@ -192,5 +197,9 @@ a:hover {
   }
   .prominent {
     font-size: 44px;
+  }
+
+  #content {
+    width: 90%;
   }
 }
