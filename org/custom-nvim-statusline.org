@@ -178,7 +178,7 @@ Takes the filetype and makes it uppercase
 
 * Building the Statusline
 Let us build the statusline using the modules defined above. Here, we take a table of strings (returned by the functions above), and concatenate them into one string (which is what the statusline wil be set to.)
-#+begin_src elisp
+#+begin_src lua
   Statusline = {}
 
   Statusline.active = function()
