@@ -1,5 +1,11 @@
 #+TITLE: Recent
 
+- [[file:window-managers.org][Window Managers]]
+  #+begin_article-info
+  #+begin_date
+  Last Modified 2022-01-24
+  #+end_date
+  #+end_article-info
 - [[file:custom-nvim-statusline.org][Custom Neovim Statusline]]
   #+begin_article-info
   #+begin_date

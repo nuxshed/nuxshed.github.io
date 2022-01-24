@@ -1,0 +1,58 @@
+#+TITLE:Window Managers
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/org.css" />
+#+HTML_LINK_UP: index.html
+#+HTML_LINK_HOME: ../index.html
+
+* Introduction
+
+WARNING: This is an article about my view on various window managers, it is /very/ biased.
+WARNING(1): This article is a work in progress.
+
+* Definition
+
+Window managers manage windows. They control the appearance and behaviour of windows and how they are arranged.
+
+* Window Managers
+This is not a complete list. I have only written about ones that I have used in the past, or am interested in.
+
+
+** Awesome
+[[https://awesomewm.org]]
+
+Awesome could easily be considered the most powerful WM in Linux as with enough time, the wm itself is capable of recreating many DE like functionalities
+You can have [[https://cdn.discordapp.com/attachments/635625925748457482/930841155103490058/unknown.png][notification centers]], [[https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/][action centers]],  [[https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/][dashboards]], [[https://github.com/ner0z/dotfiles#shots][lock screens]] , anything you can think of.
+
+It's window management is dynamic and equally good at both tiling and floating
+With perhaps the most customizable titlebars of any window manager.
+
+[[https://media.discordapp.net/attachments/702548961780826212/808755985530224640/unknown.png?width=671&height=585][You can even have hexagonal windows if you really wanted to]]
+
+It's widget system is also incredibly powerful in the right hands and the tight integration with the rest of the window manager makes it even more so.
+
+[[https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/][Just]] [[https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/][look]] [[https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/][at]] [[https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/][all]] [[https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/][these]] [[https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/][cool]] [[https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/][rices.]]
+
+Switch to awesome now. [[https://www.youtube.com/watch?v=ZXsQAXx_ao0][just do it.]]
+
+** Berry
+
+[[https://berrywm.org]]
+
+Berry is a small floating window manager written in C. It has a surprising amount of features, and probably is my favourite floating window manager.
+Neat Features:
+- Powerful command-line client, and can thus be controlled via shell scripts
+- Extensive theming options with titlebars, window text and double borders
+
+** Herbstluftwm
+[[https://herbstluftwm.org]]
+
+herbstluftwm is a manual tiling window manager for the X window system. It is configured through =herbstclient=, so the config file is simply a shell script run at startup.
+All configuration can be done via =herbstclient= and thus there is no need to restart the window manager.
+
+** i3
+https://i3wm.org/
+
+i3 is the easiest and simplest window manager. It is perfect for beginners, but is powerful enough to even satisy power users. Although, if you plan to use i3, I reccomend that you use [[https://github.com/Airblader/i3][i3-gaps]] instead, as it has a few more features. [[https://swaywm.org/][Sway]] is i3 for wayland, so it might be worth checking out too.
+
+
+* Credits
+- nes (Dark NES#4901): helping me shill for awesome

@@ -23,12 +23,11 @@ ul.org-ul {
 }
 
 a {
-  text-decoration: none;
   color: #2c363c;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #685c56;
 }
 
 b {

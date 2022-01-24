@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-23 Sun 09:48 -->
+<!-- 2022-01-24 Mon 11:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Configuration</title>
@@ -226,6 +226,7 @@
 <li><a href="#org9d6f581">2.11. Flycheck</a></li>
 <li><a href="#org557c469">2.12. Projectile</a></li>
 <li><a href="#org7da9025">2.13. Magit</a></li>
+<li><a href="#orgbbffcb9">2.14. Rainbow-mode</a></li>
 </ul>
 </li>
 <li><a href="#orgb0cf9b5">3. Builtins</a>
@@ -261,6 +262,7 @@
 (add-to-list 'load-path (expand-file-name <span style="color: #597a37;">"./lisp"</span> user-emacs-directory))
 </pre>
 </div>
+
 <div id="outline-container-org6a6928b" class="outline-2">
 <h2 id="org6a6928b"><span class="section-number-2">1.</span> Basic stuff</h2>
 <div class="outline-text-2" id="text-1">
@@ -392,6 +394,7 @@ Setting up use-package<br />
 </div>
 </div>
 </div>
+
 <div id="outline-container-org5ac769e" class="outline-3">
 <h3 id="org5ac769e"><span class="section-number-3">2.2.</span> Evil</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -492,9 +495,7 @@ Orderless adds fuzzy finding<br />
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">orderless</span>
   <span style="color: #286486;">:init</span>
-  (<span style="color: #a8334c;">setq</span> completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+  (<span style="color: #a8334c;">setq</span> completion-styles '(orderless)))
 </pre>
 </div>
 
@@ -632,6 +633,19 @@ Some major modes to improve language support<br />
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgbbffcb9" class="outline-3">
+<h3 id="orgbbffcb9"><span class="section-number-3">2.14.</span> Rainbow-mode</h3>
+<div class="outline-text-3" id="text-2-14">
+<p>
+Visualize color values.<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">rainbow-mode</span>)
+</pre>
+</div>
+</div>
+</div>
 </div>
 
 <div id="outline-container-orgb0cf9b5" class="outline-2">
@@ -746,11 +760,11 @@ Set filter groups<br />
                   (mode . shell-mode)))
          (<span style="color: #597a37;">"planning"</span> (<span style="color: #a8334c;">or</span>
                       (name . <span style="color: #597a37;">"^\\*Calendar\\*$"</span>)
-                      (name . <span style="color: #597a37;">"^diary$"</span>)
+                      (name . <span style="color: #597a37;">"^agenda"</span>)
                       (mode . org-agenda-mode)))
          (<span style="color: #597a37;">"img"</span> (mode . image-mode))
          (<span style="color: #597a37;">"config"</span> (filename . <span style="color: #597a37;">"/dotfiles/"</span>))
-         (<span style="color: #597a37;">"site"</span> (filename . <span style="color: #597a37;">"/projects/site/"</span>))
+         (<span style="color: #597a37;">"blog"</span> (filename . <span style="color: #597a37;">"/projects/site/"</span>))
          (<span style="color: #597a37;">"code"</span> (filename . <span style="color: #597a37;">"/projects/"</span>))
          (<span style="color: #597a37;">"notes"</span> ( filename . <span style="color: #597a37;">"/notes/"</span>))
          (<span style="color: #597a37;">"org"</span> (mode . org-mode))
@@ -824,10 +838,28 @@ Add icons to ibuffer<br />
 <h3 id="orgb80cd28"><span class="section-number-3">4.4.</span> Modeline</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a8334c;">use-package</span> <span style="color: #685c56;">mood-line</span>
-  <span style="color: #286486;">:ensure</span> t
-  <span style="color: #286486;">:config</span>
-  (mood-line-mode))
+<pre class="src src-elisp">(add-to-list 'default-frame-alist '(internal-border-width . 24))
+
+(<span style="color: #a8334c;">defun</span> <span style="color: #944927;">mode-line-render</span> (left right)
+  <span style="color: #948985; font-style: italic;">"Return a string of `</span><span style="color: #685c56; font-style: italic;">window-width</span><span style="color: #948985; font-style: italic;">' length.</span>
+<span style="color: #948985; font-style: italic;">   Containing LEFT, and RIGHT aligned respectively."</span>
+  (<span style="color: #a8334c;">let</span> ((available-width
+          (- (window-width)
+            (+ (length (format-mode-line left))
+               (length (format-mode-line right))))))
+    (append left
+            (list (format (format <span style="color: #597a37;">"%%%ds"</span> available-width) <span style="color: #597a37;">""</span>))
+      right)))
+
+(<span style="color: #a8334c;">setq-default</span> mode-line-format
+  '((<span style="color: #286486;">:eval</span> (mode-line-render
+             '(<span style="color: #597a37;">"  %b"</span>
+               (<span style="color: #286486;">:eval</span> (<span style="color: #a8334c;">if</span> (<span style="color: #a8334c;">and</span> buffer-file-name (buffer-modified-p))
+                          (propertize <span style="color: #597a37;">"*"</span> 'face `(<span style="color: #286486;">:inherit</span> face-faded))))
+               (<span style="color: #286486;">:eval</span> (<span style="color: #a8334c;">if</span> (buffer-narrowed-p)
+                         (propertize <span style="color: #597a37;">"-"</span> 'face `(<span style="color: #286486;">:inherit</span> face-faded)))))
+             '(<span style="color: #597a37;">"%p %l:%c "</span>
+                (<span style="color: #286486;">:eval</span> (propertize <span style="color: #597a37;">" %m "</span> 'face 'font-lock-string-face)))))))
 </pre>
 </div>
 </div>
@@ -900,9 +932,7 @@ Add icons to ibuffer<br />
   <span style="color: #286486;">:hook</span>
   (org-mode . (<span style="color: #a8334c;">lambda</span> () (org-bullets-mode 1))))
 
-(<span style="color: #a8334c;">setq</span> org-src-window-setup 'split-window-below
-      org-agenda-window-setup 'split-window-below)
-
+(<span style="color: #a8334c;">setq</span> org-bullets-bullet-list '(<span style="color: #597a37;">"&#9673;"</span> <span style="color: #597a37;">"&#9675;"</span> <span style="color: #597a37;">"&#9679;"</span> <span style="color: #597a37;">"&#9675;"</span> <span style="color: #597a37;">"&#9679;"</span> <span style="color: #597a37;">"&#9675;"</span> <span style="color: #597a37;">"&#9679;"</span>))
 (<span style="color: #a8334c;">setq</span> org-agenda-files '(<span style="color: #597a37;">"~/org/agenda.org"</span>))
 
 (add-hook 'org-agenda-mode-hook
