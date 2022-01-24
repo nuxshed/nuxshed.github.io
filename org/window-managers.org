@@ -21,7 +21,7 @@ This is not a complete list. I have only written about ones that I have used in 
 
 NOTE: this post is not sponsored by awesomewm.
 
-Awesome could easily be considered the most powerful WM in Linux, as with enough time and effort, the wm itself is capable of recreating many DE like functionalities.
+Awesome could easily be considered the most powerful window manager[fn:1] on Linux, as with enough time and effort, the WM itself is capable of recreating many DE like functionalities.
 You can have [[https://cdn.discordapp.com/attachments/635625925748457482/930841155103490058/unknown.png][notification centers]], [[https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/][action centers]],  [[https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/][dashboards]], [[https://github.com/ner0z/dotfiles#shots][lock screens]], anything you can think of.
 
 Want to make it look like windows? You can.
@@ -94,3 +94,7 @@ XMonad is a dynamically tiling X11 window manager that is written and configured
 
 * Credits
 - nes (Dark NES#4901): helping me shill for awesome
+
+
+[fn:1] SirAiedal: Technically, Awesome does not fit a list of "window managers". It is a window manager framework.
+Or "runtime + set of libraries".

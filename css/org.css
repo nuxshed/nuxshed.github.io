@@ -30,10 +30,6 @@ a:hover {
   color: #685c56;
 }
 
-b {
-  font-weight: 400;
-}
-
 h1 {
   font-size: 3em;
   padding-bottom: 1em;
@@ -71,6 +67,16 @@ code {
 #text-table-of-contents a:hover {
   text-decoration: underline;
   color: #685c56;
+}
+
+#footnotes {
+  padding-top: 2em;
+}
+
+.footref {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 900;
 }
 
 pre.src {

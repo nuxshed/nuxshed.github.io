@@ -3,11 +3,6 @@
   src: url("../fonts/CascadiaCode.ttf");
 }
 
-@font-face {
-  font-family: "ETBembo", Garamond, serif;
-  src: url("../fonts/et-book-roman-line-figures.ttf");
-}
-
 html {
   min-height: 100%;
   -ms-overflow-style: none; /* IE and Edge */
@@ -21,7 +16,7 @@ body {
 }
 
 #content {
-  width: 55%
+  width: 55%;
 }
 
 .title {
@@ -74,7 +69,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 82vh;
 }
 
 .prominent {
