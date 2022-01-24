@@ -60,6 +60,15 @@ code {
   top: 15px;
 }
 
+#text-table-of-contents a {
+  text-decoration: none;
+}
+
+#text-table-of-contents a:hover {
+  text-decoration: underline;
+  color: #685c56;
+}
+
 pre.src {
   font-family: "Cascadia Code";
   font-size: 14px;

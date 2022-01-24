@@ -42,11 +42,15 @@ Neat Features:
 - Powerful command-line client, and can thus be controlled via shell scripts
 - Extensive theming options with titlebars, window text and double borders
 
+[[https://www.reddit.com/r/unixporn/comments/fg9l3b/berry_classes_canceled_time_to_rice/][obligatory berry rice]]
+
 ** Herbstluftwm
 [[https://herbstluftwm.org]]
 
 herbstluftwm is a manual tiling window manager for the X window system. It is configured through =herbstclient=, so the config file is simply a shell script run at startup.
 All configuration can be done via =herbstclient= and thus there is no need to restart the window manager.
+
+[[https://github.com/rayes0/dotfiles#herbstluftwm][cool herbstluftwm rice]]
 
 ** i3
 https://i3wm.org/
