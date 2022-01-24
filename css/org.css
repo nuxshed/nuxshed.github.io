@@ -60,6 +60,10 @@ code {
   top: 15px;
 }
 
+#text-table-of-contents ul {
+  list-style: none;
+}
+
 #text-table-of-contents a {
   text-decoration: none;
 }
