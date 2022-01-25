@@ -1,851 +1,436 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-  <head>
-    <!-- 2022-01-25 Tue 10:31 -->
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Window Managers</title>
-    <meta name="author" content="nuxsh" />
-    <meta name="generator" content="Org Mode" />
-    <style>
-      #content {
-        max-width: 60em;
-        margin: auto;
-      }
-      .title {
-        text-align: center;
-        margin-bottom: 0.2em;
-      }
-      .subtitle {
-        text-align: center;
-        font-size: medium;
-        font-weight: bold;
-        margin-top: 0;
-      }
-      .todo {
-        font-family: monospace;
-        color: red;
-      }
-      .done {
-        font-family: monospace;
-        color: green;
-      }
-      .priority {
-        font-family: monospace;
-        color: orange;
-      }
-      .tag {
-        background-color: #eee;
-        font-family: monospace;
-        padding: 2px;
-        font-size: 80%;
-        font-weight: normal;
-      }
-      .timestamp {
-        color: #bebebe;
-      }
-      .timestamp-kwd {
-        color: #5f9ea0;
-      }
-      .org-right {
-        margin-left: auto;
-        margin-right: 0px;
-        text-align: right;
-      }
-      .org-left {
-        margin-left: 0px;
-        margin-right: auto;
-        text-align: left;
-      }
-      .org-center {
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-      }
-      .underline {
-        text-decoration: underline;
-      }
-      #postamble p,
-      #preamble p {
-        font-size: 90%;
-        margin: 0.2em;
-      }
-      p.verse {
-        margin-left: 3%;
-      }
-      pre {
-        border: 1px solid #e6e6e6;
-        border-radius: 3px;
-        background-color: #f2f2f2;
-        padding: 8pt;
-        font-family: monospace;
-        overflow: auto;
-        margin: 1.2em;
-      }
-      pre.src {
-        position: relative;
-        overflow: auto;
-      }
-      pre.src:before {
-        display: none;
-        position: absolute;
-        top: -8px;
-        right: 12px;
-        padding: 3px;
-        color: #555;
-        background-color: #f2f2f299;
-      }
-      pre.src:hover:before {
-        display: inline;
-        margin-top: 14px;
-      }
-      /* Languages per Org manual */
-      pre.src-asymptote:before {
-        content: "Asymptote";
-      }
-      pre.src-awk:before {
-        content: "Awk";
-      }
-      pre.src-authinfo::before {
-        content: "Authinfo";
-      }
-      pre.src-C:before {
-        content: "C";
-      }
-      /* pre.src-C++ doesn't work in CSS */
-      pre.src-clojure:before {
-        content: "Clojure";
-      }
-      pre.src-css:before {
-        content: "CSS";
-      }
-      pre.src-D:before {
-        content: "D";
-      }
-      pre.src-ditaa:before {
-        content: "ditaa";
-      }
-      pre.src-dot:before {
-        content: "Graphviz";
-      }
-      pre.src-calc:before {
-        content: "Emacs Calc";
-      }
-      pre.src-emacs-lisp:before {
-        content: "Emacs Lisp";
-      }
-      pre.src-fortran:before {
-        content: "Fortran";
-      }
-      pre.src-gnuplot:before {
-        content: "gnuplot";
-      }
-      pre.src-haskell:before {
-        content: "Haskell";
-      }
-      pre.src-hledger:before {
-        content: "hledger";
-      }
-      pre.src-java:before {
-        content: "Java";
-      }
-      pre.src-js:before {
-        content: "Javascript";
-      }
-      pre.src-latex:before {
-        content: "LaTeX";
-      }
-      pre.src-ledger:before {
-        content: "Ledger";
-      }
-      pre.src-lisp:before {
-        content: "Lisp";
-      }
-      pre.src-lilypond:before {
-        content: "Lilypond";
-      }
-      pre.src-lua:before {
-        content: "Lua";
-      }
-      pre.src-matlab:before {
-        content: "MATLAB";
-      }
-      pre.src-mscgen:before {
-        content: "Mscgen";
-      }
-      pre.src-ocaml:before {
-        content: "Objective Caml";
-      }
-      pre.src-octave:before {
-        content: "Octave";
-      }
-      pre.src-org:before {
-        content: "Org mode";
-      }
-      pre.src-oz:before {
-        content: "OZ";
-      }
-      pre.src-plantuml:before {
-        content: "Plantuml";
-      }
-      pre.src-processing:before {
-        content: "Processing.js";
-      }
-      pre.src-python:before {
-        content: "Python";
-      }
-      pre.src-R:before {
-        content: "R";
-      }
-      pre.src-ruby:before {
-        content: "Ruby";
-      }
-      pre.src-sass:before {
-        content: "Sass";
-      }
-      pre.src-scheme:before {
-        content: "Scheme";
-      }
-      pre.src-screen:before {
-        content: "Gnu Screen";
-      }
-      pre.src-sed:before {
-        content: "Sed";
-      }
-      pre.src-sh:before {
-        content: "shell";
-      }
-      pre.src-sql:before {
-        content: "SQL";
-      }
-      pre.src-sqlite:before {
-        content: "SQLite";
-      }
-      /* additional languages in org.el's org-babel-load-languages alist */
-      pre.src-forth:before {
-        content: "Forth";
-      }
-      pre.src-io:before {
-        content: "IO";
-      }
-      pre.src-J:before {
-        content: "J";
-      }
-      pre.src-makefile:before {
-        content: "Makefile";
-      }
-      pre.src-maxima:before {
-        content: "Maxima";
-      }
-      pre.src-perl:before {
-        content: "Perl";
-      }
-      pre.src-picolisp:before {
-        content: "Pico Lisp";
-      }
-      pre.src-scala:before {
-        content: "Scala";
-      }
-      pre.src-shell:before {
-        content: "Shell Script";
-      }
-      pre.src-ebnf2ps:before {
-        content: "ebfn2ps";
-      }
-      /* additional language identifiers per "defun org-babel-execute"
+<head>
+<!-- 2022-01-25 Tue 14:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Window Managers</title>
+<meta name="author" content="nuxsh" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
        in ob-*.el */
-      pre.src-cpp:before {
-        content: "C++";
-      }
-      pre.src-abc:before {
-        content: "ABC";
-      }
-      pre.src-coq:before {
-        content: "Coq";
-      }
-      pre.src-groovy:before {
-        content: "Groovy";
-      }
-      /* additional language identifiers from org-babel-shell-names in
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
      ob-shell.el: ob-shell is the only babel language using a lambda to put
      the execution function name together. */
-      pre.src-bash:before {
-        content: "bash";
-      }
-      pre.src-csh:before {
-        content: "csh";
-      }
-      pre.src-ash:before {
-        content: "ash";
-      }
-      pre.src-dash:before {
-        content: "dash";
-      }
-      pre.src-ksh:before {
-        content: "ksh";
-      }
-      pre.src-mksh:before {
-        content: "mksh";
-      }
-      pre.src-posh:before {
-        content: "posh";
-      }
-      /* Additional Emacs modes also supported by the LaTeX listings package */
-      pre.src-ada:before {
-        content: "Ada";
-      }
-      pre.src-asm:before {
-        content: "Assembler";
-      }
-      pre.src-caml:before {
-        content: "Caml";
-      }
-      pre.src-delphi:before {
-        content: "Delphi";
-      }
-      pre.src-html:before {
-        content: "HTML";
-      }
-      pre.src-idl:before {
-        content: "IDL";
-      }
-      pre.src-mercury:before {
-        content: "Mercury";
-      }
-      pre.src-metapost:before {
-        content: "MetaPost";
-      }
-      pre.src-modula-2:before {
-        content: "Modula-2";
-      }
-      pre.src-pascal:before {
-        content: "Pascal";
-      }
-      pre.src-ps:before {
-        content: "PostScript";
-      }
-      pre.src-prolog:before {
-        content: "Prolog";
-      }
-      pre.src-simula:before {
-        content: "Simula";
-      }
-      pre.src-tcl:before {
-        content: "tcl";
-      }
-      pre.src-tex:before {
-        content: "TeX";
-      }
-      pre.src-plain-tex:before {
-        content: "Plain TeX";
-      }
-      pre.src-verilog:before {
-        content: "Verilog";
-      }
-      pre.src-vhdl:before {
-        content: "VHDL";
-      }
-      pre.src-xml:before {
-        content: "XML";
-      }
-      pre.src-nxml:before {
-        content: "XML";
-      }
-      /* add a generic configuration mode; LaTeX export needs an additional
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
      (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-      pre.src-conf:before {
-        content: "Configuration File";
-      }
+  pre.src-conf:before { content: 'Configuration File'; }
 
-      table {
-        border-collapse: collapse;
-      }
-      caption.t-above {
-        caption-side: top;
-      }
-      caption.t-bottom {
-        caption-side: bottom;
-      }
-      td,
-      th {
-        vertical-align: top;
-      }
-      th.org-right {
-        text-align: center;
-      }
-      th.org-left {
-        text-align: center;
-      }
-      th.org-center {
-        text-align: center;
-      }
-      td.org-right {
-        text-align: right;
-      }
-      td.org-left {
-        text-align: left;
-      }
-      td.org-center {
-        text-align: center;
-      }
-      dt {
-        font-weight: bold;
-      }
-      .footpara {
-        display: inline;
-      }
-      .footdef {
-        margin-bottom: 1em;
-      }
-      .figure {
-        padding: 1em;
-      }
-      .figure p {
-        text-align: center;
-      }
-      .equation-container {
-        display: table;
-        text-align: center;
-        width: 100%;
-      }
-      .equation {
-        vertical-align: middle;
-      }
-      .equation-label {
-        display: table-cell;
-        text-align: right;
-        vertical-align: middle;
-      }
-      .inlinetask {
-        padding: 10px;
-        border: 2px solid gray;
-        margin: 10px;
-        background: #ffffcc;
-      }
-      #org-div-home-and-up {
-        text-align: right;
-        font-size: 70%;
-        white-space: nowrap;
-      }
-      textarea {
-        overflow-x: auto;
-      }
-      .linenr {
-        font-size: smaller;
-      }
-      .code-highlighted {
-        background-color: #ffff00;
-      }
-      .org-info-js_info-navigation {
-        border-style: none;
-      }
-      #org-info-js_console-label {
-        font-size: 10px;
-        font-weight: bold;
-        white-space: nowrap;
-      }
-      .org-info-js_search-highlight {
-        background-color: #ffff00;
-        color: #000000;
-        font-weight: bold;
-      }
-      .org-svg {
-        width: 90%;
-      }
-    </style>
-    <link rel="stylesheet" type="text/css" href="../css/org.css" />
-  </head>
-  <body>
-    <div id="org-div-home-and-up">
-      <a accesskey="h" href="index.html"> UP </a>
-      |
-      <a accesskey="H" href="../index.html"> HOME </a>
-    </div>
-    <div id="preamble" class="status">
-      <div class="links">
-        <a href="../index.html">Home</a><a href="" class="active">Blog</a
-        ><a href="../about.html">About</a>
-      </div>
-    </div>
-    <div id="content" class="content">
-      <h1 class="title">Window Managers</h1>
-      <div id="table-of-contents" role="doc-toc">
-        <h2>Table of Contents</h2>
-        <div id="text-table-of-contents" role="doc-toc">
-          <ul>
-            <li><a href="#orga1fd214">1. Introduction</a></li>
-            <li><a href="#orgff654a2">2. Definition</a></li>
-            <li>
-              <a href="#orgd3fc9f6">3. Window Managers</a>
-              <ul>
-                <li><a href="#org60d8aa4">3.1. Awesome</a></li>
-                <li><a href="#org37ac194">3.2. Berry</a></li>
-                <li><a href="#org9568adb">3.3. Herbstluftwm</a></li>
-                <li><a href="#orga3d4f90">3.4. i3</a></li>
-                <li><a href="#org980df3f">3.5. Openbox</a></li>
-                <li><a href="#org3ddab85">3.6. XMonad</a></li>
-              </ul>
-            </li>
-            <li><a href="#org9e81224">4. Credits</a></li>
-          </ul>
-        </div>
-      </div>
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/org.css" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="preamble" class="status">
+<div class="links"><a href="../index.html">Home</a><a href="" class="active">Blog</a><a href="../about.html">About</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Window Managers</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7227974">1. Introduction</a></li>
+<li><a href="#orgbeae8ea">2. Definition</a></li>
+<li><a href="#org0d14461">3. Window Managers</a>
+<ul>
+<li><a href="#org015ecb2">3.1. Awesome</a></li>
+<li><a href="#org508be78">3.2. Berry</a></li>
+<li><a href="#orgac4751c">3.3. Herbstluftwm</a></li>
+<li><a href="#orgafc5b14">3.4. i3</a></li>
+<li><a href="#orge7a9eab">3.5. Openbox</a></li>
+<li><a href="#org6383006">3.6. XMonad</a></li>
+</ul>
+</li>
+<li><a href="#org95ff019">4. Credits</a></li>
+</ul>
+</div>
+</div>
 
-      <div id="outline-container-orga1fd214" class="outline-2">
-        <h2 id="orga1fd214">
-          <span class="section-number-2">1.</span> Introduction
-        </h2>
-        <div class="outline-text-2" id="text-1">
-          <p>
-            WARNING: This is an article about my view on various window
-            managers, it is <i>very</i> biased.<br />
-            WARNING(1): This article is a work in progress.<br />
-          </p>
-        </div>
-      </div>
+<div id="outline-container-org7227974" class="outline-2">
+<h2 id="org7227974"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+WARNING: This is an article about my view on various window managers, it is <i>very</i> biased.<br />
+WARNING(1): This article is a work in progress.<br />
+</p>
+</div>
+</div>
 
-      <div id="outline-container-orgff654a2" class="outline-2">
-        <h2 id="orgff654a2">
-          <span class="section-number-2">2.</span> Definition
-        </h2>
-        <div class="outline-text-2" id="text-2">
-          <p>
-            Window managers manage windows. They control the appearance and
-            behaviour of windows and how they are arranged.<br />
-          </p>
-        </div>
-      </div>
+<div id="outline-container-orgbeae8ea" class="outline-2">
+<h2 id="orgbeae8ea"><span class="section-number-2">2.</span> Definition</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Window managers manage windows. They control the appearance and behaviour of windows and how they are arranged.<br />
+</p>
+</div>
+</div>
 
-      <div id="outline-container-orgd3fc9f6" class="outline-2">
-        <h2 id="orgd3fc9f6">
-          <span class="section-number-2">3.</span> Window Managers
-        </h2>
-        <div class="outline-text-2" id="text-3">
-          <p>
-            This is not a complete list. I have only written about ones that I
-            have used in the past, or am interested in.<br />
-          </p>
-        </div>
+<div id="outline-container-org0d14461" class="outline-2">
+<h2 id="org0d14461"><span class="section-number-2">3.</span> Window Managers</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This is not a complete list. I have only written about ones that I have used in the past, or am interested in.<br />
+</p>
+</div>
 
-        <div id="outline-container-org60d8aa4" class="outline-3">
-          <h3 id="org60d8aa4">
-            <span class="section-number-3">3.1.</span> Awesome
-          </h3>
-          <div class="outline-text-3" id="text-3-1">
-            <p>
-              <a href="https://awesomewm.org">https://awesomewm.org</a><br />
-            </p>
 
-            <p>NOTE: this post is not sponsored by awesomewm.<br /></p>
+<div id="outline-container-org015ecb2" class="outline-3">
+<h3 id="org015ecb2"><span class="section-number-3">3.1.</span> Awesome</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<a href="https://awesomewm.org">https://awesomewm.org</a><br />
+</p>
 
-            <p>
-              Awesome could easily be considered the most powerful window
-              manager<sup
-                ><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink"
-                  >1</a
-                ></sup
-              >
-              on Linux, as with enough time and effort, the WM itself is capable
-              of recreating many DE like functionalities.<br />
-              You can have
-              <a
-                href="https://cdn.discordapp.com/attachments/635625925748457482/930841155103490058/unknown.png"
-                >notification centers</a
-              >,
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/"
-                >action centers</a
-              >,
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/"
-                >dashboards</a
-              >,
-              <a href="https://github.com/ner0z/dotfiles#shots">lock screens</a
-              >, anything you can think of.<br />
-            </p>
+<p>
+NOTE: this post is not sponsored by awesomewm.<br />
+</p>
 
-            <p>
-              Want to make it look like windows? You can.<br />
-              Want to make it look like MacOS? It's already been done.<br />
-            </p>
+<p>
+Awesome could easily be considered the most powerful window manager<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> on Linux, as with enough time and effort, the WM itself is capable of recreating many DE like functionalities.<br />
+You can have <a href="https://cdn.discordapp.com/attachments/635625925748457482/930841155103490058/unknown.png">notification centers</a>, <a href="https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/">action centers</a>,  <a href="https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/">dashboards</a>, <a href="https://github.com/ner0z/dotfiles#shots">lock screens</a>, anything you can think of.<br />
+</p>
 
-            <p>
-              It's window management is dynamic and equally good at both tiling
-              and floating.<br />
-              It has perhaps the most customizable titlebars of any window
-              manager.<br />
-            </p>
+<p>
+Want to make it look like windows? You can.<br />
+Want to make it look like MacOS? It's already been done.<br />
+</p>
 
-            <p>
-              Your bar can be vertical, horizontal or a circle right in the
-              middle of your screen.<br />
-              <a
-                href="https://media.discordapp.net/attachments/702548961780826212/808755985530224640/unknown.png?width=671&amp;height=585"
-                >You can even have hexagonal windows if you really wanted to.</a
-              ><br />
-            </p>
+<p>
+It's window management is dynamic and equally good at both tiling and floating.<br />
+It has perhaps the most customizable titlebars of any window manager.<br />
+</p>
 
-            <p>
-              It's widget system is also incredibly powerful in the right hands
-              and the tight integration with the rest of the window manager
-              makes it even more so.<br />
-            </p>
+<p>
+Your bar can be vertical, horizontal or a circle right in the middle of your screen.<br />
+<a href="https://media.discordapp.net/attachments/702548961780826212/808755985530224640/unknown.png?width=671&amp;height=585">You can even have hexagonal windows if you really wanted to.</a><br />
+</p>
 
-            <p>
-              <a href="https://blingcorp.github.io/bling/">bling</a> is an
-              awesomewm utility library that focuses on adding new layouts and
-              modules that make use of the widget system, but primarily focus on
-              the new window managing features.<br />
-              It adds a lot of cool features like additional layouts, window
-              swallowing, scratchpads, playerctl signals, a tab container, tag
-              preview, task preview, an app launcher and a window switcher.<br />
-            </p>
+<p>
+It's widget system is also incredibly powerful in the right hands and the tight integration with the rest of the window manager makes it even more so.<br />
+</p>
 
-            <p>
-              <a href="https://github.com/material-shell/material-awesome"
-                >material awesome</a
-              >
-              is an almost complete desktop environment made with awesomewm
-              following the material design guidelines with a performant
-              mouse/keyboard workflow to increase daily productivity and
-              comfort.<br />
-            </p>
+<p>
+<a href="https://blingcorp.github.io/bling/">bling</a> is an awesomewm utility library that focuses on adding new layouts and modules that make use of the widget system, but primarily focus on the new window managing features.<br />
+It adds a lot of cool features like additional layouts, window swallowing, scratchpads, playerctl signals, a tab container, tag preview, task preview, an app launcher and a window switcher.<br />
+</p>
 
-            <p>
-              Not sold yet?<br />
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/"
-                >Just</a
-              >
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/"
-                >look</a
-              >
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/"
-                >at</a
-              >
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/"
-                >all</a
-              >
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/"
-                >these</a
-              >
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/"
-                >cool</a
-              >
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/"
-                >rices.</a
-              ><br />
-            </p>
+<p>
+<a href="https://github.com/material-shell/material-awesome">material awesome</a> is an almost complete desktop environment made with awesomewm following the material design guidelines with a performant mouse/keyboard workflow to increase daily productivity and comfort.<br />
+</p>
 
-            <p>
-              Switch to awesome now.
-              <a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0"
-                >just do it.</a
-              ><br />
-            </p>
-          </div>
-        </div>
+<p>
+Not sold yet?<br />
+<a href="https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/">Just</a> <a href="https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/">look</a> <a href="https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/">at</a> <a href="https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/">all</a> <a href="https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/">these</a> <a href="https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/">cool</a> <a href="https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/">rices.</a><br />
+</p>
 
-        <div id="outline-container-org37ac194" class="outline-3">
-          <h3 id="org37ac194">
-            <span class="section-number-3">3.2.</span> Berry
-          </h3>
-          <div class="outline-text-3" id="text-3-2">
-            <p><a href="https://berrywm.org">https://berrywm.org</a><br /></p>
+<p>
+Switch to awesome now. <a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0">just do it.</a><br />
+</p>
+</div>
+</div>
 
-            <p>
-              Berry is a small floating window manager written in C. It has a
-              surprising amount of features, and probably is my favourite
-              floating window manager.<br />
-              Neat Features:<br />
-            </p>
-            <ul class="org-ul">
-              <li>
-                Powerful command-line client, and can thus be controlled via
-                shell scripts<br />
-              </li>
-              <li>
-                Extensive theming options with titlebars, window text and double
-                borders<br />
-              </li>
-            </ul>
+<div id="outline-container-org508be78" class="outline-3">
+<h3 id="org508be78"><span class="section-number-3">3.2.</span> Berry</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<a href="https://berrywm.org">https://berrywm.org</a><br />
+</p>
 
-            <p>
-              <a
-                href="https://www.reddit.com/r/unixporn/comments/fg9l3b/berry_classes_canceled_time_to_rice/"
-                >obligatory berry rice</a
-              ><br />
-            </p>
-          </div>
-        </div>
+<p>
+Berry is a small floating window manager written in C. It has a surprising amount of features, and probably is my favourite floating window manager.<br />
+Neat Features:<br />
+</p>
+<ul class="org-ul">
+<li>Powerful command-line client, and can thus be controlled via shell scripts<br /></li>
+<li>Extensive theming options with titlebars, window text and double borders<br /></li>
+</ul>
 
-        <div id="outline-container-org9568adb" class="outline-3">
-          <h3 id="org9568adb">
-            <span class="section-number-3">3.3.</span> Herbstluftwm
-          </h3>
-          <div class="outline-text-3" id="text-3-3">
-            <p>
-              <a href="https://herbstluftwm.org">https://herbstluftwm.org</a
-              ><br />
-            </p>
+<p>
+<a href="https://www.reddit.com/r/unixporn/comments/fg9l3b/berry_classes_canceled_time_to_rice/">obligatory berry rice</a><br />
+</p>
+</div>
+</div>
 
-            <p>
-              herbstluftwm is a manual tiling window manager for the X window
-              system. It is configured through <code>herbstclient</code>, so the
-              config file is simply a shell script run at startup.<br />
-              All configuration can be done via <code>herbstclient</code> and
-              thus there is no need to restart the window manager.<br />
-            </p>
+<div id="outline-container-orgac4751c" class="outline-3">
+<h3 id="orgac4751c"><span class="section-number-3">3.3.</span> Herbstluftwm</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<a href="https://herbstluftwm.org">https://herbstluftwm.org</a><br />
+</p>
 
-            <p>
-              <a href="https://github.com/rayes0/dotfiles#herbstluftwm"
-                >cool herbstluftwm rice</a
-              ><br />
-            </p>
-          </div>
-        </div>
+<p>
+herbstluftwm is a manual tiling window manager for the X window system. It is configured through <code>herbstclient</code>, so the config file is simply a shell script run at startup.<br />
+All configuration can be done via <code>herbstclient</code> and thus there is no need to restart the window manager.<br />
+</p>
 
-        <div id="outline-container-orga3d4f90" class="outline-3">
-          <h3 id="orga3d4f90"><span class="section-number-3">3.4.</span> i3</h3>
-          <div class="outline-text-3" id="text-3-4">
-            <p><a href="https://i3wm.org/">https://i3wm.org/</a><br /></p>
+<p>
+<a href="https://github.com/rayes0/dotfiles#herbstluftwm">cool herbstluftwm rice</a><br />
+</p>
+</div>
+</div>
 
-            <p>
-              i3 is the easiest and simplest window manager. It is perfect for
-              beginners, but is powerful enough to even satisy power users.
-              Although, if you plan to use i3, I reccomend that you use
-              <a href="https://github.com/Airblader/i3">i3-gaps</a> instead, as
-              it has a few more features.
-              <a href="https://swaywm.org/">Sway</a> is i3 for wayland, so it
-              might be worth checking out too.<br />
-            </p>
-          </div>
-        </div>
+<div id="outline-container-orgafc5b14" class="outline-3">
+<h3 id="orgafc5b14"><span class="section-number-3">3.4.</span> i3</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<a href="https://i3wm.org/">https://i3wm.org/</a><br />
+</p>
 
-        <div id="outline-container-org980df3f" class="outline-3">
-          <h3 id="org980df3f">
-            <span class="section-number-3">3.5.</span> Openbox
-          </h3>
-          <div class="outline-text-3" id="text-3-5">
-            <p><a href="http://openbox.org">http://openbox.org</a><br /></p>
+<p>
+i3 is the easiest and simplest window manager. It is perfect for beginners, but is powerful enough to even satisy power users. Although, if you plan to use i3, I reccomend that you use <a href="https://github.com/Airblader/i3">i3-gaps</a> instead, as it has a few more features. <a href="https://swaywm.org/">Sway</a> is i3 for wayland, so it might be worth checking out too.<br />
+</p>
+</div>
+</div>
 
-            <p>
-              Openbox is a lightweight, powerful, and highly configurable
-              stacking window manager with extensive standards support.<br />
-            </p>
+<div id="outline-container-orge7a9eab" class="outline-3">
+<h3 id="orge7a9eab"><span class="section-number-3">3.5.</span> Openbox</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+<a href="http://openbox.org">http://openbox.org</a><br />
+</p>
 
-            <p>
-              <a
-                href="https://discord.com/channels/635612648934735892/904032811730763796/904033099581624390"
-                >This</a
-              >
-              is a thread on the unixporn discord which goes quite deep into
-              openbox and it is much more detailed than this article will ever
-              be.<br />
-              If you want to read the conversation from its very origin,
-              <a
-                href="https://discord.com/channels/635612648934735892/635625925748457482/904019724592103455"
-                >here</a
-              >
-              you go.<br />
-            </p>
+<p>
+Openbox is a lightweight, powerful, and highly configurable stacking window manager with extensive standards support.<br />
+</p>
 
-            <p>A rundown of the points made:<br /></p>
-            <ul class="org-ul">
-              <li>
-                Openbox has a specific feature other wms probably don't have:
-                pipemenus. Pipemenus are menus generated by external commands
-                and let you do cool things like a system fetch in your menu,
-                dynamic application menus, file manager or browser bookmarks,
-                media control, processes, connected devices, clipboard menu, the
-                list goes on. A big list can be found here:
-                <a href="http://openbox.org/wiki/Openbox:Pipemenus"
-                  >http://openbox.org/wiki/Openbox:Pipemenus</a
-                ><br />
-              </li>
-              <li>
-                The theme specification for openbox is really well done,
-                allowing for very granular control of your themes.<br />
-              </li>
-              <li>
-                Mouse binds are also done extremely well, allowing for certain
-                actions depending on what key you're holding, the mouse button,
-                and specifically the context of the bind<br />
-              </li>
-              <li>
-                There's also support for key-chain binds similar to emacs.<br />
-              </li>
-            </ul>
+<p>
+<a href="https://discord.com/channels/635612648934735892/904032811730763796/904033099581624390">This</a> is a thread on the unixporn discord which goes quite deep into openbox and it is much more detailed than this article will ever be.<br />
+If you want to read the conversation from its very origin, <a href="https://discord.com/channels/635612648934735892/635625925748457482/904019724592103455">here</a> you go.<br />
+</p>
 
-            <p>
-              <a href="https://github.com/Stardust-kyun/dotfiles"
-                >very cool openbox rice collection</a
-              ><br />
-            </p>
-          </div>
-        </div>
+<p>
+A rundown of the points made:<br />
+</p>
+<ul class="org-ul">
+<li>Openbox has a specific feature other wms probably don't have: pipemenus. Pipemenus are menus generated by external commands and let you do cool things like a system fetch in your menu, dynamic application menus, file manager or browser bookmarks, media control, processes, connected devices, clipboard menu, the list goes on. A big list can be found here: <a href="http://openbox.org/wiki/Openbox:Pipemenus">http://openbox.org/wiki/Openbox:Pipemenus</a><br /></li>
+<li>The theme specification for openbox is really well done, allowing for very granular control of your themes.<br /></li>
+<li>Mouse binds are also done extremely well, allowing for certain actions depending on what key you're holding, the mouse button, and specifically the context of the bind<br /></li>
+<li>There's also support for key-chain binds similar to emacs.<br /></li>
+</ul>
 
-        <div id="outline-container-org3ddab85" class="outline-3">
-          <h3 id="org3ddab85">
-            <span class="section-number-3">3.6.</span> XMonad
-          </h3>
-          <div class="outline-text-3" id="text-3-6">
-            <p><a href="https://xmonad.org/">https://xmonad.org/</a><br /></p>
+<p>
+<a href="https://github.com/Stardust-kyun/dotfiles">very cool openbox rice collection</a><br />
+</p>
+</div>
+</div>
 
-            <p>
-              XMonad is a dynamically tiling X11 window manager that is written
-              and configured in Haskell. It is full of features, and is very
-              good at moving windows around. Although, as it is configured in
-              haskell, it may take a while to get started and to get used to it.
-              But if you're actually interested in the concept, dont let the
-              language stop you.<br />
-            </p>
+<div id="outline-container-org6383006" class="outline-3">
+<h3 id="org6383006"><span class="section-number-3">3.6.</span> XMonad</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+<a href="https://xmonad.org/">https://xmonad.org/</a><br />
+</p>
 
-            <p>
-              <a href="https://github.com/Axarva/dotfiles-2.0"
-                >axarva's xmonad rice</a
-              ><br />
-            </p>
-          </div>
-        </div>
-      </div>
+<p>
+XMonad is a dynamically tiling X11 window manager that is written and configured in Haskell. It is full of features, and is very good at moving windows around. Although, as it is configured in haskell, it may take a while to get started and to get used to it. But if you're actually interested in the concept, dont let the language stop you.<br />
+</p>
 
-      <div id="outline-container-org9e81224" class="outline-2">
-        <h2 id="org9e81224">
-          <span class="section-number-2">4.</span> Credits
-        </h2>
-        <div class="outline-text-2" id="text-4">
-          <ul class="org-ul">
-            <li>nes (Dark NES#4901): helping me shill for awesome<br /></li>
-          </ul>
-        </div>
-      </div>
-      <div id="footnotes">
-        <h2 class="footnotes">Footnotes:</h2>
-        <div id="text-footnotes">
-          <div class="footdef">
-            <sup
-              ><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink"
-                >1</a
-              ></sup
-            >
-            <div class="footpara" role="doc-footnote">
-              <p class="footpara">
-                SirAiedal: Technically, Awesome does not fit a list of "window
-                managers". It is a window manager framework.<br />
-                Or "runtime + set of libraries".<br />
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+<p>
+<a href="https://github.com/Axarva/dotfiles-2.0">axarva's xmonad rice</a><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org95ff019" class="outline-2">
+<h2 id="org95ff019"><span class="section-number-2">4.</span> Credits</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>nes (Dark NES#4901): helping me shill for awesome<br /></li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+SirAiedal: Technically, Awesome does not fit a list of "window managers". It is a window manager framework.<br />
+Or "runtime + set of libraries".<br />
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
 </html>

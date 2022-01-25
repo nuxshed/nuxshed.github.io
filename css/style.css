@@ -109,6 +109,11 @@ a:hover {
   }
 }
 
+.org-ul li {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
 .about-container {
   padding-top: 3em;
   text-align: left;

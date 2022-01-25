@@ -13,7 +13,7 @@
 
 body {
   font-family: "ETBembo", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.7em;
   background-color: #f0edec;
   color: #2c363c;
@@ -43,7 +43,7 @@ code {
 
 #content {
   margin: 0 auto;
-  max-width: 60%;
+  max-width: 55%;
   margin-top: 5em;
   margin-bottom: 5em;
 }
