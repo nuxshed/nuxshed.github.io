@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-25 Tue 14:36 -->
+<!-- 2022-01-25 Tue 20:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Window Managers</title>
@@ -215,10 +215,13 @@
 <ul>
 <li><a href="#org015ecb2">3.1. Awesome</a></li>
 <li><a href="#org508be78">3.2. Berry</a></li>
-<li><a href="#orgac4751c">3.3. Herbstluftwm</a></li>
-<li><a href="#orgafc5b14">3.4. i3</a></li>
-<li><a href="#orge7a9eab">3.5. Openbox</a></li>
-<li><a href="#org6383006">3.6. XMonad</a></li>
+<li><a href="#orgb0be1a6">3.3. bspwm</a></li>
+<li><a href="#org652d2d8">3.4. FVWM</a></li>
+<li><a href="#orgac4751c">3.5. Herbstluftwm</a></li>
+<li><a href="#orgafc5b14">3.6. i3</a></li>
+<li><a href="#orge7a9eab">3.7. Openbox</a></li>
+<li><a href="#org87aae80">3.8. Worm</a></li>
+<li><a href="#org6383006">3.9. XMonad</a></li>
 </ul>
 </li>
 <li><a href="#org95ff019">4. Credits</a></li>
@@ -230,7 +233,7 @@
 <h2 id="org7227974"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-WARNING: This is an article about my view on various window managers, it is <i>very</i> biased.<br />
+WARNING: This article is <i>very</i> biased.<br />
 WARNING(1): This article is a work in progress.<br />
 </p>
 </div>
@@ -249,10 +252,9 @@ Window managers manage windows. They control the appearance and behaviour of win
 <h2 id="org0d14461"><span class="section-number-2">3.</span> Window Managers</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-This is not a complete list. I have only written about ones that I have used in the past, or am interested in.<br />
+This is not a complete list.<br />
 </p>
 </div>
-
 
 <div id="outline-container-org015ecb2" class="outline-3">
 <h3 id="org015ecb2"><span class="section-number-3">3.1.</span> Awesome</h3>
@@ -321,19 +323,52 @@ Berry is a small floating window manager written in C. It has a surprising amoun
 Neat Features:<br />
 </p>
 <ul class="org-ul">
-<li>Powerful command-line client, and can thus be controlled via shell scripts<br /></li>
-<li>Extensive theming options with titlebars, window text and double borders<br /></li>
+<li>Powerful command-line client, and can thus be controlled via a hotkey daemon such as <a href="https://github.com/baskerville/sxhkd">sxhkd</a> or extended via shell scripts.<br /></li>
+<li>Extensive theming options with titlebars, window text and double borders.<br /></li>
+<li>Intuitively places new windows in unoccupied spaces and supports virtual desktops.<br /></li>
 </ul>
 
 <p>
-<a href="https://www.reddit.com/r/unixporn/comments/fg9l3b/berry_classes_canceled_time_to_rice/">obligatory berry rice</a><br />
+<a href="https://www.reddit.com/r/unixporn/comments/fg9l3b/berry_classes_canceled_time_to_rice/">very cool berry rice</a><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb0be1a6" class="outline-3">
+<h3 id="orgb0be1a6"><span class="section-number-3">3.3.</span> bspwm</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<a href="https://github.com/baskerville/bspwm">https://github.com/baskerville/bspwm</a><br />
+</p>
+
+<p>
+bspwm is a tiling window manager that represents windows as the leaves of a full binary tree. It has support for EWMH and multiple monitors, and is configured and controlled through messages (<code>bspc</code>).<br />
+</p>
+
+<p>
+<a href="https://www.reddit.com/r/unixporn/comments/lhljmi/bspwm_serenade_a_low_contrast_setup_for_my/">nice bspwm rice</a><br />
+<a href="https://github.com/6gk/polka">cool series of bspwm rices</a><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org652d2d8" class="outline-3">
+<h3 id="org652d2d8"><span class="section-number-3">3.4.</span> FVWM</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Extremely powerful and customizable ICCCM-compliant multiple virtual desktop window manager for the X Window system.<br />
+</p>
+
+<p>
+<a href="https://www.reddit.com/r/unixporn/comments/9o1lw5/fvwm_gameboy/">very cool fvwm rice</a><br />
+<a href="https://www.reddit.com/r/unixporn/comments/obbsu9/fvwm_composition_notebooks/">another very cool fvwm rice</a><br />
 </p>
 </div>
 </div>
 
 <div id="outline-container-orgac4751c" class="outline-3">
-<h3 id="orgac4751c"><span class="section-number-3">3.3.</span> Herbstluftwm</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="orgac4751c"><span class="section-number-3">3.5.</span> Herbstluftwm</h3>
+<div class="outline-text-3" id="text-3-5">
 <p>
 <a href="https://herbstluftwm.org">https://herbstluftwm.org</a><br />
 </p>
@@ -345,13 +380,14 @@ All configuration can be done via <code>herbstclient</code> and thus there is no
 
 <p>
 <a href="https://github.com/rayes0/dotfiles#herbstluftwm">cool herbstluftwm rice</a><br />
+<a href="https://www.reddit.com/r/unixporn/comments/nvnpco/herbstluftwm_herbstluftwm/">one more cool herbstluftwm rice</a><br />
 </p>
 </div>
 </div>
 
 <div id="outline-container-orgafc5b14" class="outline-3">
-<h3 id="orgafc5b14"><span class="section-number-3">3.4.</span> i3</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="orgafc5b14"><span class="section-number-3">3.6.</span> i3</h3>
+<div class="outline-text-3" id="text-3-6">
 <p>
 <a href="https://i3wm.org/">https://i3wm.org/</a><br />
 </p>
@@ -363,8 +399,8 @@ i3 is the easiest and simplest window manager. It is perfect for beginners, but 
 </div>
 
 <div id="outline-container-orge7a9eab" class="outline-3">
-<h3 id="orge7a9eab"><span class="section-number-3">3.5.</span> Openbox</h3>
-<div class="outline-text-3" id="text-3-5">
+<h3 id="orge7a9eab"><span class="section-number-3">3.7.</span> Openbox</h3>
+<div class="outline-text-3" id="text-3-7">
 <p>
 <a href="http://openbox.org">http://openbox.org</a><br />
 </p>
@@ -374,29 +410,37 @@ Openbox is a lightweight, powerful, and highly configurable stacking window mana
 </p>
 
 <p>
-<a href="https://discord.com/channels/635612648934735892/904032811730763796/904033099581624390">This</a> is a thread on the unixporn discord which goes quite deep into openbox and it is much more detailed than this article will ever be.<br />
-If you want to read the conversation from its very origin, <a href="https://discord.com/channels/635612648934735892/635625925748457482/904019724592103455">here</a> you go.<br />
+<a href="https://discord.com/channels/635612648934735892/904032811730763796/904033099581624390">This</a> is a thread on the unixporn discord which goes quite deep into unique features in openbox and why it is an amazing wm.<br />
 </p>
 
 <p>
-A rundown of the points made:<br />
+<a href="https://www.reddit.com/r/unixporn/comments/mioauy/openbox_eww_its_pastel/">cool openbox rice</a><br />
+<a href="https://www.reddit.com/r/unixporn/comments/fxkkp2/openbox_paper/">another cool openbox rice</a><br />
+<a href="https://github.com/Stardust-kyun/dotfiles">cool openbox rice collection</a><br />
 </p>
-<ul class="org-ul">
-<li>Openbox has a specific feature other wms probably don't have: pipemenus. Pipemenus are menus generated by external commands and let you do cool things like a system fetch in your menu, dynamic application menus, file manager or browser bookmarks, media control, processes, connected devices, clipboard menu, the list goes on. A big list can be found here: <a href="http://openbox.org/wiki/Openbox:Pipemenus">http://openbox.org/wiki/Openbox:Pipemenus</a><br /></li>
-<li>The theme specification for openbox is really well done, allowing for very granular control of your themes.<br /></li>
-<li>Mouse binds are also done extremely well, allowing for certain actions depending on what key you're holding, the mouse button, and specifically the context of the bind<br /></li>
-<li>There's also support for key-chain binds similar to emacs.<br /></li>
-</ul>
+</div>
+</div>
+
+<div id="outline-container-org87aae80" class="outline-3">
+<h3 id="org87aae80"><span class="section-number-3">3.8.</span> Worm</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+<a href="https://github.com/codic12/worm">https://github.com/codic12/worm</a><br />
+</p>
 
 <p>
-<a href="https://github.com/Stardust-kyun/dotfiles">very cool openbox rice collection</a><br />
+Worm is a is a dynamic, tag-based window manager for X11. It supports both a floating layout and a master-stack tiling layout and is under active development. It is configured via <code>wormc</code>, and can  thus be controlled via shell scripts. It is also written in the Nim programming language.<br />
+</p>
+
+<p>
+<a href="https://www.reddit.com/r/unixporn/comments/r33evw/worm_rewrote_my_wm_in_nim/">worm rice</a><br />
 </p>
 </div>
 </div>
 
 <div id="outline-container-org6383006" class="outline-3">
-<h3 id="org6383006"><span class="section-number-3">3.6.</span> XMonad</h3>
-<div class="outline-text-3" id="text-3-6">
+<h3 id="org6383006"><span class="section-number-3">3.9.</span> XMonad</h3>
+<div class="outline-text-3" id="text-3-9">
 <p>
 <a href="https://xmonad.org/">https://xmonad.org/</a><br />
 </p>
@@ -425,8 +469,7 @@ XMonad is a dynamically tiling X11 window manager that is written and configured
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-SirAiedal: Technically, Awesome does not fit a list of "window managers". It is a window manager framework.<br />
-Or "runtime + set of libraries".<br />
+SirAiedal: Technically, Awesome does not fit a list of "window managers". It is a window manager framework, or "runtime + set of libraries".<br />
 </p></div></div>
 
 
