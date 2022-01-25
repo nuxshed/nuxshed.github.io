@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Cascadia Code";
-  src: url("../fonts/CascadiaCode.ttf");
+  src: url("../fonts/CascadiaCode.woff2");
 }
 
 html {
@@ -124,18 +124,6 @@ a:hover {
   font-size: 17px;
   padding: 0px;
   text-decoration: underline;
-}
-
-::-webkit-scrollbar {
-  width: 13px;
-}
-
-::-webkit-scrollbar-track {
-  background: #e9e4e2;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ccc7c5;
 }
 
 ::-webkit-scrollbar-thumb:hover {

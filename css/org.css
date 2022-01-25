@@ -2,12 +2,13 @@
 
 @font-face {
   font-family: "Cascadia Code";
-  src: url("../fonts/CascadiaCode.ttf");
+  src: url("../fonts/CascadiaCode.woff2");
 }
 
 @font-face {
   font-family: "ETBembo";
-  src: url("../fonts/et-book-roman-line-figures.ttf");
+  src: url("../fonts/et-book-roman-line-figures.ttf") format("truetype"),
+    url("../fonts/et-book-roman-line-figures.woff2") format("woff2");
 }
 
 body {
