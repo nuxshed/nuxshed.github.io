@@ -3,7 +3,6 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/org.css" />
 #+HTML_LINK_UP: index.html
 #+HTML_LINK_HOME: ../index.html
-#+TAGS: laptop car pc sailboat
 
 * Introduction
 
@@ -20,13 +19,8 @@ This is not a complete list.
 ** Awesome
 [[https://awesomewm.org]]
 
-NOTE: this post is not sponsored by awesomewm.
-
 Awesome could easily be considered the most powerful window manager[fn:1] on Linux, as with enough time and effort, the WM itself is capable of recreating many DE like functionalities.
 You can have [[https://cdn.discordapp.com/attachments/635625925748457482/930841155103490058/unknown.png][notification centers]], [[https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/][action centers]],  [[https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/][dashboards]], [[https://github.com/ner0z/dotfiles#shots][lock screens]], anything you can think of.
-
-Want to make it look like windows? You can.
-Want to make it look like MacOS? It's already been done.
 
 It's window management is dynamic and equally good at both tiling and floating.
 It has perhaps the most customizable titlebars of any window manager.
@@ -39,12 +33,10 @@ It's widget system is also incredibly powerful in the right hands and the tight 
 [[https://blingcorp.github.io/bling/][bling]] is an awesomewm utility library that focuses on adding new layouts and modules that make use of the widget system, but primarily focus on the new window managing features.
 It adds a lot of cool features like additional layouts, window swallowing, scratchpads, playerctl signals, a tab container, tag preview, task preview, an app launcher and a window switcher.
 
-[[https://github.com/material-shell/material-awesome][material awesome]] is an almost complete desktop environment made with awesomewm following the material design guidelines with a performant mouse/keyboard workflow to increase daily productivity and comfort.
-
 Not sold yet?
-[[https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/][Just]] [[https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/][look]] [[https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/][at]] [[https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/][all]] [[https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/][these]] [[https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/][cool]] [[https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/][rices.]]
+[[https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/][Just]] [[https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/][look]] [[https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/][at]] [[https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/][all]] [[https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/][these]] [[https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/][cool]] [[https://www.reddit.com/r/unixporn/comments/scfa0x/awesomewm_trying_something_different/][rices]]
 
-Switch to awesome now. [[https://www.youtube.com/watch?v=ZXsQAXx_ao0][just do it.]]
+(also, [[https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/][my awesomewm rice]])
 
 ** Berry
 
@@ -62,6 +54,7 @@ Neat Features:
 [[https://github.com/baskerville/bspwm]]
 
 bspwm is a tiling window manager that represents windows as the leaves of a full binary tree. It has support for EWMH and multiple monitors, and is configured and controlled through messages (=bspc=).
+As of Jan 2022, it is the most used WM in the unixporn discord.
 
 [[https://www.reddit.com/r/unixporn/comments/lhljmi/bspwm_serenade_a_low_contrast_setup_for_my/][nice bspwm rice]]
 [[https://github.com/6gk/polka][cool series of bspwm rices]]
@@ -84,7 +77,10 @@ All configuration can be done via =herbstclient= and thus there is no need to re
 ** i3
 https://i3wm.org/
 
-i3 is the easiest and simplest window manager. It is perfect for beginners, but is powerful enough to even satisy power users. Although, if you plan to use i3, I reccomend that you use [[https://github.com/Airblader/i3][i3-gaps]] instead, as it has a few more features. [[https://swaywm.org/][Sway]] is i3 for wayland, so it might be worth checking out too.
+i3 is the easiest and simplest window manager. It is perfect for beginners, but is powerful enough to even satisy power users. 
+Although, if you plan to use i3, I reccomend that you use [[https://github.com/Airblader/i3][i3-gaps]] instead, as it has a few more features. [[https://swaywm.org/][Sway]] is i3 for wayland, so it might be worth checking out too.
+
+[[https://www.reddit.com/r/unixporn/comments/j3mfc6/i3gaps_ready_for_fall/][nice i3 rice]]
 
 ** Openbox
 http://openbox.org
