@@ -4,7 +4,6 @@
 #+HTML_LINK_UP: index.html
 #+HTML_LINK_HOME: ../index.html
 
-
 * Introduction
 The statusline is an integral part of (neo)vim's interface. I'd always fancied making my own statusline, and galaxyline becoming unmaintained pushed me to make the switch.
 This is what it looks like right now:

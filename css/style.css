@@ -114,6 +114,10 @@ a:hover {
   margin-top: 30px;
 }
 
+#org-div-home-and-up {
+  display: none;
+}
+
 .about-container {
   padding-top: 3em;
   text-align: left;
@@ -149,10 +153,14 @@ a:hover {
     padding: 5% 10%;
   }
   .prominent {
-    font-size: 44px;
+    font-size: 36px;
   }
 
   #content {
+    width: 90%;
+  }
+
+  .links {
     width: 90%;
   }
 }
