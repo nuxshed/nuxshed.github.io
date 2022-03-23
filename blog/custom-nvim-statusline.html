@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-26 Wed 16:02 -->
+<!-- 2022-03-23 Wed 22:34 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Custom Neovim Statusline</title>
@@ -199,7 +199,9 @@
  |
  <a accesskey="H" href="../index.html"> HOME </a>
 </div><div id="preamble" class="status">
-<div class="links"><a href="../index.html">Home</a><a href="" class="active">Blog</a><a href="../about.html">About</a></div>
+<div class="links"><a href="../index.html">Home</a>
+<a href="" class="active">Blog</a>
+<a href="../about.html">About</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Custom Neovim Statusline</h1>
@@ -261,8 +263,8 @@ Let's get started.<br>
 Oh, my aliases. What would I ever do without you?<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">fn</span> = vim.fn
-<span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">api</span> = vim.api
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #969896;">fn</span> = vim.fn
+<span style="color: #282a2e;">local</span> <span style="color: #969896;">api</span> = vim.api
 </pre>
 </div>
 </div>
@@ -279,27 +281,27 @@ Oh, my aliases. What would I ever do without you?<br>
 The code below creates a table that defines the string name (which will be displayed in the statusline) for each output of <code>vim.api.nvim_get_mode().mode</code>.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">modes</span> = {
-  [<span style="color: #597a37; font-style: italic;">"n"</span>] = <span style="color: #597a37; font-style: italic;">"NORMAL"</span>,
-  [<span style="color: #597a37; font-style: italic;">"no"</span>] = <span style="color: #597a37; font-style: italic;">"NORMAL"</span>,
-  [<span style="color: #597a37; font-style: italic;">"v"</span>] = <span style="color: #597a37; font-style: italic;">"VISUAL"</span>,
-  [<span style="color: #597a37; font-style: italic;">"V"</span>] = <span style="color: #597a37; font-style: italic;">"VISUAL LINE"</span>,
-  [<span style="color: #597a37; font-style: italic;">"&#22;"</span>] = <span style="color: #597a37; font-style: italic;">"VISUAL BLOCK"</span>,
-  [<span style="color: #597a37; font-style: italic;">"s"</span>] = <span style="color: #597a37; font-style: italic;">"SELECT"</span>,
-  [<span style="color: #597a37; font-style: italic;">"S"</span>] = <span style="color: #597a37; font-style: italic;">"SELECT LINE"</span>,
-  [<span style="color: #597a37; font-style: italic;">"&#19;"</span>] = <span style="color: #597a37; font-style: italic;">"SELECT BLOCK"</span>,
-  [<span style="color: #597a37; font-style: italic;">"i"</span>] = <span style="color: #597a37; font-style: italic;">"INSERT"</span>,
-  [<span style="color: #597a37; font-style: italic;">"ic"</span>] = <span style="color: #597a37; font-style: italic;">"INSERT"</span>,
-  [<span style="color: #597a37; font-style: italic;">"R"</span>] = <span style="color: #597a37; font-style: italic;">"REPLACE"</span>,
-  [<span style="color: #597a37; font-style: italic;">"Rv"</span>] = <span style="color: #597a37; font-style: italic;">"VISUAL REPLACE"</span>,
-  [<span style="color: #597a37; font-style: italic;">"c"</span>] = <span style="color: #597a37; font-style: italic;">"COMMAND"</span>,
-  [<span style="color: #597a37; font-style: italic;">"cv"</span>] = <span style="color: #597a37; font-style: italic;">"VIM EX"</span>,
-  [<span style="color: #597a37; font-style: italic;">"ce"</span>] = <span style="color: #597a37; font-style: italic;">"EX"</span>,
-  [<span style="color: #597a37; font-style: italic;">"r"</span>] = <span style="color: #597a37; font-style: italic;">"PROMPT"</span>,
-  [<span style="color: #597a37; font-style: italic;">"rm"</span>] = <span style="color: #597a37; font-style: italic;">"MOAR"</span>,
-  [<span style="color: #597a37; font-style: italic;">"r?"</span>] = <span style="color: #597a37; font-style: italic;">"CONFIRM"</span>,
-  [<span style="color: #597a37; font-style: italic;">"!"</span>] = <span style="color: #597a37; font-style: italic;">"SHELL"</span>,
-  [<span style="color: #597a37; font-style: italic;">"t"</span>] = <span style="color: #597a37; font-style: italic;">"TERMINAL"</span>,
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #969896;">modes</span> = {
+  [<span style="color: #969896;">"n"</span>] = <span style="color: #969896;">"NORMAL"</span>,
+  [<span style="color: #969896;">"no"</span>] = <span style="color: #969896;">"NORMAL"</span>,
+  [<span style="color: #969896;">"v"</span>] = <span style="color: #969896;">"VISUAL"</span>,
+  [<span style="color: #969896;">"V"</span>] = <span style="color: #969896;">"VISUAL LINE"</span>,
+  [<span style="color: #969896;">"&#22;"</span>] = <span style="color: #969896;">"VISUAL BLOCK"</span>,
+  [<span style="color: #969896;">"s"</span>] = <span style="color: #969896;">"SELECT"</span>,
+  [<span style="color: #969896;">"S"</span>] = <span style="color: #969896;">"SELECT LINE"</span>,
+  [<span style="color: #969896;">"&#19;"</span>] = <span style="color: #969896;">"SELECT BLOCK"</span>,
+  [<span style="color: #969896;">"i"</span>] = <span style="color: #969896;">"INSERT"</span>,
+  [<span style="color: #969896;">"ic"</span>] = <span style="color: #969896;">"INSERT"</span>,
+  [<span style="color: #969896;">"R"</span>] = <span style="color: #969896;">"REPLACE"</span>,
+  [<span style="color: #969896;">"Rv"</span>] = <span style="color: #969896;">"VISUAL REPLACE"</span>,
+  [<span style="color: #969896;">"c"</span>] = <span style="color: #969896;">"COMMAND"</span>,
+  [<span style="color: #969896;">"cv"</span>] = <span style="color: #969896;">"VIM EX"</span>,
+  [<span style="color: #969896;">"ce"</span>] = <span style="color: #969896;">"EX"</span>,
+  [<span style="color: #969896;">"r"</span>] = <span style="color: #969896;">"PROMPT"</span>,
+  [<span style="color: #969896;">"rm"</span>] = <span style="color: #969896;">"MOAR"</span>,
+  [<span style="color: #969896;">"r?"</span>] = <span style="color: #969896;">"CONFIRM"</span>,
+  [<span style="color: #969896;">"!"</span>] = <span style="color: #969896;">"SHELL"</span>,
+  [<span style="color: #969896;">"t"</span>] = <span style="color: #969896;">"TERMINAL"</span>,
 }
 </pre>
 </div>
@@ -309,10 +311,10 @@ The code below creates a table that defines the string name (which will be displ
 Now, to actually get the mode and match it with <code>modes</code>:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">mode</span>()
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">current_mode</span> = api.nvim_get_mode().mode
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #286486;">string</span>.<span style="color: #286486;">format</span>(<span style="color: #597a37; font-style: italic;">" %s "</span>, modes[current_mode]):upper()
-<span style="color: #a8334c; font-style: italic;">end</span>
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">mode</span>()
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">current_mode</span> = api.nvim_get_mode().mode
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">string</span>.<span style="color: #969896;">format</span>(<span style="color: #969896;">" %s "</span>, modes[current_mode]):upper()
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 
@@ -321,24 +323,24 @@ I'd like to have different colors for different modes. The function below return
 If you don't want different colors for each mode, simply remove this function and remove all occurences of it below. Everything should still work.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">update_mode_colors</span>()
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">current_mode</span> = api.nvim_get_mode().mode
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">mode_color</span> = <span style="color: #597a37; font-style: italic;">"%#StatusLineAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> current_mode == <span style="color: #597a37; font-style: italic;">"n"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      mode_color = <span style="color: #597a37; font-style: italic;">"%#StatuslineAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">elseif</span> current_mode == <span style="color: #597a37; font-style: italic;">"i"</span> <span style="color: #a8334c; font-style: italic;">or</span> current_mode == <span style="color: #597a37; font-style: italic;">"ic"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      mode_color = <span style="color: #597a37; font-style: italic;">"%#StatuslineInsertAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">elseif</span> current_mode == <span style="color: #597a37; font-style: italic;">"v"</span> <span style="color: #a8334c; font-style: italic;">or</span> current_mode == <span style="color: #597a37; font-style: italic;">"V"</span> <span style="color: #a8334c; font-style: italic;">or</span> current_mode == <span style="color: #597a37; font-style: italic;">"&#22;"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      mode_color = <span style="color: #597a37; font-style: italic;">"%#StatuslineVisualAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">elseif</span> current_mode == <span style="color: #597a37; font-style: italic;">"R"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      mode_color = <span style="color: #597a37; font-style: italic;">"%#StatuslineReplaceAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">elseif</span> current_mode == <span style="color: #597a37; font-style: italic;">"c"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      mode_color = <span style="color: #597a37; font-style: italic;">"%#StatuslineCmdLineAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">elseif</span> current_mode == <span style="color: #597a37; font-style: italic;">"t"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      mode_color = <span style="color: #597a37; font-style: italic;">"%#StatuslineTerminalAccent#"</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">return</span> mode_color
-<span style="color: #a8334c; font-style: italic;">end</span>
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">update_mode_colors</span>()
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">current_mode</span> = api.nvim_get_mode().mode
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">mode_color</span> = <span style="color: #969896;">"%#StatusLineAccent#"</span>
+  <span style="color: #282a2e;">if</span> current_mode == <span style="color: #969896;">"n"</span> <span style="color: #282a2e;">then</span>
+      mode_color = <span style="color: #969896;">"%#StatuslineAccent#"</span>
+  <span style="color: #282a2e;">elseif</span> current_mode == <span style="color: #969896;">"i"</span> <span style="color: #282a2e;">or</span> current_mode == <span style="color: #969896;">"ic"</span> <span style="color: #282a2e;">then</span>
+      mode_color = <span style="color: #969896;">"%#StatuslineInsertAccent#"</span>
+  <span style="color: #282a2e;">elseif</span> current_mode == <span style="color: #969896;">"v"</span> <span style="color: #282a2e;">or</span> current_mode == <span style="color: #969896;">"V"</span> <span style="color: #282a2e;">or</span> current_mode == <span style="color: #969896;">"&#22;"</span> <span style="color: #282a2e;">then</span>
+      mode_color = <span style="color: #969896;">"%#StatuslineVisualAccent#"</span>
+  <span style="color: #282a2e;">elseif</span> current_mode == <span style="color: #969896;">"R"</span> <span style="color: #282a2e;">then</span>
+      mode_color = <span style="color: #969896;">"%#StatuslineReplaceAccent#"</span>
+  <span style="color: #282a2e;">elseif</span> current_mode == <span style="color: #969896;">"c"</span> <span style="color: #282a2e;">then</span>
+      mode_color = <span style="color: #969896;">"%#StatuslineCmdLineAccent#"</span>
+  <span style="color: #282a2e;">elseif</span> current_mode == <span style="color: #969896;">"t"</span> <span style="color: #282a2e;">then</span>
+      mode_color = <span style="color: #969896;">"%#StatuslineTerminalAccent#"</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">return</span> mode_color
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>
@@ -364,14 +366,14 @@ Here, we use a few modifiers with <code>fn.fnamemodify</code> to customize what 
 Refer to <code>:h filename-modifiers</code> for more.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">filepath</span>()
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">fpath</span> = fn.fnamemodify(fn.expand <span style="color: #597a37; font-style: italic;">"%"</span>, <span style="color: #597a37; font-style: italic;">":~:.:h"</span>)
-  <span style="color: #a8334c; font-style: italic;">if</span> fpath == <span style="color: #597a37; font-style: italic;">""</span> <span style="color: #a8334c; font-style: italic;">or</span> fpath == <span style="color: #597a37; font-style: italic;">"."</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">" "</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">filepath</span>()
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">fpath</span> = fn.fnamemodify(fn.expand <span style="color: #969896;">"%"</span>, <span style="color: #969896;">":~:.:h"</span>)
+  <span style="color: #282a2e;">if</span> fpath == <span style="color: #969896;">""</span> <span style="color: #282a2e;">or</span> fpath == <span style="color: #969896;">"."</span> <span style="color: #282a2e;">then</span>
+      <span style="color: #282a2e;">return</span> <span style="color: #969896;">" "</span>
+  <span style="color: #282a2e;">end</span>
 
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #286486;">string</span>.<span style="color: #286486;">format</span>(<span style="color: #597a37; font-style: italic;">" %%&lt;%s/"</span>, fpath)
-<span style="color: #a8334c; font-style: italic;">end</span>
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">string</span>.<span style="color: #969896;">format</span>(<span style="color: #969896;">" %%&lt;%s/"</span>, fpath)
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 
@@ -379,13 +381,13 @@ Refer to <code>:h filename-modifiers</code> for more.<br>
 Here, <code>~</code> refers to the current file name, and <code>:t</code> modifies it to only show the tail part<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">filename</span>()
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">fname</span> = fn.expand <span style="color: #597a37; font-style: italic;">"%:t"</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> fname == <span style="color: #597a37; font-style: italic;">""</span> <span style="color: #a8334c; font-style: italic;">then</span>
-      <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">return</span> fname .. <span style="color: #597a37; font-style: italic;">" "</span>
-<span style="color: #a8334c; font-style: italic;">end</span>
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">filename</span>()
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">fname</span> = fn.expand <span style="color: #969896;">"%:t"</span>
+  <span style="color: #282a2e;">if</span> fname == <span style="color: #969896;">""</span> <span style="color: #282a2e;">then</span>
+      <span style="color: #282a2e;">return</span> <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">return</span> fname .. <span style="color: #969896;">" "</span>
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>
@@ -402,39 +404,39 @@ LSP is cool.<br>
 The function below returns the icon and count for each level if the count is not zero. i.e. the statusline doesnt show the number of errors (or warnings, info and hints) if there aren't any.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">lsp</span>()
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">count</span> = {}
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">levels</span> = {
-    errors = <span style="color: #597a37; font-style: italic;">"Error"</span>,
-    warnings = <span style="color: #597a37; font-style: italic;">"Warn"</span>,
-    info = <span style="color: #597a37; font-style: italic;">"Info"</span>,
-    hints = <span style="color: #597a37; font-style: italic;">"Hint"</span>,
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">lsp</span>()
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">count</span> = {}
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">levels</span> = {
+    errors = <span style="color: #969896;">"Error"</span>,
+    warnings = <span style="color: #969896;">"Warn"</span>,
+    info = <span style="color: #969896;">"Info"</span>,
+    hints = <span style="color: #969896;">"Hint"</span>,
   }
 
-  <span style="color: #a8334c; font-style: italic;">for</span> <span style="color: #685c56;">k</span>, <span style="color: #685c56;">level</span> <span style="color: #a8334c; font-style: italic;">in</span> <span style="color: #286486;">pairs</span>(levels) <span style="color: #a8334c; font-style: italic;">do</span>
+  <span style="color: #282a2e;">for</span> <span style="color: #969896;">k</span>, <span style="color: #969896;">level</span> <span style="color: #282a2e;">in</span> <span style="color: #969896;">pairs</span>(levels) <span style="color: #282a2e;">do</span>
     count[k] = vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
-  <span style="color: #a8334c; font-style: italic;">end</span>
+  <span style="color: #282a2e;">end</span>
 
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">errors</span> = <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">warnings</span> = <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">hints</span> = <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">info</span> = <span style="color: #597a37; font-style: italic;">""</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">errors</span> = <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">warnings</span> = <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">hints</span> = <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">info</span> = <span style="color: #969896;">""</span>
 
-  <span style="color: #a8334c; font-style: italic;">if</span> count[<span style="color: #597a37; font-style: italic;">"errors"</span>] ~= 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    errors = <span style="color: #597a37; font-style: italic;">" %#LspDiagnosticsSignError#&#63064; "</span> .. count[<span style="color: #597a37; font-style: italic;">"errors"</span>]
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> count[<span style="color: #597a37; font-style: italic;">"warnings"</span>] ~= 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    warnings = <span style="color: #597a37; font-style: italic;">" %#LspDiagnosticsSignWarning#&#61553; "</span> .. count[<span style="color: #597a37; font-style: italic;">"warnings"</span>]
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> count[<span style="color: #597a37; font-style: italic;">"hints"</span>] ~= 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    hints = <span style="color: #597a37; font-style: italic;">" %#LspDiagnosticsSignHint#&#63540; "</span> .. count[<span style="color: #597a37; font-style: italic;">"hints"</span>]
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> count[<span style="color: #597a37; font-style: italic;">"info"</span>] ~= 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    info = <span style="color: #597a37; font-style: italic;">" %#LspDiagnosticsSignInformation#&#63483; "</span> .. count[<span style="color: #597a37; font-style: italic;">"info"</span>]
-  <span style="color: #a8334c; font-style: italic;">end</span>
+  <span style="color: #282a2e;">if</span> count[<span style="color: #969896;">"errors"</span>] ~= 0 <span style="color: #282a2e;">then</span>
+    errors = <span style="color: #969896;">" %#LspDiagnosticsSignError#&#63064; "</span> .. count[<span style="color: #969896;">"errors"</span>]
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">if</span> count[<span style="color: #969896;">"warnings"</span>] ~= 0 <span style="color: #282a2e;">then</span>
+    warnings = <span style="color: #969896;">" %#LspDiagnosticsSignWarning#&#61553; "</span> .. count[<span style="color: #969896;">"warnings"</span>]
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">if</span> count[<span style="color: #969896;">"hints"</span>] ~= 0 <span style="color: #282a2e;">then</span>
+    hints = <span style="color: #969896;">" %#LspDiagnosticsSignHint#&#63540; "</span> .. count[<span style="color: #969896;">"hints"</span>]
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">if</span> count[<span style="color: #969896;">"info"</span>] ~= 0 <span style="color: #282a2e;">then</span>
+    info = <span style="color: #969896;">" %#LspDiagnosticsSignInformation#&#63483; "</span> .. count[<span style="color: #969896;">"info"</span>]
+  <span style="color: #282a2e;">end</span>
 
-  <span style="color: #a8334c; font-style: italic;">return</span> errors .. warnings .. hints .. info .. <span style="color: #597a37; font-style: italic;">"%#Normal#"</span>
-<span style="color: #a8334c; font-style: italic;">end</span>
+  <span style="color: #282a2e;">return</span> errors .. warnings .. hints .. info .. <span style="color: #969896;">"%#Normal#"</span>
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>
@@ -447,9 +449,9 @@ The function below returns the icon and count for each level if the count is not
 Takes the filetype and makes it uppercase<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">filetype</span>()
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #286486;">string</span>.<span style="color: #286486;">format</span>(<span style="color: #597a37; font-style: italic;">" %s "</span>, vim.bo.filetype):upper()
-<span style="color: #a8334c; font-style: italic;">end</span>
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">filetype</span>()
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">string</span>.<span style="color: #969896;">format</span>(<span style="color: #969896;">" %s "</span>, vim.bo.filetype):upper()
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>
@@ -464,12 +466,12 @@ Takes the filetype and makes it uppercase<br>
 <li><code>%c</code>: Column Number<br></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">lineinfo</span>()
-  <span style="color: #a8334c; font-style: italic;">if</span> vim.bo.filetype == <span style="color: #597a37; font-style: italic;">"alpha"</span> <span style="color: #a8334c; font-style: italic;">then</span>
-    <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">" %P %l:%c "</span>
-<span style="color: #a8334c; font-style: italic;">end</span>
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">lineinfo</span>()
+  <span style="color: #282a2e;">if</span> vim.bo.filetype == <span style="color: #969896;">"alpha"</span> <span style="color: #282a2e;">then</span>
+    <span style="color: #282a2e;">return</span> <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">" %P %l:%c "</span>
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>
@@ -485,29 +487,29 @@ Let us build the statusline using the modules defined above. Here, we take a tab
 <div class="org-src-container">
 <pre class="src src-lua">Statusline = {}
 
-<span style="color: #944927;">Statusline.active</span> = <span style="color: #a8334c; font-style: italic;">function</span>()
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #286486;">table</span>.<span style="color: #286486;">concat</span> {
-    <span style="color: #597a37; font-style: italic;">"%#Statusline#"</span>,
+<span style="color: #282a2e; font-style: italic;">Statusline.active</span> = <span style="color: #282a2e;">function</span>()
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">table</span>.<span style="color: #969896;">concat</span> {
+    <span style="color: #969896;">"%#Statusline#"</span>,
     update_mode_colors(),
     mode(),
-    <span style="color: #597a37; font-style: italic;">"%#Normal# "</span>,
+    <span style="color: #969896;">"%#Normal# "</span>,
     filepath(),
     filename(),
-    <span style="color: #597a37; font-style: italic;">"%#Normal#"</span>,
+    <span style="color: #969896;">"%#Normal#"</span>,
     lsp(),
-    <span style="color: #597a37; font-style: italic;">"%=%#StatusLineExtra#"</span>,
+    <span style="color: #969896;">"%=%#StatusLineExtra#"</span>,
     filetype(),
     lineinfo(),
   }
-<span style="color: #a8334c; font-style: italic;">end</span>
+<span style="color: #282a2e;">end</span>
 
-<span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">Statusline.inactive</span>()
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">" %F"</span>
-<span style="color: #a8334c; font-style: italic;">end</span>
+<span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">Statusline.inactive</span>()
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">" %F"</span>
+<span style="color: #282a2e;">end</span>
 
-<span style="color: #a8334c; font-style: italic;">function</span> <span style="color: #944927;">Statusline.short</span>()
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">"%#StatusLineNC# &#58879;  NvimTree"</span>
-<span style="color: #a8334c; font-style: italic;">end</span>
+<span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">Statusline.short</span>()
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">"%#StatusLineNC# &#58879;  NvimTree"</span>
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>
@@ -520,14 +522,14 @@ Let us build the statusline using the modules defined above. Here, we take a tab
 I use autocommands to show the statusline. This lets me show different statuslines for different buffers and add an inactive statusline. Credit to elianiva for the concept.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">api.nvim_exec(<span style="color: #597a37; font-style: italic;">[[</span>
-<span style="color: #597a37; font-style: italic;">  augroup Statusline</span>
-<span style="color: #597a37; font-style: italic;">  au!</span>
-<span style="color: #597a37; font-style: italic;">  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()</span>
-<span style="color: #597a37; font-style: italic;">  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()</span>
-<span style="color: #597a37; font-style: italic;">  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()</span>
-<span style="color: #597a37; font-style: italic;">  augroup END</span>
-<span style="color: #597a37; font-style: italic;">]]</span>, <span style="color: #685c56;">false</span>)
+<pre class="src src-lua">api.nvim_exec(<span style="color: #969896;">[[</span>
+<span style="color: #969896;">  augroup Statusline</span>
+<span style="color: #969896;">  au!</span>
+<span style="color: #969896;">  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()</span>
+<span style="color: #969896;">  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()</span>
+<span style="color: #969896;">  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()</span>
+<span style="color: #969896;">  augroup END</span>
+<span style="color: #969896;">]]</span>, <span style="color: #969896; font-style: italic;">false</span>)
 </pre>
 </div>
 </div>
@@ -541,7 +543,7 @@ I use autocommands to show the statusline. This lets me show different statuslin
 <h3 id="org04180c4"><span class="section-number-3">6.1.</span> Git Info</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
-Many people like to have git info in their statusline. I used this at some point but I removed it for <i>mUh miNiMaLIsM</i><br>
+Many people like to have git info in their statusline.<br>
 To use it, chuck this function into your file and add it to <code>Statusline.active()</code>.<br>
 </p>
 
@@ -549,34 +551,34 @@ To use it, chuck this function into your file and add it to <code>Statusline.act
 (requires gitsigns.nvim)<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #944927;">vcs</span> = <span style="color: #a8334c; font-style: italic;">function</span>()
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">git_info</span> = vim.b.gitsigns_status_dict
-  <span style="color: #a8334c; font-style: italic;">if</span> <span style="color: #a8334c; font-style: italic;">not</span> git_info <span style="color: #a8334c; font-style: italic;">or</span> git_info.head == <span style="color: #597a37; font-style: italic;">""</span> <span style="color: #a8334c; font-style: italic;">then</span>
-    <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">added</span> = git_info.added <span style="color: #a8334c; font-style: italic;">and</span> (<span style="color: #597a37; font-style: italic;">"%#GitSignsAdd#+"</span> .. git_info.added .. <span style="color: #597a37; font-style: italic;">" "</span>) <span style="color: #a8334c; font-style: italic;">or</span> <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">changed</span> = git_info.changed <span style="color: #a8334c; font-style: italic;">and</span> (<span style="color: #597a37; font-style: italic;">"%#GitSignsChange#~"</span> .. git_info.changed .. <span style="color: #597a37; font-style: italic;">" "</span>) <span style="color: #a8334c; font-style: italic;">or</span> <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">local</span> <span style="color: #685c56;">removed</span> = git_info.removed <span style="color: #a8334c; font-style: italic;">and</span> (<span style="color: #597a37; font-style: italic;">"%#GitSignsDelete#-"</span> .. git_info.removed .. <span style="color: #597a37; font-style: italic;">" "</span>) <span style="color: #a8334c; font-style: italic;">or</span> <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> git_info.added == 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    added = <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> git_info.changed == 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    changed = <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">if</span> git_info.removed == 0 <span style="color: #a8334c; font-style: italic;">then</span>
-    removed = <span style="color: #597a37; font-style: italic;">""</span>
-  <span style="color: #a8334c; font-style: italic;">end</span>
-  <span style="color: #a8334c; font-style: italic;">return</span> <span style="color: #286486;">table</span>.<span style="color: #286486;">concat</span> {
-     <span style="color: #597a37; font-style: italic;">" "</span>,
+<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e; font-style: italic;">vcs</span> = <span style="color: #282a2e;">function</span>()
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">git_info</span> = vim.b.gitsigns_status_dict
+  <span style="color: #282a2e;">if</span> <span style="color: #282a2e;">not</span> git_info <span style="color: #282a2e;">or</span> git_info.head == <span style="color: #969896;">""</span> <span style="color: #282a2e;">then</span>
+    <span style="color: #282a2e;">return</span> <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">added</span> = git_info.added <span style="color: #282a2e;">and</span> (<span style="color: #969896;">"%#GitSignsAdd#+"</span> .. git_info.added .. <span style="color: #969896;">" "</span>) <span style="color: #282a2e;">or</span> <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">changed</span> = git_info.changed <span style="color: #282a2e;">and</span> (<span style="color: #969896;">"%#GitSignsChange#~"</span> .. git_info.changed .. <span style="color: #969896;">" "</span>) <span style="color: #282a2e;">or</span> <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">removed</span> = git_info.removed <span style="color: #282a2e;">and</span> (<span style="color: #969896;">"%#GitSignsDelete#-"</span> .. git_info.removed .. <span style="color: #969896;">" "</span>) <span style="color: #282a2e;">or</span> <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">if</span> git_info.added == 0 <span style="color: #282a2e;">then</span>
+    added = <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">if</span> git_info.changed == 0 <span style="color: #282a2e;">then</span>
+    changed = <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">if</span> git_info.removed == 0 <span style="color: #282a2e;">then</span>
+    removed = <span style="color: #969896;">""</span>
+  <span style="color: #282a2e;">end</span>
+  <span style="color: #282a2e;">return</span> <span style="color: #969896;">table</span>.<span style="color: #969896;">concat</span> {
+     <span style="color: #969896;">" "</span>,
      added,
      changed,
      removed,
-     <span style="color: #597a37; font-style: italic;">" "</span>,
-     <span style="color: #597a37; font-style: italic;">"%#GitSignsAdd#&#59173; "</span>,
+     <span style="color: #969896;">" "</span>,
+     <span style="color: #969896;">"%#GitSignsAdd#&#59173; "</span>,
      git_info.head,
-     <span style="color: #597a37; font-style: italic;">" %#Normal#"</span>,
+     <span style="color: #969896;">" %#Normal#"</span>,
   }
-<span style="color: #a8334c; font-style: italic;">end</span>
+<span style="color: #282a2e;">end</span>
 </pre>
 </div>
 </div>

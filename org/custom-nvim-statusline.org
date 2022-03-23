@@ -223,7 +223,7 @@ I use autocommands to show the statusline. This lets me show different statuslin
 * Bonus modules
 
 ** Git Info
-Many people like to have git info in their statusline. I used this at some point but I removed it for /mUh miNiMaLIsM/
+Many people like to have git info in their statusline.
 To use it, chuck this function into your file and add it to ~Statusline.active()~.
 
 (requires gitsigns.nvim)

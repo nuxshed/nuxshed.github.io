@@ -3,6 +3,12 @@
   src: url("../fonts/CascadiaCode.woff2");
 }
 
+
+@font-face {
+  font-family: "Commissioner";
+  src: url("../fonts/Commissioner.ttf"),
+}
+
 html {
   min-height: 100%;
   -ms-overflow-style: none; /* IE and Edge */
@@ -10,9 +16,9 @@ html {
 }
 
 body {
-  background-color: #f0edec;
-  color: #2c363c;
-  font-family: "Cascadia Code", Courier, monospace;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: "Commissioner", Courier, monospace;
 }
 
 #content {
@@ -31,7 +37,7 @@ body {
 }
 
 a {
-  color: #2c363c;
+  color: #000000;
   font-size: 21px;
   text-decoration: none;
 }
@@ -57,12 +63,12 @@ a:hover {
 }
 
 .links a:hover {
-  color: #2c363c;
+  color: #000000;
   /* text-decoration: underline; */
 }
 
 .links a.active {
-  color: #2c363c;
+  color: #000000;
 }
 
 .center {
@@ -82,10 +88,11 @@ a:hover {
 .anim-typewriter-text {
   width: 7em;
   margin: 0 auto;
-  border-right: 2px solid #2c363c;
+  border-right: 2px solid #000000;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
+  font-family: "Cascadia Code";
 }
 
 .anim-typewriter {
@@ -102,7 +109,7 @@ a:hover {
 }
 @keyframes blinkTextCursor {
   from {
-    border-right-color: #2c363c;
+    border-right-color: #000000;
   }
   to {
     border-right-color: transparent;
@@ -112,6 +119,10 @@ a:hover {
 .org-ul li {
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+.org-ul a {
+  font-weight: 500;
 }
 
 #org-div-home-and-up {
@@ -124,12 +135,14 @@ a:hover {
   width: 80%;
   overflow: hidden;
   margin: auto;
-  line-height: 1.5em;
-  font-size: 17px;
+    line-height: 1.675;
+    counter-reset: definition;
+    text-rendering: optimizeLegibility;
+  font-size: 20px;
 }
 
 .about-container a {
-  color: #2c363c;
+  color: #000000;
   font-size: 17px;
   padding: 0px;
   text-decoration: underline;
