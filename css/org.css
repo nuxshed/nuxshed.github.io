@@ -48,6 +48,10 @@ code {
   font-size: 14px;
 }
 
+img {
+  max-width: 100%;
+}
+
 #content {
   margin: 0 auto;
   max-width: 55%;

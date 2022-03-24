@@ -1,0 +1,86 @@
+#+TITLE:An Attempt to understand picom and its forks
+#+DATE:<2022-03-25 Fri>
+#+SETUPFILE: ../template.org
+
+* Introduction
+picom is a lightweight, standalone [[https://en.wikipedia.org/wiki/Compositing_window_manager][compositor]] for X11. It can be used to implement effects such as transparency, fading, blur, rounded corners, shadows, animations, and more.
+
+* Forks
+** yshui/picom
+https://github.com/yshui/picom
+
+THE picom. The original one. 
+I'd recommend this to people who just want basic stuff like rounded corners, shadows, transparency, fading and blur.
+
+It works pretty well, is quite stable, and maintained.
+
+** dccsillag/picom
+https://github.com/dccsillag/picom/tree/implement-window-animations
+
+This fork supports most of the stuff the original one does, and implements good-looking and configurable animations on top of that. 
+
+** pijulius/picom
+https://github.com/pijulius/picom
+
+An improvement over dccsillags fork. It adds more animations and also lets you configure animations on workspace changes.
+Currently what I would recommend to people who want nice animations.
+
+[[../assets/pijulius.gif]]
+
+** jonaburg/picom
+https://github.com/jonaburg/picom
+
+This is a forked version from Sandmark's picom branch, including Blackcapcoder's animation code inside. The animations here are further smoothed and time deltas reduced from 1ms to 40us for high refresh rates and buttery smooth transitions.
+The animations are somewhat configurable but you cannot control what animation is shown (as in dccsillag/pijulius)
+
+Also, while I personally find the animations from dccsillag/pijulius more suitable to my taste, the animations from jonaburg are quite nice, and have a more linear(?) kind of style.
+
+** ibhagwan/picom
+https://github.com/ibhagwan/picom
+
+Fork with rounded corners (from sdhand) and dual kawase blur (from tryone144) on all backends.
+
+However, if I recall correctly, both rounded corners and dual kawase blur were merged into the main picom repo (yshui/picom), so I'm not sure how relevant this is anymore. (feel free to correct me if I'm wrong)
+
+
+** Tanish2002/picom
+https://github.com/Tanish2002/picom
+
+Fork of ibhagwan's fork that patches in phisch's transition code.
+
+TODO: test it out and rate the animations.
+
+* Snippets
+
+** Animations
+
+Snippet to configure animations on dccsillag/pijulius
+#+begin_src conf
+  animations = true;
+  animation-stiffness = 300.0;
+  animation-dampening = 22.0;
+  animation-clamping = true;
+  animation-mass = 1;
+  animation-for-open-window = "zoom";
+  animation-for-menu-window = "slide-down";
+  animation-for-transient-window = "slide-down";
+
+  # (requires pijulius)
+  animation-for-workspace-switch-in = "zoom";
+  animation-for-workspace-switch-out = "zoom";
+#+end_src
+
+Snippet to configure animations on jonaburg
+#+begin_src conf
+  transition-length = 300
+  transition-pow-x = 0.1
+  transition-pow-y = 0.1
+  transition-pow-w = 0.1
+  transition-pow-h = 0.1
+  size-transition = true
+#+end_src
+
+* More Resources
+
+- [[https://wiki.archlinux.org/title/Picom][ArchWiki page]]
+- [[https://github.com/yshui/picom/blob/next/picom.sample.conf][sample picom.conf]]

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-03-24 Thu 22:50 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>An Attempt to understand picom and its forks</title>
+<meta name="author" content="nuxsh" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/org.css" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="preamble" class="status">
+<div class="links"><a href="../index.html">Home</a>
+<a href="" class="active">Blog</a>
+<a href="../about.html">About</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">An Attempt to understand picom and its forks</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4d4251e">1. Introduction</a></li>
+<li><a href="#orgc1768d2">2. Forks</a>
+<ul>
+<li><a href="#orgacf0dd2">2.1. yshui/picom</a></li>
+<li><a href="#orgf26efec">2.2. dccsillag/picom</a></li>
+<li><a href="#org12850ab">2.3. pijulius/picom</a></li>
+<li><a href="#orgc145f77">2.4. jonaburg/picom</a></li>
+<li><a href="#org2092f47">2.5. ibhagwan/picom</a></li>
+<li><a href="#org9976fb7">2.6. Tanish2002/picom</a></li>
+</ul>
+</li>
+<li><a href="#org8a2bfb3">3. Snippets</a>
+<ul>
+<li><a href="#org598944e">3.1. Animations</a></li>
+</ul>
+</li>
+<li><a href="#orgc99680a">4. More Resources</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4d4251e" class="outline-2">
+<h2 id="org4d4251e"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+picom is a lightweight, standalone <a href="https://en.wikipedia.org/wiki/Compositing_window_manager">compositor</a> for X11. It can be used to implement effects such as transparency, fading, blur, rounded corners, shadows, animations, and more.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc1768d2" class="outline-2">
+<h2 id="orgc1768d2"><span class="section-number-2">2.</span> Forks</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgacf0dd2" class="outline-3">
+<h3 id="orgacf0dd2"><span class="section-number-3">2.1.</span> yshui/picom</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<a href="https://github.com/yshui/picom">https://github.com/yshui/picom</a><br>
+</p>
+
+<p>
+THE picom. The original one.<br>
+I'd recommend this to people who just want basic stuff like rounded corners, shadows, transparency, fading and blur.<br>
+</p>
+
+<p>
+It works pretty well, is quite stable, and maintained.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf26efec" class="outline-3">
+<h3 id="orgf26efec"><span class="section-number-3">2.2.</span> dccsillag/picom</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<a href="https://github.com/dccsillag/picom/tree/implement-window-animations">https://github.com/dccsillag/picom/tree/implement-window-animations</a><br>
+</p>
+
+<p>
+This fork supports most of the stuff the original one does, and implements good-looking and configurable animations on top of that.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org12850ab" class="outline-3">
+<h3 id="org12850ab"><span class="section-number-3">2.3.</span> pijulius/picom</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<a href="https://github.com/pijulius/picom">https://github.com/pijulius/picom</a><br>
+</p>
+
+<p>
+An improvement over dccsillags fork. It adds more animations and also lets you configure animations on workspace changes.<br>
+Currently what I would recommend to people who want nice animations.<br>
+</p>
+
+
+<div id="org05ecba4" class="figure">
+<p><img src="../assets/pijulius.gif" alt="pijulius.gif"><br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc145f77" class="outline-3">
+<h3 id="orgc145f77"><span class="section-number-3">2.4.</span> jonaburg/picom</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<a href="https://github.com/jonaburg/picom">https://github.com/jonaburg/picom</a><br>
+</p>
+
+<p>
+This is a forked version from Sandmark's picom branch, including Blackcapcoder's animation code inside. The animations here are further smoothed and time deltas reduced from 1ms to 40us for high refresh rates and buttery smooth transitions.<br>
+The animations are somewhat configurable but you cannot control what animation is shown (as in dccsillag/pijulius)<br>
+</p>
+
+<p>
+Also, while I personally find the animations from dccsillag/pijulius more suitable to my taste, the animations from jonaburg are quite nice, and have a more linear(?) kind of style.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2092f47" class="outline-3">
+<h3 id="org2092f47"><span class="section-number-3">2.5.</span> ibhagwan/picom</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<a href="https://github.com/ibhagwan/picom">https://github.com/ibhagwan/picom</a><br>
+</p>
+
+<p>
+Fork with rounded corners (from sdhand) and dual kawase blur (from tryone144) on all backends.<br>
+</p>
+
+<p>
+However, if I recall correctly, both rounded corners and dual kawase blur were merged into the main picom repo (yshui/picom), so I'm not sure how relevant this is anymore. (feel free to correct me if I'm wrong)<br>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org9976fb7" class="outline-3">
+<h3 id="org9976fb7"><span class="section-number-3">2.6.</span> Tanish2002/picom</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+<a href="https://github.com/Tanish2002/picom">https://github.com/Tanish2002/picom</a><br>
+</p>
+
+<p>
+Fork of ibhagwan's fork that patches in phisch's transition code.<br>
+</p>
+
+<p>
+TODO: test it out and rate the animations.<br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8a2bfb3" class="outline-2">
+<h2 id="org8a2bfb3"><span class="section-number-2">3.</span> Snippets</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org598944e" class="outline-3">
+<h3 id="org598944e"><span class="section-number-3">3.1.</span> Animations</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Snippet to configure animations on dccsillag/pijulius<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #969896;">animations</span> = true;
+<span style="color: #969896;">animation-stiffness</span> = 300.0;
+<span style="color: #969896;">animation-dampening</span> = 22.0;
+<span style="color: #969896;">animation-clamping</span> = true;
+<span style="color: #969896;">animation-mass</span> = 1;
+<span style="color: #969896;">animation-for-open-window</span> = <span style="color: #969896;">"zoom"</span>;
+<span style="color: #969896;">animation-for-menu-window</span> = <span style="color: #969896;">"slide-down"</span>;
+<span style="color: #969896;">animation-for-transient-window</span> = <span style="color: #969896;">"slide-down"</span>;
+
+<span style="color: #c5c8c6; font-style: italic;"># </span><span style="color: #c5c8c6; font-style: italic;">(requires pijulius)</span>
+<span style="color: #969896;">animation-for-workspace-switch-in</span> = <span style="color: #969896;">"zoom"</span>;
+<span style="color: #969896;">animation-for-workspace-switch-out</span> = <span style="color: #969896;">"zoom"</span>;
+</pre>
+</div>
+
+<p>
+Snippet to configure animations on jonaburg<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #969896;">transition-length</span> = 300
+<span style="color: #969896;">transition-pow-x</span> = 0.1
+<span style="color: #969896;">transition-pow-y</span> = 0.1
+<span style="color: #969896;">transition-pow-w</span> = 0.1
+<span style="color: #969896;">transition-pow-h</span> = 0.1
+<span style="color: #969896;">size-transition</span> = true
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc99680a" class="outline-2">
+<h2 id="orgc99680a"><span class="section-number-2">4.</span> More Resources</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="https://wiki.archlinux.org/title/Picom">ArchWiki page</a><br></li>
+<li><a href="https://github.com/yshui/picom/blob/next/picom.sample.conf">sample picom.conf</a><br></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer"><p><a href="../index.html">home</a> - <a href="index.html">index</a> - <a href="https://github.com/nuxshed/nuxshed.github.io">source</a></p></div>
+</div>
+</body>
+</html>

@@ -1,5 +1,11 @@
 #+TITLE: Recent
 
+- [[file:picom.org][An Attempt to understand picom and its forks]]
+  #+begin_article-info
+  #+begin_date
+  Published Mar 25, 2022
+  #+end_date
+  #+end_article-info
 - [[file:window-managers.org][Window Managers]]
   #+begin_article-info
   #+begin_date

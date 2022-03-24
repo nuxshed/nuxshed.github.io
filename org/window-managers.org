@@ -1,7 +1,6 @@
 #+TITLE:Window Managers
 #+DATE:<2022-01-24 Mon> 
 #+SETUPFILE: ../template.org
-#+TAGS: linux ricing
 
 * Introduction
 
