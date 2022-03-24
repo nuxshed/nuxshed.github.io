@@ -18,7 +18,7 @@ html {
 body {
   background-color: #ffffff;
   color: #000000;
-  font-family: "Commissioner", Courier, monospace;
+  font-family: "Commissioner", sans-serif;
 }
 
 #content {
