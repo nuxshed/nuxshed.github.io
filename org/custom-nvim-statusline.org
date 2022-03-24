@@ -24,6 +24,7 @@ Oh, my aliases. What would I ever do without you?
 #+end_src
 
 * Statusline Modules
+We define each module individually, and then build the statusline at the end. It's more manageable this way.
 
 ** Mode Indicator
 
@@ -221,6 +222,7 @@ I use autocommands to show the statusline. This lets me show different statuslin
 #+end_src
 
 * Bonus modules
+Some extra modules that I don't use, but you may be interested in.
 
 ** Git Info
 Many people like to have git info in their statusline.

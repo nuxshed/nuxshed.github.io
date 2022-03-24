@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-26 Wed 16:06 -->
+<!-- 2022-03-24 Thu 06:43 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Window Managers</title>
@@ -199,7 +199,9 @@
  |
  <a accesskey="H" href="../index.html"> HOME </a>
 </div><div id="preamble" class="status">
-<div class="links"><a href="../index.html">Home</a><a href="" class="active">Blog</a><a href="../about.html">About</a></div>
+<div class="links"><a href="../index.html">Home</a>
+<a href="" class="active">Blog</a>
+<a href="../about.html">About</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Window Managers</h1>
@@ -211,7 +213,11 @@
 <li><a href="#orgbeae8ea">2. Definition</a></li>
 <li><a href="#org0d14461">3. Window Managers</a>
 <ul>
-<li><a href="#org015ecb2">3.1. Awesome</a></li>
+<li><a href="#org015ecb2">3.1. Awesome</a>
+<ul>
+<li><a href="#org5de9034">3.1.1. Bling</a></li>
+</ul>
+</li>
 <li><a href="#org508be78">3.2. Berry</a></li>
 <li><a href="#orgb0be1a6">3.3. bspwm</a></li>
 <li><a href="#org652d2d8">3.4. FVWM</a></li>
@@ -268,12 +274,6 @@ You can have <a href="https://cdn.discordapp.com/attachments/635625925748457482/
 
 <p>
 It's window management is dynamic and equally good at both tiling and floating.<br>
-It has perhaps the most customizable titlebars of any window manager.<br>
-</p>
-
-<p>
-Your bar can be vertical, horizontal or a circle right in the middle of your screen.<br>
-<a href="https://media.discordapp.net/attachments/702548961780826212/808755985530224640/unknown.png?width=671&amp;height=585">You can even have hexagonal windows if you really wanted to.</a><br>
 </p>
 
 <p>
@@ -281,18 +281,19 @@ It's widget system is also incredibly powerful in the right hands and the tight 
 </p>
 
 <p>
+<a href="https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/">Just</a> <a href="https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/">look</a> <a href="https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/">at</a> <a href="https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/">all</a> <a href="https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/">these</a> <a href="https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/">cool</a> <a href="https://www.reddit.com/r/unixporn/comments/scfa0x/awesomewm_trying_something_different/">rices</a><br>
+(also, <a href="https://www.reddit.com/r/unixporn/comments/ta9av6/awesome_cafe/">my awesomewm rice</a>)<br>
+</p>
+</div>
+
+<div id="outline-container-org5de9034" class="outline-4">
+<h4 id="org5de9034"><span class="section-number-4">3.1.1.</span> Bling</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
 <a href="https://blingcorp.github.io/bling/">bling</a> is an awesomewm utility library that focuses on adding new layouts and modules that make use of the widget system, but primarily focus on the new window managing features.<br>
 It adds a lot of cool features like additional layouts, window swallowing, scratchpads, playerctl signals, a tab container, tag preview, task preview, an app launcher and a window switcher.<br>
 </p>
-
-<p>
-Not sold yet?<br>
-<a href="https://www.reddit.com/r/unixporn/comments/hpakeu/awesome_afternoon_in_a_perfect_world/">Just</a> <a href="https://www.reddit.com/r/unixporn/comments/pe2h3l/oc_introducing_bling_utilities_for_awesomewm_more/">look</a> <a href="https://www.reddit.com/r/unixporn/comments/qdeav6/awesomewm_fruity_awesome/">at</a> <a href="https://www.reddit.com/r/unixporn/comments/anp51q/awesome_material_awesome_workflow/">all</a> <a href="https://www.reddit.com/r/unixporn/comments/n1qibj/awesome_having_fun_with_awesome/">these</a> <a href="https://www.reddit.com/r/unixporn/comments/n8c6ym/awesome_quiet/">cool</a> <a href="https://www.reddit.com/r/unixporn/comments/scfa0x/awesomewm_trying_something_different/">rices</a><br>
-</p>
-
-<p>
-(also, <a href="https://www.reddit.com/r/unixporn/comments/rs0wm4/awesome_forest/">my awesomewm rice</a>)<br>
-</p>
+</div>
 </div>
 </div>
 
@@ -342,7 +343,11 @@ As of Jan 2022, it is the most used WM in the unixporn discord.<br>
 <h3 id="org652d2d8"><span class="section-number-3">3.4.</span> FVWM</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-Extremely powerful and customizable ICCCM-compliant multiple virtual desktop window manager for the X Window system.<br>
+<a href="https://www.fvwm.org/">https://www.fvwm.org/</a><br>
+</p>
+
+<p>
+Extremely powerful and customizable ICCCM-compliant multiple virtual desktop window manager for the X Window system. Although, the configuration syntax is a bit complicated.<br>
 </p>
 
 <p>
@@ -379,12 +384,16 @@ All configuration can be done via <code>herbstclient</code> and thus there is no
 </p>
 
 <p>
-i3 is the easiest and simplest window manager. It is perfect for beginners, but is powerful enough to even satisy power users.<br>
-Although, if you plan to use i3, I reccomend that you use <a href="https://github.com/Airblader/i3">i3-gaps</a> instead, as it has a few more features. <a href="https://swaywm.org/">Sway</a> is i3 for wayland, so it might be worth checking out too.<br>
+i3 is the easiest and simplest window manager. It is perfect for beginners, but is powerful enough to satisfy even power users.<br>
+Although, if you plan to use i3, I reccomend that you use <a href="https://github.com/Airblader/i3">i3-gaps</a> instead, as it has a few more features.<br>
 </p>
 
 <p>
-<a href="https://www.reddit.com/r/unixporn/comments/j3mfc6/i3gaps_ready_for_fall/">nice i3 rice</a><br>
+<a href="https://swaywm.org/">Sway</a> is i3 for wayland, so it might be worth checking out too.<br>
+</p>
+
+<p>
+<a href="https://www.reddit.com/r/unixporn/comments/okmx6u/i3gaps_picturesque/">nice i3 rice</a><br>
 </p>
 </div>
 </div>
@@ -398,10 +407,6 @@ Although, if you plan to use i3, I reccomend that you use <a href="https://githu
 
 <p>
 Openbox is a lightweight, powerful, and highly configurable stacking window manager with extensive standards support.<br>
-</p>
-
-<p>
-<a href="https://discord.com/channels/635612648934735892/904032811730763796/904033099581624390">This</a> is a thread on the unixporn discord which goes quite deep into unique features in openbox and why it is an amazing wm.<br>
 </p>
 
 <p>

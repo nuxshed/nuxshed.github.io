@@ -28,6 +28,7 @@ a {
 
 a:hover {
   color: #685c56;
+  text-decoration: underline;
 }
 
 h1 {
@@ -57,7 +58,7 @@ code {
 
 #org-div-home-and-up {
   text-align: right;
-  font-size: 13px;
+  font-size: 15px;
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 10px;
@@ -84,21 +85,19 @@ code {
 
 .footref {
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 900;
 }
 
 pre.src {
   font-family: "Cascadia Code";
   font-size: 14px;
   line-height: 1.5em;
-  background-color: #f4f7f9;
+  background-color: #f7f7f7;
   padding: 20px;
     border: none;
 }
 
 pre.src:before {
-  background: #f1f3f5;
+  background: #f7f7f7;
 }
 
 .links {
@@ -110,15 +109,15 @@ pre.src:before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #e9e4e2;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ccc7c5;
+  background: #e5e5e5;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b2aead;
+  background: #cccccc;
 }
 
 ::-moz-selection {

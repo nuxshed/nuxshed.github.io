@@ -83,12 +83,14 @@ a:hover {
   font-weight: 700;
   position: relative;
   transform: translateY(-50%);
+  color: #191919;
 }
 
 .anim-typewriter-text {
   width: 7em;
   margin: 0 auto;
-  border-right: 2px solid #000000;
+  padding: 10px;
+  border-right: 3px solid #4c4c4c;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -96,23 +98,17 @@ a:hover {
 }
 
 .anim-typewriter {
-  animation: typewriter 1.25s steps(12) 1s 1 normal both,
-    blinkTextCursor 900ms steps(12) infinite normal;
+  animation: typing 1s steps(12), blink .5s step-end infinite alternate;
 }
-@keyframes typewriter {
+@keyframes typing {
   from {
-    width: 0;
-  }
-  to {
-    width: 7.2em;
+    width: 0
   }
 }
-@keyframes blinkTextCursor {
-  from {
-    border-right-color: #000000;
-  }
-  to {
-    border-right-color: transparent;
+
+@keyframes blink {
+  50% {
+    border-color: transparent
   }
 }
 
