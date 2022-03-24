@@ -1,8 +1,6 @@
 #+TITLE:Custom Neovim Statusline
 #+DATE: <2022-01-22 Sat>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/org.css" />
-#+HTML_LINK_UP: index.html
-#+HTML_LINK_HOME: ../index.html
+#+SETUPFILE: ../template.org
 
 * Introduction
 The statusline is an integral part of (neo)vim's interface. I'd always fancied making my own statusline, and galaxyline becoming unmaintained pushed me to make the switch.

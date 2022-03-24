@@ -119,6 +119,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.footer {
+  display: none;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #b2aead;
 }

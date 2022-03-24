@@ -33,8 +33,6 @@ a:hover {
 
 h1 {
   font-size: 64px;
-  padding-bottom: 0.75em;
-  line-height: 1em;
 }
 
 h2 {
@@ -102,6 +100,17 @@ pre.src:before {
 
 .links {
   display: none;
+}
+
+.footer {
+  bottom: 0;
+  padding-bottom: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.footer a {
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar {

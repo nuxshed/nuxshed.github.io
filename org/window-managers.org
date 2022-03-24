@@ -1,8 +1,7 @@
 #+TITLE:Window Managers
 #+DATE:<2022-01-24 Mon> 
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/org.css" />
-#+HTML_LINK_UP: index.html
-#+HTML_LINK_HOME: ../index.html
+#+SETUPFILE: ../template.org
+#+TAGS: linux ricing
 
 * Introduction
 
@@ -49,7 +48,8 @@ Neat Features:
 [[https://github.com/baskerville/bspwm]]
 
 bspwm is a tiling window manager that represents windows as the leaves of a full binary tree. It has support for EWMH and multiple monitors, and is configured and controlled through messages (=bspc=).
-As of Jan 2022, it is the most used WM in the unixporn discord.
+
+As of April 2022, it is the most used window manager in the unixporn discord.
 
 [[https://www.reddit.com/r/unixporn/comments/lhljmi/bspwm_serenade_a_low_contrast_setup_for_my/][nice bspwm rice]]
 [[https://github.com/6gk/polka][cool series of bspwm rices]]
