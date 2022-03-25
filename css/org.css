@@ -1,13 +1,8 @@
 @charset "UTF-8";
-
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&display=swap');
 @font-face {
   font-family: "Cascadia Code";
   src: url("../fonts/CascadiaCode.woff2");
-}
-
-@font-face {
-  font-family: "Commissioner";
-  src: url("../fonts/Commissioner.ttf"),
 }
 
 body {
@@ -92,7 +87,7 @@ img {
 }
 
 pre.src {
-  font-family: "Cascadia Code";
+  font-family: "Cascadia Code", monospace;
   font-size: 14px;
   line-height: 1.5em;
   background-color: #f7f7f7;

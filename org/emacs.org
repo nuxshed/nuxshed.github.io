@@ -4,6 +4,8 @@
 
 * What Emacs?
 
+Emacs is an extensible, customizable lisp interpreter, which is primarily used as a text editor.
+
 * Which Emacs?
 I currently use emacs-git (v29.0.50 as of writing).
 
