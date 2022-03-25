@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-03-25 Fri 21:01 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Emacs Experience</title>
+<meta name="author" content="nuxsh" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/org.css" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="preamble" class="status">
+<div class="links"><a href="../index.html">Home</a>
+<a href="" class="active">Blog</a>
+<a href="../about.html">About</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">The Emacs Experience</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3f7c82d">1. What Emacs?</a></li>
+<li><a href="#orgd319d7b">2. Which Emacs?</a>
+<ul>
+<li><a href="#orgd5b21f7">2.1. Compile it!</a></li>
+<li><a href="#org1f4b4e2">2.2. Premade Configurations</a></li>
+</ul>
+</li>
+<li><a href="#org980a85a">3. How Emacs?</a>
+<ul>
+<li><a href="#org06a233f">3.1. Builtins</a>
+<ul>
+<li><a href="#orgd3d7da2">3.1.1. Dired</a></li>
+<li><a href="#orgcd69a4f">3.1.2. Ibuffer</a></li>
+</ul>
+</li>
+<li><a href="#org46e9725">3.2. Yay, Evil!</a></li>
+<li><a href="#org603ef99">3.3. Completion</a>
+<ul>
+<li><a href="#org36a266a">3.3.1. Company</a></li>
+<li><a href="#org7588ca5">3.3.2. Vertico</a></li>
+<li><a href="#org4eaf777">3.3.3. Completion styles</a></li>
+</ul>
+</li>
+<li><a href="#orgf74a1c0">3.4. Org-mode</a>
+<ul>
+<li><a href="#org1dd4167">3.4.1. Making Org-mode look pretty</a></li>
+<li><a href="#orgabd50e9">3.4.2. Writing notes with deft</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgce6b092">4. Ricing Emacs!</a>
+<ul>
+<li><a href="#org89b1253">4.1. Decluttering the Interface</a></li>
+<li><a href="#org257ca8d">4.2. Fonts</a></li>
+<li><a href="#org371a20e">4.3. Theme</a>
+<ul>
+<li><a href="#orgec9d8e4">4.3.1. Faces</a></li>
+</ul>
+</li>
+<li><a href="#orgffaf4a1">4.4. Modeline</a></li>
+<li><a href="#orgae6e756">4.5. Splash Screen</a></li>
+</ul>
+</li>
+<li><a href="#orga731040">5. More Resources</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3f7c82d" class="outline-2">
+<h2 id="org3f7c82d"><span class="section-number-2">1.</span> What Emacs?</h2>
+</div>
+
+<div id="outline-container-orgd319d7b" class="outline-2">
+<h2 id="orgd319d7b"><span class="section-number-2">2.</span> Which Emacs?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I currently use emacs-git (v29.0.50 as of writing).<br>
+</p>
+</div>
+
+<div id="outline-container-orgd5b21f7" class="outline-3">
+<h3 id="orgd5b21f7"><span class="section-number-3">2.1.</span> Compile it!</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+You can compile emacs yourself for a few features which were recently added to the git master.<br>
+</p>
+<ul class="org-ul">
+<li>Native Compilation: Implements gccjit in Emacs, which speeds up the loading of Elisp files.<br></li>
+<li>Pure GTK: Removes X11 dependency and offers better integration with wayland compositors.<br></li>
+</ul>
+
+<p>
+Alternatively, NixOS users can use <a href="https://github.com/nix-community/emacs-overlay">emacs-overlay</a> and Debian Sid users can use <a href="http://emacs.secretsauce.net/">these binaries</a>.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f4b4e2" class="outline-3">
+<h3 id="org1f4b4e2"><span class="section-number-3">2.2.</span> Premade Configurations</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+If you would rather not experience the <del>pain</del> joy of configuring emacs from scratch, here are a few premade configurations for you:<br>
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a><br></li>
+<li><a href="https://github.com/rougier/nano-emacs">Nano Emacs</a><br></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org980a85a" class="outline-2">
+<h2 id="org980a85a"><span class="section-number-2">3.</span> How Emacs?</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org06a233f" class="outline-3">
+<h3 id="org06a233f"><span class="section-number-3">3.1.</span> Builtins</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Emacs comes with quite a few packages built-in.<br>
+We'll look into some of them here.<br>
+</p>
+</div>
+
+<div id="outline-container-orgd3d7da2" class="outline-4">
+<h4 id="orgd3d7da2"><span class="section-number-4">3.1.1.</span> Dired</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Official Documentation</a> - <a href="https://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf">Dired Reference Card</a><br>
+</p>
+
+<p>
+Dired is the emacs way to interact with your files. The name “Dired” stands for “directory editor”.<br>
+All the operations you expect from a typical file-manager application are available in Dired, plus some that are specific to Emacs.<br>
+</p>
+
+<p>
+<a href="https://github.com/jtbm37/all-the-icons-dired">all-the-icons-dired</a> adds dired support to <a href="https://github.com/domtronn/all-the-icons.el">all-the-icons</a>.<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">use-package</span> <span style="color: #969896; font-style: italic;">all-the-icons</span>)
+(<span style="color: #282a2e;">use-package</span> <span style="color: #969896; font-style: italic;">all-the-icons-dired</span> <span style="color: #969896;">:hook</span> (dired-mode-hook . all-the-icons-dired-mode))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd69a4f" class="outline-4">
+<h4 id="orgcd69a4f"><span class="section-number-4">3.1.2.</span> Ibuffer</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+Ibuffer is for buffers, what dired is for files. It provides a way of filtering and then grouping the list of buffers that you currently have open, and greatly improves Emacs’ usability.<br>
+</p>
+
+
+<div id="org1db7946" class="figure">
+<p><img src="https://cdn.discordapp.com/attachments/635625925748457482/939418882026917918/unknown.png" alt="unknown.png"><br>
+</p>
+</div>
+
+<p>
+You can define filter groups, and apply them, as such:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> ibuffer-saved-filter-groups
+      '((<span style="color: #969896;">"main"</span>
+         (<span style="color: #969896;">"modified"</span> (<span style="color: #282a2e;">and</span>
+                      (modified . t)
+                      (visiting-file . t)))
+         (<span style="color: #969896;">"blog"</span> (filename . <span style="color: #969896;">"/projects/site/"</span>))
+         (<span style="color: #969896;">"code"</span> (<span style="color: #282a2e;">or</span> (filename . <span style="color: #969896;">"/projects/"</span>)
+                     (filename . <span style="color: #969896;">"/code/"</span>)))
+         (<span style="color: #969896;">"org"</span> (mode . org-mode))
+         (<span style="color: #969896;">"dired"</span> (mode . dired-mode))
+         (<span style="color: #969896;">"help"</span> (<span style="color: #282a2e;">or</span> (name . <span style="color: #969896;">"</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*Help</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*"</span>)
+                     (name . <span style="color: #969896;">"</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*Apropos</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*"</span>)
+                     (name . <span style="color: #969896;">"</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*info</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*"</span>)
+                     (mode . help-mode)))
+         (<span style="color: #969896;">"internal"</span> (name . <span style="color: #969896;">"^</span><span style="color: #969896; text-decoration: underline;">\</span><span style="color: #969896;">*.*$"</span>))
+         (<span style="color: #969896;">"other"</span> (name . <span style="color: #969896;">"^.*$"</span>)))))
+
+  (add-hook 'ibuffer-mode-hook
+          (<span style="color: #282a2e;">lambda</span> ()
+              (ibuffer-switch-to-saved-filter-groups <span style="color: #969896;">"main"</span>)))
+</pre>
+</div>
+
+<p>
+Additionally, <code>ibuffer-auto-mode</code> is a minor mode that automatically updates the buffer list.<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-hook 'ibuffer-mode-hook
+          '(lambda ()
+             (ibuffer-auto-mode 1)
+             (ibuffer-switch-to-saved-filter-groups <span style="color: #969896;">"main"</span>)))
+</pre>
+</div>
+
+<p>
+You'll probably also want to hide empty filter groups:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> ibuffer-show-empty-filter-groups nil)
+</pre>
+</div>
+
+<p>
+<a href="https://github.com/seagle0128/all-the-icons-ibuffer">all-the-icons-ibuffer</a> is a package to display icons for all buffers in ibuffer.<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">use-package</span> <span style="color: #969896; font-style: italic;">all-the-icons-ibuffer</span>
+  <span style="color: #969896;">:ensure</span> t
+  <span style="color: #969896;">:init</span> (all-the-icons-ibuffer-mode 1))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org46e9725" class="outline-3">
+<h3 id="org46e9725"><span class="section-number-3">3.2.</span> Yay, Evil!</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<a href="https://github.com/emacs-evil/evil">https://github.com/emacs-evil/evil</a><br>
+</p>
+
+<p>
+Evil is an extensible vi layer for Emacs. It provides Vim features like Modal editing, Visual selection and text objects.<br>
+</p>
+
+<p>
+<a href="https://github.com/emacs-evil/evil-collection">evil-collection</a> adds evil keybindings to other parts of emacs and <a href="https://github.com/Somelauw/evil-org-mode">evil-org</a> adds keybindings for org-mode.<br>
+</p>
+
+<p>
+My preferred settings for evil:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> evil-cross-lines t
+      evil-move-beyond-eol t
+      evil-symbol-word-search t
+      evil-want-Y-yank-to-eol t
+      evil-cross-lines t
+      evil-want-integration t
+      evil-want-keybinding nil)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org603ef99" class="outline-3">
+<h3 id="org603ef99"><span class="section-number-3">3.3.</span> Completion</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-org36a266a" class="outline-4">
+<h4 id="org36a266a"><span class="section-number-4">3.3.1.</span> Company</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+<a href="https://company-mode.github.io/">https://company-mode.github.io/</a><br>
+</p>
+
+<p>
+Company is a text completion framework for Emacs. The name stands for "complete anything".<br>
+It uses pluggable back-ends and front-ends to retrieve and display completion candidates.<br>
+</p>
+
+<p>
+Additional plugins:<br>
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/sebastiencs/company-box">company-box</a> is a company frontend with icons.<br></li>
+<li><a href="https://github.com/company-mode/company-statistics">company-statistics</a> is a minor mode that keeps a log of completions chosen, and uses that to rank candidates the next time you choose.<br></li>
+<li><a href="https://github.com/company-mode/company-quickhelp">company-quickhelp</a> adds documentation popups when idling over a completion candidate.<br></li>
+</ul>
+
+<p>
+Alternatively, <a href="https://github.com/minad/cape">corfu</a> is a very minimal Emacs plugin that just works. By default, it's quite plain, but there's a sister plugin called <a href="https://github.com/minad/cape">cape</a> that adds more functionality.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7588ca5" class="outline-4">
+<h4 id="org7588ca5"><span class="section-number-4">3.3.2.</span> Vertico</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+<a href="https://github.com/minad/vertico">https://github.com/minad/vertico</a><br>
+</p>
+
+<p>
+Vertico provides a performant and minimalistic vertical completion UI based on the default completion system.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4eaf777" class="outline-4">
+<h4 id="org4eaf777"><span class="section-number-4">3.3.3.</span> Completion styles</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+<a href="https://github.com/oantolin/orderless">orderless</a> provides a completion style that divides the pattern into space-separated components, and matches candidates that match all of the components in any order<br>
+<br>
+<a href="https://github.com/axelf4/hotfuzz">hotfuzz</a>, on the other hand, is a fuzzy Emacs completion style similar to the built-in flex style, but with a better scoring algorithm. Specifically, it is non-greedy and ranks completions that match at word; path component; or camelCase boundaries higher.<br>
+I personally prefer using hotfuzz.<br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf74a1c0" class="outline-3">
+<h3 id="orgf74a1c0"><span class="section-number-3">3.4.</span> Org-mode</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<a href="https://orgmode.org/">https://orgmode.org/</a><br>
+</p>
+
+<p>
+Org-mode is an Emacs major mode for keeping notes, authoring documents, computational notebooks, literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain text system.<br>
+</p>
+
+<p>
+<a href="https://orgmode.org/worg/org-contrib/">org-contrib</a> has some neat packages that enhance org-mode.<br>
+</p>
+</div>
+
+<div id="outline-container-org1dd4167" class="outline-4">
+<h4 id="org1dd4167"><span class="section-number-4">3.4.1.</span> Making Org-mode look pretty</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+<code>org-hide-emphasis-markers</code> automatically hides any inline emphasis markers which leads to a much cleaner look.<br>
+<code>org-hide-leading-stars</code> hides the leading stars in org headlines.<br>
+<code>org-link-descriptive</code> turns the markup of an org-mode link to show just the description<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> org-hide-leading-stars t
+      org-hide-emphasis-markers t
+      org-link-descriptive t)
+</pre>
+</div>
+<p>
+<br>
+<a href="https://github.com/sabof/org-bullets">org-bullets</a> shows org-mode bullets as UTF8 characters.<br>
+You can set the bullets that it uses like so:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> org-bullets-bullet-list '(<span style="color: #969896;">"&#9673;"</span> <span style="color: #969896;">"&#9675;"</span> <span style="color: #969896;">"&#9679;"</span> <span style="color: #969896;">"&#9675;"</span> <span style="color: #969896;">"&#9679;"</span> <span style="color: #969896;">"&#9675;"</span> <span style="color: #969896;">"&#9679;"</span>))
+</pre>
+</div>
+
+<p>
+<a href="https://github.com/integral-dw/org-superstar-mode">org-superstar</a> is a descendant of org-bullets with some extra enhancements.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgabd50e9" class="outline-4">
+<h4 id="orgabd50e9"><span class="section-number-4">3.4.2.</span> Writing notes with deft</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+<a href="https://github.com/jrblevin/deft">https://github.com/jrblevin/deft</a><br>
+</p>
+
+<p>
+Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity. It was designed for increased productivity when writing and taking notes by making it fast and simple to find the right file at the right time and by automating many of the usual tasks such as creating new files and saving files.<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgce6b092" class="outline-2">
+<h2 id="orgce6b092"><span class="section-number-2">4.</span> Ricing Emacs!</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Because, why not?<br>
+</p>
+</div>
+
+<div id="outline-container-org89b1253" class="outline-3">
+<h3 id="org89b1253"><span class="section-number-3">4.1.</span> Decluttering the Interface</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+In my opinion, the default emacs interface is quite cluttered. The various GUI elements may be useful to some people, but to me, they're just distractions. Let's fix that:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> inhibit-startup-echo-area-message t
+      inhibit-startup-message t)
+
+(tool-bar-mode -1)     <span style="color: #c5c8c6; font-style: italic;">; </span><span style="color: #c5c8c6; font-style: italic;">Disable the toolbar</span>
+(tooltip-mode -1)      <span style="color: #c5c8c6; font-style: italic;">; </span><span style="color: #c5c8c6; font-style: italic;">Disable tooltips</span>
+(menu-bar-mode -1)     <span style="color: #c5c8c6; font-style: italic;">; </span><span style="color: #c5c8c6; font-style: italic;">Disable the menu bar</span>
+(scroll-bar-mode -1)   <span style="color: #c5c8c6; font-style: italic;">; </span><span style="color: #c5c8c6; font-style: italic;">Disable the scrollbar</span>
+</pre>
+</div>
+<p>
+<br>
+To add some padding around the frame:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(internal-border-width . 24))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org257ca8d" class="outline-3">
+<h3 id="org257ca8d"><span class="section-number-3">4.2.</span> Fonts</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#:~:text=By%20default%2C%20Emacs%20displays%20text,in%20the%20'%20Options%20'%20menu.">Official Documentation</a><br>
+</p>
+
+<p>
+The preferred way to set the font you want emacs to use is:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(font . <span style="color: #969896;">"Cartograph CF 10"</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org371a20e" class="outline-3">
+<h3 id="org371a20e"><span class="section-number-3">4.3.</span> Theme</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+I use <a href="https://github.com/doomemacs/themes">doom-themes</a> to theme my emacs. It supports a wide range of plugins, comes with a few decent themes, and it is quite easy to make your own themes using its framework.<br>
+</p>
+
+<p>
+You can find the themes I made <a href="https://github.com/nuxshed/dotfiles/tree/main/config/emacs/themes">here</a>.<br>
+</p>
+</div>
+
+<div id="outline-container-orgec9d8e4" class="outline-4">
+<h4 id="orgec9d8e4"><span class="section-number-4">4.3.1.</span> Faces</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces.html">Official Documentation</a><br>
+</p>
+
+<p>
+A face is a collection of graphical attributes for displaying text: font, foreground color, background color, optional underlining, etc.<br>
+Faces control how Emacs displays text in buffers, as well as other parts of the frame such as the mode line.<br>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgffaf4a1" class="outline-3">
+<h3 id="orgffaf4a1"><span class="section-number-3">4.4.</span> Modeline</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html">Official Documentation</a><br>
+</p>
+
+<p>
+The mode line appears at the bottom of every Emacs window, and displays status information about the buffer displayed in the window.<br>
+</p>
+
+<p>
+Some resources to learn about mode line configuration:<br>
+</p>
+<ul class="org-ul">
+<li><a href="https://www.emacswiki.org/emacs/ModeLineConfiguration">This EmacsWiki page</a><br></li>
+<li><a href="https://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html?">This post on emacs-fu.blogspot.com</a> <br></li>
+</ul>
+
+<p>
+You can also go the easy route and configure a premade modeline, like <a href="https://github.com/seagle0128/doom-modeline">doom-modeline</a> or <a href="https://gitlab.com/jessieh/mood-line">mood-line</a>.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgae6e756" class="outline-3">
+<h3 id="orgae6e756"><span class="section-number-3">4.5.</span> Splash Screen</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+My splash screen based off of the one from <a href="https://github.com/rougier/nano-emacs">nano-emacs</a>:<br>
+</p>
+
+<p>
+<img src="https://cdn.discordapp.com/attachments/635625925748457482/956938139774107658/unknown.png" alt="unknown.png"><br>
+<a href="https://github.com/nuxshed/dotfiles/blob/main/config/emacs/lisp/splash.el">source</a><br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga731040" class="outline-2">
+<h2 id="orga731040"><span class="section-number-2">5.</span> More Resources</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://nes.is-a.dev/out/brain/emacs.html">nes's experience using emacs</a><br></li>
+<li><a href="https://www.youtube.com/c/SystemCrafters/">System Crafters</a><br></li>
+<li><a href="http://doc.norang.ca/org-mode.html">Bernt Hansen's extremely detailed guide to org-mode</a><br></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer"><p><a href="../index.html">home</a> - <a href="index.html">index</a> - <a href="https://github.com/nuxshed/nuxshed.github.io">source</a></p></div>
+</div>
+</body>
+</html>

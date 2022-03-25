@@ -1,5 +1,5 @@
 #+TITLE:An Attempt to understand picom and its forks
-#+DATE:<2022-03-25 Fri>
+#+DATE:<2022-03-24 Thu>
 #+SETUPFILE: ../template.org
 
 * Introduction

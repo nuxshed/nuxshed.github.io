@@ -1,0 +1,226 @@
+#+TITLE:The Emacs Experience
+#+DATE:<2022-03-26 Sat>
+#+SETUPFILE: ../template.org
+
+* What Emacs?
+
+* Which Emacs?
+I currently use emacs-git (v29.0.50 as of writing).
+
+** Compile it!
+You can compile emacs yourself for a few features which were recently added to the git master.
+- Native Compilation: Implements gccjit in Emacs, which speeds up the loading of Elisp files.
+- Pure GTK: Removes X11 dependency and offers better integration with wayland compositors.
+  
+Alternatively, NixOS users can use [[https://github.com/nix-community/emacs-overlay][emacs-overlay]] and Debian Sid users can use [[http://emacs.secretsauce.net/][these binaries]].
+
+** Premade Configurations
+If you would rather not experience the +pain+ joy of configuring emacs from scratch, here are a few premade configurations for you:
+- [[https://github.com/hlissner/doom-emacs][Doom Emacs]]
+- [[https://github.com/rougier/nano-emacs][Nano Emacs]]
+
+* How Emacs?
+
+** Builtins
+Emacs comes with quite a few packages built-in.
+We'll look into some of them here.
+
+*** Dired
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][Official Documentation]] - [[https://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf][Dired Reference Card]]
+
+Dired is the emacs way to interact with your files. The name “Dired” stands for “directory editor”.
+All the operations you expect from a typical file-manager application are available in Dired, plus some that are specific to Emacs.
+
+[[https://github.com/jtbm37/all-the-icons-dired][all-the-icons-dired]] adds dired support to [[https://github.com/domtronn/all-the-icons.el][all-the-icons]].
+#+begin_src emacs-lisp
+  (use-package all-the-icons)
+  (use-package all-the-icons-dired :hook (dired-mode-hook . all-the-icons-dired-mode))
+#+end_src
+
+*** Ibuffer
+Ibuffer is for buffers, what dired is for files. It provides a way of filtering and then grouping the list of buffers that you currently have open, and greatly improves Emacs’ usability.
+
+[[https://cdn.discordapp.com/attachments/635625925748457482/939418882026917918/unknown.png]]
+
+You can define filter groups, and apply them, as such:
+#+begin_src emacs-lisp
+  (setq ibuffer-saved-filter-groups
+	'(("main"
+	   ("modified" (and
+			(modified . t)
+			(visiting-file . t)))
+	   ("blog" (filename . "/projects/site/"))
+	   ("code" (or (filename . "/projects/")
+		       (filename . "/code/")))
+	   ("org" (mode . org-mode))
+	   ("dired" (mode . dired-mode))
+	   ("help" (or (name . "\*Help\*")
+		       (name . "\*Apropos\*")
+		       (name . "\*info\*")
+		       (mode . help-mode)))
+	   ("internal" (name . "^\*.*$"))
+	   ("other" (name . "^.*$")))))
+
+    (add-hook 'ibuffer-mode-hook
+	    (lambda ()
+		(ibuffer-switch-to-saved-filter-groups "main")))
+#+end_src
+
+Additionally, =ibuffer-auto-mode= is a minor mode that automatically updates the buffer list.
+#+begin_src emacs-lisp
+  (add-hook 'ibuffer-mode-hook
+	    '(lambda ()
+	       (ibuffer-auto-mode 1)
+	       (ibuffer-switch-to-saved-filter-groups "main")))
+#+end_src
+
+You'll probably also want to hide empty filter groups:
+#+begin_src emacs-lisp
+  (setq ibuffer-show-empty-filter-groups nil)
+#+end_src
+
+[[https://github.com/seagle0128/all-the-icons-ibuffer][all-the-icons-ibuffer]] is a package to display icons for all buffers in ibuffer.
+#+begin_src emacs-lisp
+  (use-package all-the-icons-ibuffer
+    :ensure t
+    :init (all-the-icons-ibuffer-mode 1))
+#+end_src
+
+** Yay, Evil!
+https://github.com/emacs-evil/evil
+
+Evil is an extensible vi layer for Emacs. It provides Vim features like Modal editing, Visual selection and text objects.
+
+[[https://github.com/emacs-evil/evil-collection][evil-collection]] adds evil keybindings to other parts of emacs and [[https://github.com/Somelauw/evil-org-mode][evil-org]] adds keybindings for org-mode.
+
+My preferred settings for evil:
+#+begin_src emacs-lisp
+  (setq evil-cross-lines t
+	evil-move-beyond-eol t
+	evil-symbol-word-search t
+	evil-want-Y-yank-to-eol t
+	evil-cross-lines t
+	evil-want-integration t
+	evil-want-keybinding nil)
+#+end_src
+
+** Completion
+*** Company
+https://company-mode.github.io/
+
+Company is a text completion framework for Emacs. The name stands for "complete anything".
+It uses pluggable back-ends and front-ends to retrieve and display completion candidates.
+
+Additional plugins:
+- [[https://github.com/sebastiencs/company-box][company-box]] is a company frontend with icons.
+- [[https://github.com/company-mode/company-statistics][company-statistics]] is a minor mode that keeps a log of completions chosen, and uses that to rank candidates the next time you choose.
+- [[https://github.com/company-mode/company-quickhelp][company-quickhelp]] adds documentation popups when idling over a completion candidate.
+  
+Alternatively, [[https://github.com/minad/cape][corfu]] is a very minimal Emacs plugin that just works. By default, it's quite plain, but there's a sister plugin called [[https://github.com/minad/cape][cape]] that adds more functionality.
+
+*** Vertico
+https://github.com/minad/vertico
+
+Vertico provides a performant and minimalistic vertical completion UI based on the default completion system.
+
+*** Completion styles
+
+[[https://github.com/oantolin/orderless][orderless]] provides a completion style that divides the pattern into space-separated components, and matches candidates that match all of the components in any order
+\\
+[[https://github.com/axelf4/hotfuzz][hotfuzz]], on the other hand, is a fuzzy Emacs completion style similar to the built-in flex style, but with a better scoring algorithm. Specifically, it is non-greedy and ranks completions that match at word; path component; or camelCase boundaries higher.
+I personally prefer using hotfuzz.
+
+** Org-mode
+https://orgmode.org/
+
+Org-mode is an Emacs major mode for keeping notes, authoring documents, computational notebooks, literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain text system.
+
+[[https://orgmode.org/worg/org-contrib/][org-contrib]] has some neat packages that enhance org-mode.
+
+*** Making Org-mode look pretty
+
+=org-hide-emphasis-markers= automatically hides any inline emphasis markers which leads to a much cleaner look.
+=org-hide-leading-stars= hides the leading stars in org headlines.
+=org-link-descriptive= turns the markup of an org-mode link to show just the description
+#+begin_src emacs-lisp
+  (setq org-hide-leading-stars t
+	org-hide-emphasis-markers t
+	org-link-descriptive t)
+#+end_src
+\\
+[[https://github.com/sabof/org-bullets][org-bullets]] shows org-mode bullets as UTF8 characters.
+You can set the bullets that it uses like so:
+#+begin_src emacs-lisp
+  (setq org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●"))
+#+end_src
+
+[[https://github.com/integral-dw/org-superstar-mode][org-superstar]] is a descendant of org-bullets with some extra enhancements.
+
+*** Writing notes with deft
+https://github.com/jrblevin/deft
+
+Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity. It was designed for increased productivity when writing and taking notes by making it fast and simple to find the right file at the right time and by automating many of the usual tasks such as creating new files and saving files.
+
+
+* Ricing Emacs!
+Because, why not?
+
+** Decluttering the Interface
+In my opinion, the default emacs interface is quite cluttered. The various GUI elements may be useful to some people, but to me, they're just distractions. Let's fix that:
+#+begin_src emacs-lisp
+  (setq inhibit-startup-echo-area-message t
+	inhibit-startup-message t)
+
+  (tool-bar-mode -1)     ; Disable the toolbar
+  (tooltip-mode -1)      ; Disable tooltips
+  (menu-bar-mode -1)     ; Disable the menu bar
+  (scroll-bar-mode -1)   ; Disable the scrollbar
+#+end_src
+\\
+To add some padding around the frame:
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(internal-border-width . 24))
+#+end_src
+
+** Fonts
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#:~:text=By%20default%2C%20Emacs%20displays%20text,in%20the%20'%20Options%20'%20menu.][Official Documentation]]
+
+The preferred way to set the font you want emacs to use is:
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Cartograph CF 10"))
+#+end_src
+
+** Theme
+
+I use [[https://github.com/doomemacs/themes][doom-themes]] to theme my emacs. It supports a wide range of plugins, comes with a few decent themes, and it is quite easy to make your own themes using its framework.
+
+You can find the themes I made [[https://github.com/nuxshed/dotfiles/tree/main/config/emacs/themes][here]].
+
+*** Faces
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces.html][Official Documentation]]
+
+A face is a collection of graphical attributes for displaying text: font, foreground color, background color, optional underlining, etc.
+Faces control how Emacs displays text in buffers, as well as other parts of the frame such as the mode line.
+
+
+** Modeline
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html][Official Documentation]]
+
+The mode line appears at the bottom of every Emacs window, and displays status information about the buffer displayed in the window.
+
+Some resources to learn about mode line configuration:
+- [[https://www.emacswiki.org/emacs/ModeLineConfiguration][This EmacsWiki page]]
+- [[https://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html?][This post on emacs-fu.blogspot.com]] 
+  
+You can also go the easy route and configure a premade modeline, like [[https://github.com/seagle0128/doom-modeline][doom-modeline]] or [[https://gitlab.com/jessieh/mood-line][mood-line]].
+
+** Splash Screen
+My splash screen based off of the one from [[https://github.com/rougier/nano-emacs][nano-emacs]]:
+
+[[https://cdn.discordapp.com/attachments/635625925748457482/956938139774107658/unknown.png]]
+[[https://github.com/nuxshed/dotfiles/blob/main/config/emacs/lisp/splash.el][source]]
+
+* More Resources
+- [[https://nes.is-a.dev/out/brain/emacs.html][nes's experience using emacs]]
+- [[https://www.youtube.com/c/SystemCrafters/][System Crafters]]
+- [[http://doc.norang.ca/org-mode.html][Bernt Hansen's extremely detailed guide to org-mode]]
