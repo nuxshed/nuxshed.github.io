@@ -72,10 +72,11 @@ a:hover {
 }
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 82vh;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .prominent {

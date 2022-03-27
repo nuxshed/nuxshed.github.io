@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-03-25 Fri 21:35 -->
+<!-- 2022-03-27 Sun 16:07 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Emacs Experience</title>
@@ -218,26 +218,41 @@
 </li>
 <li><a href="#org980a85a">3. How Emacs?</a>
 <ul>
-<li><a href="#org06a233f">3.1. Builtins</a>
+<li><a href="#orge130de5">3.1. The Basics of Emacs</a>
 <ul>
-<li><a href="#orgd3d7da2">3.1.1. Dired</a></li>
-<li><a href="#orgcd69a4f">3.1.2. Ibuffer</a></li>
+<li><a href="#org6c56d47">3.1.1. Setting Variables</a></li>
+<li><a href="#orgf422fd8">3.1.2. Binding keys</a></li>
+<li><a href="#org39815ba">3.1.3. Adding hooks</a></li>
+<li><a href="#orgbfb1023">3.1.4. Using 'customize'</a></li>
+<li><a href="#org7ecda10">3.1.5. Installing packages</a></li>
 </ul>
 </li>
-<li><a href="#org46e9725">3.2. Yay, Evil!</a></li>
-<li><a href="#org603ef99">3.3. Completion</a>
+<li><a href="#orgaa7ad4c">3.2. Emacs Modes</a>
 <ul>
-<li><a href="#org36a266a">3.3.1. Company</a></li>
-<li><a href="#org7588ca5">3.3.2. Vertico</a></li>
-<li><a href="#org4eaf777">3.3.3. Completion styles</a></li>
+<li><a href="#orge306ba0">3.2.1. Major and Minor Modes</a></li>
 </ul>
 </li>
-<li><a href="#orgf74a1c0">3.4. Org-mode</a>
+<li><a href="#org06a233f">3.3. Builtins</a>
 <ul>
-<li><a href="#org1dd4167">3.4.1. Making Org-mode look pretty</a></li>
-<li><a href="#orgabd50e9">3.4.2. Writing notes with deft</a></li>
+<li><a href="#orgd3d7da2">3.3.1. Dired</a></li>
+<li><a href="#orgcd69a4f">3.3.2. Ibuffer</a></li>
 </ul>
 </li>
+<li><a href="#org46e9725">3.4. Yay, Evil!</a></li>
+<li><a href="#org603ef99">3.5. Completion</a>
+<ul>
+<li><a href="#org36a266a">3.5.1. Company</a></li>
+<li><a href="#org7588ca5">3.5.2. Vertico</a></li>
+<li><a href="#org4eaf777">3.5.3. Completion styles</a></li>
+</ul>
+</li>
+<li><a href="#orgf74a1c0">3.6. Org-mode</a>
+<ul>
+<li><a href="#org1dd4167">3.6.1. Making Org-mode look pretty</a></li>
+<li><a href="#orgabd50e9">3.6.2. Writing notes with deft</a></li>
+</ul>
+</li>
+<li><a href="#org6aa5800">3.7. Help</a></li>
 </ul>
 </li>
 <li><a href="#orgce6b092">4. Ricing Emacs!</a>
@@ -250,7 +265,6 @@
 </ul>
 </li>
 <li><a href="#orgffaf4a1">4.4. Modeline</a></li>
-<li><a href="#orgae6e756">4.5. Splash Screen</a></li>
 </ul>
 </li>
 <li><a href="#orga731040">5. More Resources</a></li>
@@ -262,7 +276,24 @@
 <h2 id="org3f7c82d"><span class="section-number-2">1.</span> What Emacs?</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Emacs is an extensible, customizable lisp interpreter, which is primarily used as a text editor.<br>
+Emacs is an extensible, customizable lisp interpreter, with multiple different uses.<br>
+Emacs is different things to different people.<br>
+</p>
+
+<p>
+It could be a:<br>
+</p>
+<ul class="org-ul">
+<li>Text Editor<br></li>
+<li>Integrated Development Environment<br></li>
+<li>E-Mail Client<br></li>
+<li>Word Processor<br></li>
+<li>IRC client<br></li>
+<li>Whatever you want<br></li>
+</ul>
+
+<p>
+Although, it is primarily used as a text editor, and some parts of this article will focus on that aspect.<br>
 </p>
 </div>
 </div>
@@ -310,9 +341,167 @@ If you would rather not experience the <del>pain</del> joy of configuring emacs 
 <h2 id="org980a85a"><span class="section-number-2">3.</span> How Emacs?</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org06a233f" class="outline-3">
-<h3 id="org06a233f"><span class="section-number-3">3.1.</span> Builtins</h3>
+<div id="outline-container-orge130de5" class="outline-3">
+<h3 id="orge130de5"><span class="section-number-3">3.1.</span> The Basics of Emacs</h3>
 <div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org6c56d47" class="outline-4">
+<h4 id="org6c56d47"><span class="section-number-4">3.1.1.</span> Setting Variables</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/Using-setq.html">Official Documentation</a><br>
+</p>
+
+<p>
+To change the value of a variable in emacs-lisp:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> variable value)
+</pre>
+</div>
+
+<p>
+Where <code>variable</code> is the name of the variable and <code>value</code> is the value you'd like to give the variable.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf422fd8" class="outline-4">
+<h4 id="orgf422fd8"><span class="section-number-4">3.1.2.</span> Binding keys</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Key-Bindings.html#Key-Bindings">Official Documentation</a><br>
+</p>
+
+<p>
+Keys can be bound to commands either interactively or in your emacs configuration.<br>
+</p>
+
+<p>
+Global bindings can be set with <code>global-set-key</code>.<br>
+For example:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(global-set-key [f1] 'help-for-help)
+</pre>
+</div>
+<p>
+This will bind the function <code>help-for-help</code> to the <code>f1</code> key.<br>
+</p>
+
+<p>
+<br>
+<a href="https://github.com/justbur/emacs-which-key">which-key</a> is a package that displays available keybindings in popup.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org39815ba" class="outline-4">
+<h4 id="org39815ba"><span class="section-number-4">3.1.3.</span> Adding hooks</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html">Emacs Documentation</a> - <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Hooks.html#Hooks">Elisp Documentation</a><br>
+</p>
+
+<p>
+Hooks can be used to execute code on certain occasions<br>
+</p>
+
+<p>
+For example:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-hook 'text-mode-hook 'auto-fill-mode)
+</pre>
+</div>
+<p>
+This calls <code>auto-fill-mode</code> when <code>text-mode</code> is active.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbfb1023" class="outline-4">
+<h4 id="orgbfb1023"><span class="section-number-4">3.1.4.</span> Using 'customize'</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html">Official Documentation</a><br>
+</p>
+
+<p>
+Customize provides a more intuitive and interactive method to customize parts of Emacs.<br>
+To try it, type <code>M-x customize</code>.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ecda10" class="outline-4">
+<h4 id="org7ecda10"><span class="section-number-4">3.1.5.</span> Installing packages</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<p>
+<a href="https://github.com/jwiegley/use-package">https://github.com/jwiegley/use-package</a><br>
+</p>
+
+<p>
+The <code>use-package</code> macro allows you to isolate package configuration in your emacs config in a way that is both performance-oriented and tidy.<br>
+</p>
+
+<p>
+This is how I set up <code>use-package</code> in my config:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">require</span> '<span style="color: #969896; font-style: italic;">package</span>)
+(add-to-list 'package-archives
+             '(<span style="color: #969896;">"melpa"</span> . <span style="color: #969896;">"https://melpa.org/packages/"</span>))
+
+(<span style="color: #282a2e;">unless</span> (package-installed-p 'use-package)
+  (package-install 'use-package))
+</pre>
+</div>
+
+<p>
+Now, we can install a package from <a href="https://melpa.org">MELPA</a> like so:<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #282a2e;">use-package</span> <span style="color: #969896; font-style: italic;">evil</span>)
+</pre>
+</div>
+
+<p>
+<code>use-package</code> also provides a way to lazy-load packages. Read more about this in the <a href="https://github.com/jwiegley/use-package/blob/master/use-package.org">User Manual</a>.<br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaa7ad4c" class="outline-3">
+<h3 id="orgaa7ad4c"><span class="section-number-3">3.2.</span> Emacs Modes</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Modes.html">Official Documentation</a><br>
+</p>
+
+<p>
+Emacs modes are different behaviors and features which you can turn on or off for use in different circumstances.<br>
+</p>
+</div>
+
+<div id="outline-container-orge306ba0" class="outline-4">
+<h4 id="orge306ba0"><span class="section-number-4">3.2.1.</span> Major and Minor Modes</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Major modes provide specialized facilities for working on a particular file type, such as a C source file, or a particular type of non-file buffer, such as a shell buffer. Major modes are mutually exclusive; each buffer has one and only one major mode at any time.<br>
+</p>
+
+<p>
+Minor modes are optional features which you can turn on or off, not necessarily specific to a type of file or buffer. For example, Auto Fill mode is a minor mode in which SPC breaks lines between words as you type. Minor modes are independent of one another, and of the selected major mode.<br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org06a233f" class="outline-3">
+<h3 id="org06a233f"><span class="section-number-3">3.3.</span> Builtins</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 Emacs comes with quite a few packages built-in.<br>
 We'll look into some of them here.<br>
@@ -320,8 +509,8 @@ We'll look into some of them here.<br>
 </div>
 
 <div id="outline-container-orgd3d7da2" class="outline-4">
-<h4 id="orgd3d7da2"><span class="section-number-4">3.1.1.</span> Dired</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<h4 id="orgd3d7da2"><span class="section-number-4">3.3.1.</span> Dired</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <p>
 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Official Documentation</a> - <a href="https://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf">Dired Reference Card</a><br>
 </p>
@@ -329,9 +518,7 @@ We'll look into some of them here.<br>
 <p>
 Dired is the emacs way to interact with your files. The name “Dired” stands for “directory editor”.<br>
 All the operations you expect from a typical file-manager application are available in Dired, plus some that are specific to Emacs.<br>
-</p>
-
-<p>
+<br>
 <a href="https://github.com/jtbm37/all-the-icons-dired">all-the-icons-dired</a> adds dired support to <a href="https://github.com/domtronn/all-the-icons.el">all-the-icons</a>.<br>
 </p>
 <div class="org-src-container">
@@ -343,14 +530,14 @@ All the operations you expect from a typical file-manager application are availa
 </div>
 
 <div id="outline-container-orgcd69a4f" class="outline-4">
-<h4 id="orgcd69a4f"><span class="section-number-4">3.1.2.</span> Ibuffer</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<h4 id="orgcd69a4f"><span class="section-number-4">3.3.2.</span> Ibuffer</h4>
+<div class="outline-text-4" id="text-3-3-2">
 <p>
 Ibuffer is for buffers, what dired is for files. It provides a way of filtering and then grouping the list of buffers that you currently have open, and greatly improves Emacs’ usability.<br>
 </p>
 
 
-<div id="org1d36625" class="figure">
+<div id="orgf587459" class="figure">
 <p><img src="https://cdn.discordapp.com/attachments/635625925748457482/939418882026917918/unknown.png" alt="unknown.png"><br>
 </p>
 </div>
@@ -383,7 +570,7 @@ You can define filter groups, and apply them, as such:<br>
 </div>
 
 <p>
-Additionally, <code>ibuffer-auto-mode</code> is a minor mode that automatically updates the buffer list.<br>
+Additionally, ibuffer-auto-mode is a minor mode that automatically updates the buffer list.<br>
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'ibuffer-mode-hook
@@ -402,6 +589,7 @@ You'll probably also want to hide empty filter groups:<br>
 </div>
 
 <p>
+<br>
 <a href="https://github.com/seagle0128/all-the-icons-ibuffer">all-the-icons-ibuffer</a> is a package to display icons for all buffers in ibuffer.<br>
 </p>
 <div class="org-src-container">
@@ -415,8 +603,8 @@ You'll probably also want to hide empty filter groups:<br>
 </div>
 
 <div id="outline-container-org46e9725" class="outline-3">
-<h3 id="org46e9725"><span class="section-number-3">3.2.</span> Yay, Evil!</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org46e9725"><span class="section-number-3">3.4.</span> Yay, Evil!</h3>
+<div class="outline-text-3" id="text-3-4">
 <p>
 <a href="https://github.com/emacs-evil/evil">https://github.com/emacs-evil/evil</a><br>
 </p>
@@ -446,12 +634,12 @@ My preferred settings for evil:<br>
 </div>
 
 <div id="outline-container-org603ef99" class="outline-3">
-<h3 id="org603ef99"><span class="section-number-3">3.3.</span> Completion</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org603ef99"><span class="section-number-3">3.5.</span> Completion</h3>
+<div class="outline-text-3" id="text-3-5">
 </div>
 <div id="outline-container-org36a266a" class="outline-4">
-<h4 id="org36a266a"><span class="section-number-4">3.3.1.</span> Company</h4>
-<div class="outline-text-4" id="text-3-3-1">
+<h4 id="org36a266a"><span class="section-number-4">3.5.1.</span> Company</h4>
+<div class="outline-text-4" id="text-3-5-1">
 <p>
 <a href="https://company-mode.github.io/">https://company-mode.github.io/</a><br>
 </p>
@@ -477,8 +665,8 @@ Alternatively, <a href="https://github.com/minad/cape">corfu</a> is a very minim
 </div>
 
 <div id="outline-container-org7588ca5" class="outline-4">
-<h4 id="org7588ca5"><span class="section-number-4">3.3.2.</span> Vertico</h4>
-<div class="outline-text-4" id="text-3-3-2">
+<h4 id="org7588ca5"><span class="section-number-4">3.5.2.</span> Vertico</h4>
+<div class="outline-text-4" id="text-3-5-2">
 <p>
 <a href="https://github.com/minad/vertico">https://github.com/minad/vertico</a><br>
 </p>
@@ -490,8 +678,8 @@ Vertico provides a performant and minimalistic vertical completion UI based on t
 </div>
 
 <div id="outline-container-org4eaf777" class="outline-4">
-<h4 id="org4eaf777"><span class="section-number-4">3.3.3.</span> Completion styles</h4>
-<div class="outline-text-4" id="text-3-3-3">
+<h4 id="org4eaf777"><span class="section-number-4">3.5.3.</span> Completion styles</h4>
+<div class="outline-text-4" id="text-3-5-3">
 <p>
 <a href="https://github.com/oantolin/orderless">orderless</a> provides a completion style that divides the pattern into space-separated components, and matches candidates that match all of the components in any order<br>
 <br>
@@ -503,8 +691,8 @@ I personally prefer using hotfuzz.<br>
 </div>
 
 <div id="outline-container-orgf74a1c0" class="outline-3">
-<h3 id="orgf74a1c0"><span class="section-number-3">3.4.</span> Org-mode</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="orgf74a1c0"><span class="section-number-3">3.6.</span> Org-mode</h3>
+<div class="outline-text-3" id="text-3-6">
 <p>
 <a href="https://orgmode.org/">https://orgmode.org/</a><br>
 </p>
@@ -519,12 +707,12 @@ Org-mode is an Emacs major mode for keeping notes, authoring documents, computat
 </div>
 
 <div id="outline-container-org1dd4167" class="outline-4">
-<h4 id="org1dd4167"><span class="section-number-4">3.4.1.</span> Making Org-mode look pretty</h4>
-<div class="outline-text-4" id="text-3-4-1">
+<h4 id="org1dd4167"><span class="section-number-4">3.6.1.</span> Making Org-mode look pretty</h4>
+<div class="outline-text-4" id="text-3-6-1">
 <p>
-<code>org-hide-emphasis-markers</code> automatically hides any inline emphasis markers which leads to a much cleaner look.<br>
-<code>org-hide-leading-stars</code> hides the leading stars in org headlines.<br>
-<code>org-link-descriptive</code> turns the markup of an org-mode link to show just the description<br>
+org-hide-emphasis-markers automatically hides any inline emphasis markers which leads to a much cleaner look.<br>
+org-hide-leading-stars hides the leading stars in org headlines.<br>
+org-link-descriptive turns the markup of an org-mode link to show just the description<br>
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #282a2e;">setq</span> org-hide-leading-stars t
@@ -549,8 +737,8 @@ You can set the bullets that it uses like so:<br>
 </div>
 
 <div id="outline-container-orgabd50e9" class="outline-4">
-<h4 id="orgabd50e9"><span class="section-number-4">3.4.2.</span> Writing notes with deft</h4>
-<div class="outline-text-4" id="text-3-4-2">
+<h4 id="orgabd50e9"><span class="section-number-4">3.6.2.</span> Writing notes with deft</h4>
+<div class="outline-text-4" id="text-3-6-2">
 <p>
 <a href="https://github.com/jrblevin/deft">https://github.com/jrblevin/deft</a><br>
 </p>
@@ -561,8 +749,22 @@ Deft is an Emacs mode for quickly browsing, filtering, and editing directories o
 </div>
 </div>
 </div>
-</div>
 
+<div id="outline-container-org6aa5800" class="outline-3">
+<h3 id="org6aa5800"><span class="section-number-3">3.7.</span> Help</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Help-Summary.html">Official Documentation</a><br>
+</p>
+
+<ul class="org-ul">
+<li><code>C-h f</code>  - Display documentation on a Lisp function.<br></li>
+<li><code>C-h v</code>  - Display the documentation of a Lisp variable.<br></li>
+<li><code>C-h k</code>  - Display the name and documentation of the command that a key runs<br></li>
+</ul>
+</div>
+</div>
+</div>
 
 <div id="outline-container-orgce6b092" class="outline-2">
 <h2 id="orgce6b092"><span class="section-number-2">4.</span> Ricing Emacs!</h2>
@@ -603,7 +805,7 @@ To add some padding around the frame:<br>
 <h3 id="org257ca8d"><span class="section-number-3">4.2.</span> Fonts</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
-<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#:~:text=By%20default%2C%20Emacs%20displays%20text,in%20the%20'%20Options%20'%20menu.">Official Documentation</a><br>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#:~:textBy%20default%2C%20Emacs%20displays%20text,in%20the%20'%20Options%20'%20menu.">Official Documentation</a><br>
 </p>
 
 <p>
@@ -665,20 +867,6 @@ Some resources to learn about mode line configuration:<br>
 
 <p>
 You can also go the easy route and configure a premade modeline, like <a href="https://github.com/seagle0128/doom-modeline">doom-modeline</a> or <a href="https://gitlab.com/jessieh/mood-line">mood-line</a>.<br>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgae6e756" class="outline-3">
-<h3 id="orgae6e756"><span class="section-number-3">4.5.</span> Splash Screen</h3>
-<div class="outline-text-3" id="text-4-5">
-<p>
-My splash screen based off of the one from <a href="https://github.com/rougier/nano-emacs">nano-emacs</a>:<br>
-</p>
-
-<p>
-<img src="https://cdn.discordapp.com/attachments/635625925748457482/956938139774107658/unknown.png" alt="unknown.png"><br>
-<a href="https://github.com/nuxshed/dotfiles/blob/main/config/emacs/lisp/splash.el">source</a><br>
 </p>
 </div>
 </div>

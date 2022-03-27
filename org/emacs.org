@@ -4,7 +4,18 @@
 
 * What Emacs?
 
-Emacs is an extensible, customizable lisp interpreter, which is primarily used as a text editor.
+Emacs is an extensible, customizable lisp interpreter, with multiple different uses.
+Emacs is different things to different people.
+
+It could be a:
+- Text Editor
+- Integrated Development Environment
+- E-Mail Client
+- Word Processor
+- IRC client
+- Whatever you want
+  
+Although, it is primarily used as a text editor, and some parts of this article will focus on that aspect.
 
 * Which Emacs?
 I currently use emacs-git (v29.0.50 as of writing).
@@ -23,6 +34,82 @@ If you would rather not experience the +pain+ joy of configuring emacs from scra
 
 * How Emacs?
 
+** The Basics of Emacs
+
+*** Setting Variables
+[[https://www.gnu.org/software/emacs/manual/html_node/eintr/Using-setq.html][Official Documentation]]
+
+To change the value of a variable in emacs-lisp:
+#+begin_src emacs-lisp
+  (setq variable value)
+#+end_src
+
+Where ~variable~ is the name of the variable and ~value~ is the value you'd like to give the variable. 
+
+*** Binding keys
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Key-Bindings.html#Key-Bindings][Official Documentation]]
+
+Keys can be bound to commands either interactively or in your emacs configuration.
+
+Global bindings can be set with ~global-set-key~.
+For example: 
+#+begin_src emacs-lisp
+(global-set-key [f1] 'help-for-help)
+#+end_src
+This will bind the function ~help-for-help~ to the ~f1~ key.
+
+\\
+[[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
+
+*** Adding hooks
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html][Emacs Documentation]] - [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Hooks.html#Hooks][Elisp Documentation]]
+
+Hooks can be used to execute code on certain occasions
+
+For example:
+#+begin_src emacs-lisp
+  (add-hook 'text-mode-hook 'auto-fill-mode)
+#+end_src
+This calls ~auto-fill-mode~ when ~text-mode~ is active.
+
+*** Using 'customize'
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html][Official Documentation]]
+
+Customize provides a more intuitive and interactive method to customize parts of Emacs.
+To try it, type ~M-x customize~.
+
+*** Installing packages
+https://github.com/jwiegley/use-package
+
+The ~use-package~ macro allows you to isolate package configuration in your emacs config in a way that is both performance-oriented and tidy. 
+
+This is how I set up ~use-package~ in my config:
+#+begin_src emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+	       '("melpa" . "https://melpa.org/packages/"))
+
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+#+end_src
+
+Now, we can install a package from [[https://melpa.org][MELPA]] like so:
+#+begin_src emacs-lisp
+  (use-package evil)
+#+end_src
+
+~use-package~ also provides a way to lazy-load packages. Read more about this in the [[https://github.com/jwiegley/use-package/blob/master/use-package.org][User Manual]].
+
+** Emacs Modes
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Modes.html][Official Documentation]]
+
+Emacs modes are different behaviors and features which you can turn on or off for use in different circumstances. 
+
+*** Major and Minor Modes
+Major modes provide specialized facilities for working on a particular file type, such as a C source file, or a particular type of non-file buffer, such as a shell buffer. Major modes are mutually exclusive; each buffer has one and only one major mode at any time.
+
+Minor modes are optional features which you can turn on or off, not necessarily specific to a type of file or buffer. For example, Auto Fill mode is a minor mode in which SPC breaks lines between words as you type. Minor modes are independent of one another, and of the selected major mode.
+
 ** Builtins
 Emacs comes with quite a few packages built-in.
 We'll look into some of them here.
@@ -32,7 +119,7 @@ We'll look into some of them here.
 
 Dired is the emacs way to interact with your files. The name “Dired” stands for “directory editor”.
 All the operations you expect from a typical file-manager application are available in Dired, plus some that are specific to Emacs.
-
+\\
 [[https://github.com/jtbm37/all-the-icons-dired][all-the-icons-dired]] adds dired support to [[https://github.com/domtronn/all-the-icons.el][all-the-icons]].
 #+begin_src emacs-lisp
   (use-package all-the-icons)
@@ -68,7 +155,7 @@ You can define filter groups, and apply them, as such:
 		(ibuffer-switch-to-saved-filter-groups "main")))
 #+end_src
 
-Additionally, =ibuffer-auto-mode= is a minor mode that automatically updates the buffer list.
+Additionally, ibuffer-auto-mode is a minor mode that automatically updates the buffer list.
 #+begin_src emacs-lisp
   (add-hook 'ibuffer-mode-hook
 	    '(lambda ()
@@ -81,6 +168,7 @@ You'll probably also want to hide empty filter groups:
   (setq ibuffer-show-empty-filter-groups nil)
 #+end_src
 
+\\
 [[https://github.com/seagle0128/all-the-icons-ibuffer][all-the-icons-ibuffer]] is a package to display icons for all buffers in ibuffer.
 #+begin_src emacs-lisp
   (use-package all-the-icons-ibuffer
@@ -141,9 +229,9 @@ Org-mode is an Emacs major mode for keeping notes, authoring documents, computat
 
 *** Making Org-mode look pretty
 
-=org-hide-emphasis-markers= automatically hides any inline emphasis markers which leads to a much cleaner look.
-=org-hide-leading-stars= hides the leading stars in org headlines.
-=org-link-descriptive= turns the markup of an org-mode link to show just the description
+org-hide-emphasis-markers automatically hides any inline emphasis markers which leads to a much cleaner look.
+org-hide-leading-stars hides the leading stars in org headlines.
+org-link-descriptive turns the markup of an org-mode link to show just the description
 #+begin_src emacs-lisp
   (setq org-hide-leading-stars t
 	org-hide-emphasis-markers t
@@ -163,6 +251,12 @@ https://github.com/jrblevin/deft
 
 Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity. It was designed for increased productivity when writing and taking notes by making it fast and simple to find the right file at the right time and by automating many of the usual tasks such as creating new files and saving files.
 
+** Help
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Help-Summary.html][Official Documentation]]
+
+- ~C-h f~  - Display documentation on a Lisp function.
+- ~C-h v~  - Display the documentation of a Lisp variable.
+- ~C-h k~  - Display the name and documentation of the command that a key runs
 
 * Ricing Emacs!
 Because, why not?
@@ -185,7 +279,7 @@ To add some padding around the frame:
 #+end_src
 
 ** Fonts
-[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#:~:text=By%20default%2C%20Emacs%20displays%20text,in%20the%20'%20Options%20'%20menu.][Official Documentation]]
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html#:~:textBy%20default%2C%20Emacs%20displays%20text,in%20the%20'%20Options%20'%20menu.][Official Documentation]]
 
 The preferred way to set the font you want emacs to use is:
 #+begin_src emacs-lisp
@@ -215,12 +309,6 @@ Some resources to learn about mode line configuration:
 - [[https://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html?][This post on emacs-fu.blogspot.com]] 
   
 You can also go the easy route and configure a premade modeline, like [[https://github.com/seagle0128/doom-modeline][doom-modeline]] or [[https://gitlab.com/jessieh/mood-line][mood-line]].
-
-** Splash Screen
-My splash screen based off of the one from [[https://github.com/rougier/nano-emacs][nano-emacs]]:
-
-[[https://cdn.discordapp.com/attachments/635625925748457482/956938139774107658/unknown.png]]
-[[https://github.com/nuxshed/dotfiles/blob/main/config/emacs/lisp/splash.el][source]]
 
 * More Resources
 - [[https://nes.is-a.dev/out/brain/emacs.html][nes's experience using emacs]]
