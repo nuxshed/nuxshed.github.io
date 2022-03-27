@@ -15,12 +15,6 @@ This is what it looks like right now:
 
 Let's get started.
 
-Oh, my aliases. What would I ever do without you?
-#+begin_src lua
-  local fn = vim.fn
-  local api = vim.api
-#+end_src
-
 * Statusline Modules
 We define each module individually, and then build the statusline at the end. It's more manageable this way.
 
@@ -56,7 +50,7 @@ The code below creates a table that defines the string name (which will be displ
 Now, to actually get the mode and match it with ~modes~:
 #+begin_src lua
   local function mode()
-    local current_mode = api.nvim_get_mode().mode
+    local current_mode = vim.api.nvim_get_mode().mode
     return string.format(" %s ", modes[current_mode]):upper()
   end
 #+end_src
@@ -65,7 +59,7 @@ I'd like to have different colors for different modes. The function below return
 If you don't want different colors for each mode, simply remove this function and remove all occurences of it below. Everything should still work.
 #+begin_src lua
   local function update_mode_colors()
-    local current_mode = api.nvim_get_mode().mode
+    local current_mode = vim.api.nvim_get_mode().mode
     local mode_color = "%#StatusLineAccent#"
     if current_mode == "n" then
         mode_color = "%#StatuslineAccent#"
@@ -87,15 +81,15 @@ If you don't want different colors for each mode, simply remove this function an
 ** File
 What is a statusline without the filename?
 
-Here, we use a few modifiers with ~fn.fnamemodify~ to customize what the filepath looks like:
-- =:~= reduces filename to be relative to the home directory, i.e. replace =/home/<user>= with =~=.
-- =:.= reduces filename to be relative to the current directory.
-- =:h= reduces filename to only the head (without this it would be printed twice.)
+Here, we use a few modifiers with ~vim.fn.fnamemodify~ to customize what the filepath looks like:
+- ~:~~ - reduces filename to be relative to the home directory, i.e. replace =/home/<user>= with =~=.
+- ~:.~ - reduces filename to be relative to the current directory.
+- ~:h~ - reduces filename to only the head (without this it would be printed twice.)
 
-Refer to =:h filename-modifiers= for more.
+Refer to ~:h filename-modifiers~ for more.
 #+begin_src lua
   local function filepath()
-    local fpath = fn.fnamemodify(fn.expand "%", ":~:.:h")
+    local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.:h")
     if fpath == "" or fpath == "." then
         return " "
     end
@@ -104,10 +98,10 @@ Refer to =:h filename-modifiers= for more.
   end
 #+end_src
 
-Here, =~= refers to the current file name, and =:t= modifies it to only show the tail part
+Here, ~~~ refers to the current file name, and ~:t~ modifies it to only show the tail part
 #+begin_src lua
   local function filename()
-    local fname = fn.expand "%:t"
+    local fname = vim.fn.expand "%:t"
     if fname == "" then
         return ""
     end
@@ -164,9 +158,9 @@ Takes the filetype and makes it uppercase
 #+end_src
 
 ** Line Info
-- =%P=: Percentage through the file.
-- =%l=: Line Number
-- =%c=: Column Number
+- ~%P~ - Percentage through the file.
+- ~%l~ - Line Number
+- ~%c~ - Column Number
 #+begin_src lua
   local function lineinfo()
     if vim.bo.filetype == "alpha" then
@@ -209,7 +203,7 @@ Let us build the statusline using the modules defined above. Here, we take a tab
 * Showing the Statusline
 I use autocommands to show the statusline. This lets me show different statuslines for different buffers and add an inactive statusline. Credit to elianiva for the concept.
 #+begin_src lua
-  api.nvim_exec([[
+  vim.api.nvim_exec([[
     augroup Statusline
     au!
     au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()

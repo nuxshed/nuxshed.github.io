@@ -119,7 +119,7 @@ pre.src:before {
 }
 
 ::-webkit-scrollbar {
-  width: 13px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {

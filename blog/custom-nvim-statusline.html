@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-03-24 Thu 19:52 -->
+<!-- 2022-03-27 Sun 16:21 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Custom Neovim Statusline</title>
@@ -258,15 +258,6 @@ This is what it looks like right now:<br>
 <p>
 Let's get started.<br>
 </p>
-
-<p>
-Oh, my aliases. What would I ever do without you?<br>
-</p>
-<div class="org-src-container">
-<pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #969896;">fn</span> = vim.fn
-<span style="color: #282a2e;">local</span> <span style="color: #969896;">api</span> = vim.api
-</pre>
-</div>
 </div>
 </div>
 
@@ -316,7 +307,7 @@ Now, to actually get the mode and match it with <code>modes</code>:<br>
 </p>
 <div class="org-src-container">
 <pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">mode</span>()
-  <span style="color: #282a2e;">local</span> <span style="color: #969896;">current_mode</span> = api.nvim_get_mode().mode
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">current_mode</span> = vim.api.nvim_get_mode().mode
   <span style="color: #282a2e;">return</span> <span style="color: #969896;">string</span>.<span style="color: #969896;">format</span>(<span style="color: #969896;">" %s "</span>, modes[current_mode]):upper()
 <span style="color: #282a2e;">end</span>
 </pre>
@@ -328,7 +319,7 @@ If you don't want different colors for each mode, simply remove this function an
 </p>
 <div class="org-src-container">
 <pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">update_mode_colors</span>()
-  <span style="color: #282a2e;">local</span> <span style="color: #969896;">current_mode</span> = api.nvim_get_mode().mode
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">current_mode</span> = vim.api.nvim_get_mode().mode
   <span style="color: #282a2e;">local</span> <span style="color: #969896;">mode_color</span> = <span style="color: #969896;">"%#StatusLineAccent#"</span>
   <span style="color: #282a2e;">if</span> current_mode == <span style="color: #969896;">"n"</span> <span style="color: #282a2e;">then</span>
       mode_color = <span style="color: #969896;">"%#StatuslineAccent#"</span>
@@ -358,12 +349,12 @@ What is a statusline without the filename?<br>
 </p>
 
 <p>
-Here, we use a few modifiers with <code>fn.fnamemodify</code> to customize what the filepath looks like:<br>
+Here, we use a few modifiers with <code>vim.fn.fnamemodify</code> to customize what the filepath looks like:<br>
 </p>
 <ul class="org-ul">
-<li><code>:~</code> reduces filename to be relative to the home directory, i.e. replace <code>/home/&lt;user&gt;</code> with <code>~</code>.<br></li>
-<li><code>:.</code> reduces filename to be relative to the current directory.<br></li>
-<li><code>:h</code> reduces filename to only the head (without this it would be printed twice.)<br></li>
+<li><code>:~</code> - reduces filename to be relative to the home directory, i.e. replace <code>/home/&lt;user&gt;</code> with <code>~</code>.<br></li>
+<li><code>:.</code> - reduces filename to be relative to the current directory.<br></li>
+<li><code>:h</code> - reduces filename to only the head (without this it would be printed twice.)<br></li>
 </ul>
 
 <p>
@@ -371,7 +362,7 @@ Refer to <code>:h filename-modifiers</code> for more.<br>
 </p>
 <div class="org-src-container">
 <pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">filepath</span>()
-  <span style="color: #282a2e;">local</span> <span style="color: #969896;">fpath</span> = fn.fnamemodify(fn.expand <span style="color: #969896;">"%"</span>, <span style="color: #969896;">":~:.:h"</span>)
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">fpath</span> = vim.fn.fnamemodify(vim.fn.expand <span style="color: #969896;">"%"</span>, <span style="color: #969896;">":~:.:h"</span>)
   <span style="color: #282a2e;">if</span> fpath == <span style="color: #969896;">""</span> <span style="color: #282a2e;">or</span> fpath == <span style="color: #969896;">"."</span> <span style="color: #282a2e;">then</span>
       <span style="color: #282a2e;">return</span> <span style="color: #969896;">" "</span>
   <span style="color: #282a2e;">end</span>
@@ -386,7 +377,7 @@ Here, <code>~</code> refers to the current file name, and <code>:t</code> modifi
 </p>
 <div class="org-src-container">
 <pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">filename</span>()
-  <span style="color: #282a2e;">local</span> <span style="color: #969896;">fname</span> = fn.expand <span style="color: #969896;">"%:t"</span>
+  <span style="color: #282a2e;">local</span> <span style="color: #969896;">fname</span> = vim.fn.expand <span style="color: #969896;">"%:t"</span>
   <span style="color: #282a2e;">if</span> fname == <span style="color: #969896;">""</span> <span style="color: #282a2e;">then</span>
       <span style="color: #282a2e;">return</span> <span style="color: #969896;">""</span>
   <span style="color: #282a2e;">end</span>
@@ -465,9 +456,9 @@ Takes the filetype and makes it uppercase<br>
 <h3 id="orgd7a43de"><span class="section-number-3">3.5.</span> Line Info</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
-<li><code>%P</code>: Percentage through the file.<br></li>
-<li><code>%l</code>: Line Number<br></li>
-<li><code>%c</code>: Column Number<br></li>
+<li><code>%P</code> - Percentage through the file.<br></li>
+<li><code>%l</code> - Line Number<br></li>
+<li><code>%c</code> - Column Number<br></li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-lua"><span style="color: #282a2e;">local</span> <span style="color: #282a2e;">function</span> <span style="color: #282a2e; font-style: italic;">lineinfo</span>()
@@ -526,7 +517,7 @@ Let us build the statusline using the modules defined above. Here, we take a tab
 I use autocommands to show the statusline. This lets me show different statuslines for different buffers and add an inactive statusline. Credit to elianiva for the concept.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">api.nvim_exec(<span style="color: #969896;">[[</span>
+<pre class="src src-lua">vim.api.nvim_exec(<span style="color: #969896;">[[</span>
 <span style="color: #969896;">  augroup Statusline</span>
 <span style="color: #969896;">  au!</span>
 <span style="color: #969896;">  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()</span>
