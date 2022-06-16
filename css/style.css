@@ -2,8 +2,6 @@
   font-family: "Cascadia Code";
   src: url("../fonts/CascadiaCode.woff2");
 }
-
-
 @font-face {
   font-family: "Commissioner";
   src: url("../fonts/Commissioner.ttf"),
@@ -102,9 +100,9 @@ a:hover {
 }
 
 .about-container {
-  padding-top: 3em;
+  padding-top: 10%;
   text-align: left;
-  width: 80%;
+  width: 65%;
   overflow: hidden;
   margin: auto;
     line-height: 1.675;

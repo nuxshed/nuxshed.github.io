@@ -18,20 +18,25 @@ It works pretty well, is quite stable, and maintained.
 https://github.com/dccsillag/picom/tree/implement-window-animations
 
 This fork supports most of the stuff the original one does, and implements good-looking and configurable animations on top of that. 
+Currently what I would recommend to people who want nice animations.
 
 ** pijulius/picom
 https://github.com/pijulius/picom
 
 An improvement over dccsillags fork. It adds more animations and also lets you configure animations on workspace changes.
-Currently what I would recommend to people who want nice animations.
+
+*NOTE:*
+dccsillag seems to have merged most of the new features this fork provides, and is working on the rest of it.
+Also, this fork hasn't been updated in quite a while.
+
+(thanks to =deep state gaming divison#1134= for pointing this out)
 
 [[../assets/pijulius.gif]]
 
 ** jonaburg/picom
 https://github.com/jonaburg/picom
 
-This is a forked version from Sandmark's picom branch, including Blackcapcoder's animation code inside. The animations here are further smoothed and time deltas reduced from 1ms to 40us for high refresh rates and buttery smooth transitions.
-The animations are somewhat configurable but you cannot control what animation is shown (as in dccsillag/pijulius)
+This is a forked version from Sandmark's picom branch, including Blackcapcoder's animation code inside. The animations here are further smoothed and time deltas reduced for high refresh rates and buttery smooth transitions. The animations are somewhat configurable but you cannot control what animation is shown (as in dccsillag/pijulius)
 
 Also, while I personally find the animations from dccsillag/pijulius more suitable to my taste, the animations from jonaburg are quite nice, and have a more linear(?) kind of style.
 
@@ -47,8 +52,6 @@ However, if I recall correctly, both rounded corners and dual kawase blur were m
 https://github.com/Tanish2002/picom
 
 Fork of ibhagwan's fork that patches in phisch's transition code.
-
-TODO: test it out and rate the animations.
 
 * Snippets
 

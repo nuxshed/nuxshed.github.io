@@ -56,6 +56,7 @@ For example:
 #+begin_src emacs-lisp
 (global-set-key [f1] 'help-for-help)
 #+end_src
+
 This will bind the function ~help-for-help~ to the ~f1~ key.
 
 \\
@@ -70,6 +71,7 @@ For example:
 #+begin_src emacs-lisp
   (add-hook 'text-mode-hook 'auto-fill-mode)
 #+end_src
+
 This calls ~auto-fill-mode~ when ~text-mode~ is active.
 
 *** Using 'customize'
@@ -84,6 +86,7 @@ https://github.com/jwiegley/use-package
 The ~use-package~ macro allows you to isolate package configuration in your emacs config in a way that is both performance-oriented and tidy. 
 
 This is how I set up ~use-package~ in my config:
+
 #+begin_src emacs-lisp
   (require 'package)
   (add-to-list 'package-archives

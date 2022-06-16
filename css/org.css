@@ -1,5 +1,8 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Commissioner&display=swap');
+@font-face {
+  font-family: "Commissioner";
+  src: url("../fonts/Commissioner.ttf"),
+}
 @font-face {
   font-family: "Cascadia Code";
   src: url("../fonts/CascadiaCode.woff2");

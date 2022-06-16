@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-03-24 Thu 23:13 -->
+<!-- 2022-06-16 Thu 17:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>An Attempt to understand picom and its forks</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="../css/org.css" />
 </head>
@@ -270,6 +270,7 @@ It works pretty well, is quite stable, and maintained.<br>
 
 <p>
 This fork supports most of the stuff the original one does, and implements good-looking and configurable animations on top of that.<br>
+Currently what I would recommend to people who want nice animations.<br>
 </p>
 </div>
 </div>
@@ -283,11 +284,20 @@ This fork supports most of the stuff the original one does, and implements good-
 
 <p>
 An improvement over dccsillags fork. It adds more animations and also lets you configure animations on workspace changes.<br>
-Currently what I would recommend to people who want nice animations.<br>
+</p>
+
+<p>
+<b>NOTE:</b><br>
+dccsillag seems to have merged most of the new features this fork provides, and is working on the rest of it.<br>
+Also, this fork hasn't been updated in quite a while.<br>
+</p>
+
+<p>
+(thanks to <code>deep state gaming divison#1134</code> for pointing this out)<br>
 </p>
 
 
-<div id="org583b446" class="figure">
+<div id="orgb9b7758" class="figure">
 <p><img src="../assets/pijulius.gif" alt="pijulius.gif"><br>
 </p>
 </div>
@@ -302,8 +312,7 @@ Currently what I would recommend to people who want nice animations.<br>
 </p>
 
 <p>
-This is a forked version from Sandmark's picom branch, including Blackcapcoder's animation code inside. The animations here are further smoothed and time deltas reduced from 1ms to 40us for high refresh rates and buttery smooth transitions.<br>
-The animations are somewhat configurable but you cannot control what animation is shown (as in dccsillag/pijulius)<br>
+This is a forked version from Sandmark's picom branch, including Blackcapcoder's animation code inside. The animations here are further smoothed and time deltas reduced for high refresh rates and buttery smooth transitions. The animations are somewhat configurable but you cannot control what animation is shown (as in dccsillag/pijulius)<br>
 </p>
 
 <p>
@@ -340,10 +349,6 @@ However, if I recall correctly, both rounded corners and dual kawase blur were m
 <p>
 Fork of ibhagwan's fork that patches in phisch's transition code.<br>
 </p>
-
-<p>
-TODO: test it out and rate the animations.<br>
-</p>
 </div>
 </div>
 </div>
@@ -359,18 +364,18 @@ TODO: test it out and rate the animations.<br>
 Snippet to configure animations on dccsillag/pijulius<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #969896;">animations</span> = true;
-<span style="color: #969896;">animation-stiffness</span> = 300.0;
-<span style="color: #969896;">animation-dampening</span> = 22.0;
-<span style="color: #969896;">animation-clamping</span> = true;
-<span style="color: #969896;">animation-mass</span> = 1;
-<span style="color: #969896;">animation-for-open-window</span> = <span style="color: #969896;">"zoom"</span>;
-<span style="color: #969896;">animation-for-menu-window</span> = <span style="color: #969896;">"slide-down"</span>;
-<span style="color: #969896;">animation-for-transient-window</span> = <span style="color: #969896;">"slide-down"</span>;
+<pre class="src src-conf"><span style="color: #685c56;">animations</span> = true;
+<span style="color: #685c56;">animation-stiffness</span> = 300.0;
+<span style="color: #685c56;">animation-dampening</span> = 22.0;
+<span style="color: #685c56;">animation-clamping</span> = true;
+<span style="color: #685c56;">animation-mass</span> = 1;
+<span style="color: #685c56;">animation-for-open-window</span> = <span style="color: #597a37; font-style: italic;">"zoom"</span>;
+<span style="color: #685c56;">animation-for-menu-window</span> = <span style="color: #597a37; font-style: italic;">"slide-down"</span>;
+<span style="color: #685c56;">animation-for-transient-window</span> = <span style="color: #597a37; font-style: italic;">"slide-down"</span>;
 
-<span style="color: #c5c8c6; font-style: italic;"># </span><span style="color: #c5c8c6; font-style: italic;">(requires pijulius)</span>
-<span style="color: #969896;">animation-for-workspace-switch-in</span> = <span style="color: #969896;">"zoom"</span>;
-<span style="color: #969896;">animation-for-workspace-switch-out</span> = <span style="color: #969896;">"zoom"</span>;
+<span style="color: #948985; font-style: italic;"># </span><span style="color: #948985; font-style: italic;">(requires pijulius)</span>
+<span style="color: #685c56;">animation-for-workspace-switch-in</span> = <span style="color: #597a37; font-style: italic;">"zoom"</span>;
+<span style="color: #685c56;">animation-for-workspace-switch-out</span> = <span style="color: #597a37; font-style: italic;">"zoom"</span>;
 </pre>
 </div>
 
@@ -378,12 +383,12 @@ Snippet to configure animations on dccsillag/pijulius<br>
 Snippet to configure animations on jonaburg<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #969896;">transition-length</span> = 300
-<span style="color: #969896;">transition-pow-x</span> = 0.1
-<span style="color: #969896;">transition-pow-y</span> = 0.1
-<span style="color: #969896;">transition-pow-w</span> = 0.1
-<span style="color: #969896;">transition-pow-h</span> = 0.1
-<span style="color: #969896;">size-transition</span> = true
+<pre class="src src-conf"><span style="color: #685c56;">transition-length</span> = 300
+<span style="color: #685c56;">transition-pow-x</span> = 0.1
+<span style="color: #685c56;">transition-pow-y</span> = 0.1
+<span style="color: #685c56;">transition-pow-w</span> = 0.1
+<span style="color: #685c56;">transition-pow-h</span> = 0.1
+<span style="color: #685c56;">size-transition</span> = true
 </pre>
 </div>
 </div>
