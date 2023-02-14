@@ -134,6 +134,36 @@ a:hover {
   background: #cbd9e3;
 }
 
+.anim-typewriter-text {
+  width: 7em;
+  margin: 0 auto;
+  border-right: 2px solid #2c363c;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.anim-typewriter {
+  animation: typewriter 1.25s steps(12) 1s 1 normal both,
+    blinkTextCursor 600ms steps(12) infinite normal;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 7.2em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: #2c363c;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .posts {
