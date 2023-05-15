@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-18 Sat 18:10 -->
+<!-- 2023-05-15 Mon 22:27 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Emacs Experience</title>
@@ -356,7 +356,7 @@ If you would rather not experience the <del>pain</del> joy of configuring emacs 
 To change the value of a variable in emacs-lisp:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> variable value)
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> variable value)
 </pre>
 </div>
 
@@ -452,11 +452,11 @@ This is how I set up <code>use-package</code> in my config:<br>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">require</span> '<span style="color: #b751b6;">package</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">require</span> '<span style="color: #685c56;">package</span>)
 (add-to-list 'package-archives
-             '(<span style="color: #50a14f;">"melpa"</span> . <span style="color: #50a14f;">"https://melpa.org/packages/"</span>))
+             '(<span style="color: #597a37; font-style: italic;">"melpa"</span> . <span style="color: #597a37; font-style: italic;">"https://melpa.org/packages/"</span>))
 
-(<span style="color: #e45649;">unless</span> (package-installed-p 'use-package)
+(<span style="color: #a8334c; font-style: italic;">unless</span> (package-installed-p 'use-package)
   (package-install 'use-package))
 </pre>
 </div>
@@ -465,7 +465,7 @@ This is how I set up <code>use-package</code> in my config:<br>
 Now, we can install a package from <a href="https://melpa.org">MELPA</a> like so:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">use-package</span> <span style="color: #b751b6;">evil</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">use-package</span> <span style="color: #685c56;">evil</span>)
 </pre>
 </div>
 
@@ -525,8 +525,8 @@ All the operations you expect from a typical file-manager application are availa
 <a href="https://github.com/jtbm37/all-the-icons-dired">all-the-icons-dired</a> adds dired support to <a href="https://github.com/domtronn/all-the-icons.el">all-the-icons</a>.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">use-package</span> <span style="color: #b751b6;">all-the-icons</span>)
-(<span style="color: #e45649;">use-package</span> <span style="color: #b751b6;">all-the-icons-dired</span> <span style="color: #a626a4;">:hook</span> (dired-mode-hook . all-the-icons-dired-mode))
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">use-package</span> <span style="color: #685c56;">all-the-icons</span>)
+(<span style="color: #a8334c; font-style: italic;">use-package</span> <span style="color: #685c56;">all-the-icons-dired</span> <span style="color: #286486;">:hook</span> (dired-mode-hook . all-the-icons-dired-mode))
 </pre>
 </div>
 </div>
@@ -540,7 +540,7 @@ Ibuffer is for buffers, what dired is for files. It provides a way of filtering 
 </p>
 
 
-<div id="orgc1b7bcc" class="figure">
+<div id="org9e1da90" class="figure">
 <p><img src="https://cdn.discordapp.com/attachments/635625925748457482/939418882026917918/unknown.png" alt="unknown.png"><br>
 </p>
 </div>
@@ -549,26 +549,26 @@ Ibuffer is for buffers, what dired is for files. It provides a way of filtering 
 You can define filter groups, and apply them, as such:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> ibuffer-saved-filter-groups
-      '((<span style="color: #50a14f;">"main"</span>
-         (<span style="color: #50a14f;">"modified"</span> (<span style="color: #e45649;">and</span>
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> ibuffer-saved-filter-groups
+      '((<span style="color: #597a37; font-style: italic;">"main"</span>
+         (<span style="color: #597a37; font-style: italic;">"modified"</span> (<span style="color: #a8334c; font-style: italic;">and</span>
                       (modified . t)
                       (visiting-file . t)))
-         (<span style="color: #50a14f;">"blog"</span> (filename . <span style="color: #50a14f;">"/projects/site/"</span>))
-         (<span style="color: #50a14f;">"code"</span> (<span style="color: #e45649;">or</span> (filename . <span style="color: #50a14f;">"/projects/"</span>)
-                     (filename . <span style="color: #50a14f;">"/code/"</span>)))
-         (<span style="color: #50a14f;">"org"</span> (mode . org-mode))
-         (<span style="color: #50a14f;">"dired"</span> (mode . dired-mode))
-         (<span style="color: #50a14f;">"help"</span> (<span style="color: #e45649;">or</span> (name . <span style="color: #50a14f;">"</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*Help</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*"</span>)
-                     (name . <span style="color: #50a14f;">"</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*Apropos</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*"</span>)
-                     (name . <span style="color: #50a14f;">"</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*info</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*"</span>)
+         (<span style="color: #597a37; font-style: italic;">"blog"</span> (filename . <span style="color: #597a37; font-style: italic;">"/projects/site/"</span>))
+         (<span style="color: #597a37; font-style: italic;">"code"</span> (<span style="color: #a8334c; font-style: italic;">or</span> (filename . <span style="color: #597a37; font-style: italic;">"/projects/"</span>)
+                     (filename . <span style="color: #597a37; font-style: italic;">"/code/"</span>)))
+         (<span style="color: #597a37; font-style: italic;">"org"</span> (mode . org-mode))
+         (<span style="color: #597a37; font-style: italic;">"dired"</span> (mode . dired-mode))
+         (<span style="color: #597a37; font-style: italic;">"help"</span> (<span style="color: #a8334c; font-style: italic;">or</span> (name . <span style="color: #597a37; font-style: italic;">"</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*Help</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*"</span>)
+                     (name . <span style="color: #597a37; font-style: italic;">"</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*Apropos</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*"</span>)
+                     (name . <span style="color: #597a37; font-style: italic;">"</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*info</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*"</span>)
                      (mode . help-mode)))
-         (<span style="color: #50a14f;">"internal"</span> (name . <span style="color: #50a14f;">"^</span><span style="color: #986801;">\</span><span style="color: #50a14f;">*.*$"</span>))
-         (<span style="color: #50a14f;">"other"</span> (name . <span style="color: #50a14f;">"^.*$"</span>)))))
+         (<span style="color: #597a37; font-style: italic;">"internal"</span> (name . <span style="color: #597a37; font-style: italic;">"^</span><span style="color: #a8623e; font-style: italic;">\</span><span style="color: #597a37; font-style: italic;">*.*$"</span>))
+         (<span style="color: #597a37; font-style: italic;">"other"</span> (name . <span style="color: #597a37; font-style: italic;">"^.*$"</span>)))))
 
   (add-hook 'ibuffer-mode-hook
-          (<span style="color: #e45649;">lambda</span> ()
-              (ibuffer-switch-to-saved-filter-groups <span style="color: #50a14f;">"main"</span>)))
+          (<span style="color: #a8334c; font-style: italic;">lambda</span> ()
+              (ibuffer-switch-to-saved-filter-groups <span style="color: #597a37; font-style: italic;">"main"</span>)))
 </pre>
 </div>
 
@@ -579,7 +579,7 @@ Additionally, ibuffer-auto-mode is a minor mode that automatically updates the b
 <pre class="src src-emacs-lisp">(add-hook 'ibuffer-mode-hook
           '(lambda ()
              (ibuffer-auto-mode 1)
-             (ibuffer-switch-to-saved-filter-groups <span style="color: #50a14f;">"main"</span>)))
+             (ibuffer-switch-to-saved-filter-groups <span style="color: #597a37; font-style: italic;">"main"</span>)))
 </pre>
 </div>
 
@@ -587,7 +587,7 @@ Additionally, ibuffer-auto-mode is a minor mode that automatically updates the b
 You'll probably also want to hide empty filter groups:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> ibuffer-show-empty-filter-groups nil)
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> ibuffer-show-empty-filter-groups nil)
 </pre>
 </div>
 
@@ -596,9 +596,9 @@ You'll probably also want to hide empty filter groups:<br>
 <a href="https://github.com/seagle0128/all-the-icons-ibuffer">all-the-icons-ibuffer</a> is a package to display icons for all buffers in ibuffer.<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">use-package</span> <span style="color: #b751b6;">all-the-icons-ibuffer</span>
-  <span style="color: #a626a4;">:ensure</span> t
-  <span style="color: #a626a4;">:init</span> (all-the-icons-ibuffer-mode 1))
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">use-package</span> <span style="color: #685c56;">all-the-icons-ibuffer</span>
+  <span style="color: #286486;">:ensure</span> t
+  <span style="color: #286486;">:init</span> (all-the-icons-ibuffer-mode 1))
 </pre>
 </div>
 </div>
@@ -624,7 +624,7 @@ Evil is an extensible vi layer for Emacs. It provides Vim features like Modal ed
 My preferred settings for evil:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> evil-cross-lines t
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> evil-cross-lines t
       evil-move-beyond-eol t
       evil-symbol-word-search t
       evil-want-Y-yank-to-eol t
@@ -718,7 +718,7 @@ org-hide-leading-stars hides the leading stars in org headlines.<br>
 org-link-descriptive turns the markup of an org-mode link to show just the description<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> org-hide-leading-stars t
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> org-hide-leading-stars t
       org-hide-emphasis-markers t
       org-link-descriptive t)
 </pre>
@@ -729,7 +729,7 @@ org-link-descriptive turns the markup of an org-mode link to show just the descr
 You can set the bullets that it uses like so:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> org-bullets-bullet-list '(<span style="color: #50a14f;">"&#9673;"</span> <span style="color: #50a14f;">"&#9675;"</span> <span style="color: #50a14f;">"&#9679;"</span> <span style="color: #50a14f;">"&#9675;"</span> <span style="color: #50a14f;">"&#9679;"</span> <span style="color: #50a14f;">"&#9675;"</span> <span style="color: #50a14f;">"&#9679;"</span>))
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> org-bullets-bullet-list '(<span style="color: #597a37; font-style: italic;">"&#9673;"</span> <span style="color: #597a37; font-style: italic;">"&#9675;"</span> <span style="color: #597a37; font-style: italic;">"&#9679;"</span> <span style="color: #597a37; font-style: italic;">"&#9675;"</span> <span style="color: #597a37; font-style: italic;">"&#9679;"</span> <span style="color: #597a37; font-style: italic;">"&#9675;"</span> <span style="color: #597a37; font-style: italic;">"&#9679;"</span>))
 </pre>
 </div>
 
@@ -784,13 +784,13 @@ Because, why not?<br>
 In my opinion, the default emacs interface is quite cluttered. The various GUI elements may be useful to some people, but to me, they're just distractions. Let's fix that:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #e45649;">setq</span> inhibit-startup-echo-area-message t
+<pre class="src src-emacs-lisp">(<span style="color: #a8334c; font-style: italic;">setq</span> inhibit-startup-echo-area-message t
       inhibit-startup-message t)
 
-(tool-bar-mode -1)     <span style="color: #9ca0a4;">; </span><span style="color: #9ca0a4;">Disable the toolbar</span>
-(tooltip-mode -1)      <span style="color: #9ca0a4;">; </span><span style="color: #9ca0a4;">Disable tooltips</span>
-(menu-bar-mode -1)     <span style="color: #9ca0a4;">; </span><span style="color: #9ca0a4;">Disable the menu bar</span>
-(scroll-bar-mode -1)   <span style="color: #9ca0a4;">; </span><span style="color: #9ca0a4;">Disable the scrollbar</span>
+(tool-bar-mode -1)     <span style="color: #948985; font-style: italic;">; </span><span style="color: #948985; font-style: italic;">Disable the toolbar</span>
+(tooltip-mode -1)      <span style="color: #948985; font-style: italic;">; </span><span style="color: #948985; font-style: italic;">Disable tooltips</span>
+(menu-bar-mode -1)     <span style="color: #948985; font-style: italic;">; </span><span style="color: #948985; font-style: italic;">Disable the menu bar</span>
+(scroll-bar-mode -1)   <span style="color: #948985; font-style: italic;">; </span><span style="color: #948985; font-style: italic;">Disable the scrollbar</span>
 </pre>
 </div>
 <p>
@@ -815,7 +815,7 @@ To add some padding around the frame:<br>
 The preferred way to set the font you want emacs to use is:<br>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(font . <span style="color: #50a14f;">"Cartograph CF 10"</span>))
+<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(font . <span style="color: #597a37; font-style: italic;">"Cartograph CF 10"</span>))
 </pre>
 </div>
 </div>
