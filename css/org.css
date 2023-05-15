@@ -152,5 +152,6 @@ pre.src:before {
   }
   pre.src {
     font-size: 12px;
+    padding: 10px;
   }
 }
