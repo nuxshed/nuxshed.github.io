@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: "Commissioner";
-  src: url("../fonts/Commissioner.ttf"),
+  src: url("../fonts/Commissioner.ttf");
 }
 
 html {
@@ -70,11 +70,11 @@ a:hover {
 }
 
 .center {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .prominent {
@@ -105,9 +105,9 @@ a:hover {
   width: 65%;
   overflow: hidden;
   margin: auto;
-    line-height: 1.675;
-    counter-reset: definition;
-    text-rendering: optimizeLegibility;
+  line-height: 1.675;
+  counter-reset: definition;
+  text-rendering: optimizeLegibility;
   font-size: 20px;
 }
 
@@ -134,42 +134,12 @@ a:hover {
   background: #cbd9e3;
 }
 
-.anim-typewriter-text {
-  width: 7em;
-  margin: 0 auto;
-  border-right: 2px solid #2c363c;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.anim-typewriter {
-  animation: typewriter 1.25s steps(12) 1s 1 normal both,
-    blinkTextCursor 600ms steps(12) infinite normal;
-}
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 7.2em;
-  }
-}
-@keyframes blinkTextCursor {
-  from {
-    border-right-color: #2c363c;
-  }
-  to {
-    border-right-color: transparent;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .posts {
     padding: 5% 10%;
   }
-  
+
   .prominent {
     font-size: 34px;
   }
@@ -180,5 +150,38 @@ a:hover {
 
   .links {
     width: 90%;
+  }
+}
+
+@media only screen and (min-width: 912px) {
+  .anim-typewriter-text {
+    width: 7em;
+    margin: 0 auto;
+    border-right: 2px solid #2c363c;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .anim-typewriter {
+    animation: typewriter 1.25s steps(12) 1s 1 normal both,
+      blinkTextCursor 600ms steps(12) infinite normal;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 7.2em;
+    }
+  }
+  @keyframes blinkTextCursor {
+    from {
+      border-right-color: #2c363c;
+    }
+    to {
+      border-right-color: transparent;
+    }
   }
 }
